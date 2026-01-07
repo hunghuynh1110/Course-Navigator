@@ -1,0 +1,21 @@
+# --- Mac OS (Các file rác của Mac) ---
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# --- Python & Virtual Environment (QUAN TRỌNG) ---
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# --- Jupyter Notebook ---
+.ipynb_checkpoints
+
+# --- Environment Variables ---
+.env
+.env.local
+
+# --- VS Code (Cấu hình riêng của editor) ---
+.vscode/
