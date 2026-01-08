@@ -23,7 +23,7 @@ function RootLayout() {
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="lg" sx={{ mt: 4 }}>
+      <Container maxWidth="lg" sx={{ mt: 2 }}>
         <Outlet /> {/* Nơi nội dung trang con hiển thị */}
       </Container>
 

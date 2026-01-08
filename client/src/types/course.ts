@@ -3,6 +3,7 @@ import type { Assessment } from "./assessment";
 export type CourseRawData = {
   code: string;
   title: string;
+  level: string;
   description: string;
   units: number;
   assessments: Assessment[];
