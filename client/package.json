@@ -15,7 +15,7 @@
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
     "@supabase/supabase-js": "^2.90.0",
-    "@tanstack/react-router": "^1.145.7",
+    "@tanstack/react-router": "^1.145.11",
     "lucide-react": "^0.562.0",
     "notistack": "^3.0.2",
     "react": "^19.2.0",
@@ -24,6 +24,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@tanstack/react-router-devtools": "^1.145.11",
+    "@tanstack/router-plugin": "^1.145.11",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
