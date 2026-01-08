@@ -12,7 +12,11 @@ import {
   Box,
   Pagination,
   Container,
+  TextField,
+  InputAdornment,
 } from "@mui/material";
+// Import icon kính lúp
+import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -24,35 +28,58 @@ const PAGE_SIZE = 12;
 function Dashboard() {
   const navigate = useNavigate();
 
-  // State hiển thị
+  // --- STATE ---
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  // KHO LƯU TRỮ (CACHE): Lưu các trang đã tải { 1: [...], 2: [...] }
-  // Dùng useRef để giữ dữ liệu không bị mất khi re-render, nhưng ở đây dùng useState
-  // để giao diện cập nhật khi cache thay đổi cũng ổn, nhưng tốt nhất là tách biệt.
+  // State cho tìm kiếm
+  const [searchTerm, setSearchTerm] = useState(""); // Những gì người dùng đang gõ
+  const [debouncedSearch, setDebouncedSearch] = useState(""); // Những gì dùng để gọi API (sau khi delay)
+
   const [coursesCache, setCoursesCache] = useState<Record<number, Course[]>>(
     {}
   );
 
-  // Hàm lấy dữ liệu (dùng chung cho cả hiển thị và tải ngầm)
-  // Trả về dữ liệu để xử lý tiếp thay vì set state trực tiếp
+  // --- LOGIC DEBOUNCE (CHỜ NGƯỜI DÙNG GÕ XONG) ---
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Chỉ khi người dùng dừng gõ 500ms thì mới cập nhật từ khóa tìm kiếm chính thức
+      setDebouncedSearch(searchTerm);
+
+      // Quan trọng: Khi tìm kiếm thay đổi, phải Reset về trang 1 và Xóa Cache cũ
+      setPage(1);
+      setCoursesCache({});
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+
+  // --- HÀM GỌI API ---
   const fetchPageData = useCallback(
-    async (pageNumber: number) => {
-      // Nếu đã có trong cache rồi thì không gọi API nữa
-      if (coursesCache[pageNumber]) {
+    async (pageNumber: number, searchStr: string) => {
+      // Nếu có cache VÀ KHÔNG có tìm kiếm (hoặc logic cache phức tạp hơn), dùng cache
+      // Ở đây đơn giản hóa: Nếu đang tìm kiếm thì tạm thời bỏ qua cache để đảm bảo chính xác,
+      // hoặc bạn có thể lưu cache theo key "searchStr_page" (nâng cao).
+      // Logic hiện tại: Chỉ cache khi KHÔNG tìm kiếm để tối ưu trải nghiệm mặc định.
+      if (searchStr === "" && coursesCache[pageNumber]) {
         return { data: coursesCache[pageNumber], count: null };
       }
 
-      const from = pageNumber > 1 ? (pageNumber - 2) * PAGE_SIZE : 0;
-
+      const from = (pageNumber - 1) * PAGE_SIZE;
       const to = from + PAGE_SIZE - 1;
 
-      const { data, error, count } = await supabase
-        .from("courses")
-        .select("*", { count: "exact" })
+      // Bắt đầu chuỗi truy vấn
+      let query = supabase.from("courses").select("*", { count: "exact" });
+
+      // Nếu có từ khóa tìm kiếm thì thêm bộ lọc
+      if (searchStr) {
+        // ilike: tìm kiếm không phân biệt hoa thường (insensitive like)
+        query = query.ilike("id", `%${searchStr}%`);
+      }
+
+      const { data, error, count } = await query
         .range(from, to)
         .order("id", { ascending: true });
 
@@ -63,48 +90,50 @@ function Dashboard() {
     [coursesCache]
   );
 
-  // EFFECT 1: Xử lý hiển thị trang hiện tại
+  // --- EFFECT 1: LOAD DỮ LIỆU CHÍNH ---
   useEffect(() => {
     const loadCurrentPage = async () => {
-      // 1. Kiểm tra Cache trước
-      if (coursesCache[page]) {
+      // Logic hiển thị Loading:
+      // Nếu có cache và không search -> Hiện ngay (không load)
+      // Nếu không -> Hiện Loading
+      const hasCache = debouncedSearch === "" && coursesCache[page];
+
+      if (hasCache) {
         setCourses(coursesCache[page]);
         setLoading(false);
       } else {
-        // 2. Nếu chưa có cache thì hiện loading và gọi API
         setLoading(true);
-        const { data, count } = await fetchPageData(page);
+        const { data, count } = await fetchPageData(page, debouncedSearch);
 
-        if (data.length > 0) {
-          // Lưu vào Cache
-          setCoursesCache((prev) => ({ ...prev, [page]: data }));
+        if (data) {
+          // Chỉ lưu cache khi không tìm kiếm (để giữ cache sạch cho danh sách gốc)
+          if (debouncedSearch === "") {
+            setCoursesCache((prev) => ({ ...prev, [page]: data }));
+          }
           setCourses(data);
-          if (count) setTotalPages(Math.ceil(count / PAGE_SIZE));
+          if (count !== null) setTotalPages(Math.ceil(count / PAGE_SIZE));
         }
         setLoading(false);
       }
     };
 
     loadCurrentPage();
-  }, [page, fetchPageData]); // Chạy lại khi page thay đổi
+  }, [page, debouncedSearch, fetchPageData]); // Chạy khi trang đổi HOẶC từ khóa tìm kiếm (đã debounce) đổi
 
-  // EFFECT 2: Tải ngầm trang kế tiếp (Prefetch)
+  // --- EFFECT 2: PREFETCH (Tải ngầm trang kế tiếp) ---
   useEffect(() => {
-    // Chỉ chạy khi trang hiện tại đã tải xong và không phải là trang cuối
-    if (!loading && page < totalPages) {
+    // Chỉ prefetch khi không đang tìm kiếm (để tiết kiệm tài nguyên)
+    if (!loading && page < totalPages && debouncedSearch === "") {
       const nextPage = page + 1;
-
-      // Chỉ tải nếu trang sau CHƯA có trong cache
       if (!coursesCache[nextPage]) {
-        console.log(`Đang tải ngầm trang ${nextPage}...`);
-        fetchPageData(nextPage).then(({ data }) => {
-          if (data.length > 0) {
+        fetchPageData(nextPage, "").then(({ data }) => {
+          if (data && data.length > 0) {
             setCoursesCache((prev) => ({ ...prev, [nextPage]: data }));
           }
         });
       }
     }
-  }, [page, loading, totalPages, coursesCache, fetchPageData]);
+  }, [page, loading, totalPages, coursesCache, fetchPageData, debouncedSearch]);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -116,95 +145,122 @@ function Dashboard() {
 
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
-      {/* Chỗ này quan trọng: Nếu Loading = true (do chưa có cache), hiện vòng xoay.
-        Nếu Loading = false (đã có cache hoặc mới tải xong), hiện Grid.
-      */}
+      {/* THANH TÌM KIẾM */}
+      <Box mb={4} display="flex" justifyContent="flex-end">
+        <TextField
+          label="Search Courses"
+          variant="outlined"
+          size="small"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          sx={{ width: { xs: "100%", sm: "50%" }, backgroundColor: "white" }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Box>
+
+      {/* DANH SÁCH KHÓA HỌC */}
       {loading ? (
         <Box display="flex" justifyContent="center" my={10}>
           <CircularProgress />
         </Box>
       ) : (
         <>
-          <Grid container spacing={3}>
-            {courses.map((course) => (
-              <Grid sx={{ xs: 12, md: 6, lg: 4 }} key={course.id}>
-                {/* ... Giữ nguyên phần Card của bạn ... */}
-                <Card
-                  sx={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    transition: "0.3s",
-                    "&:hover": {
-                      boxShadow: 6,
-                      transform: "translateY(-4px)",
-                    },
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    navigate({ to: `/courses/${course.id}` });
-                  }}
-                >
-                  <CardContent>
-                    <Box
-                      display="flex"
-                      justifyContent="space-between"
-                      alignItems="center"
-                      mb={1}
-                    >
+          {courses.length === 0 ? (
+            <Box textAlign="center" py={5}>
+              <Typography variant="h6" color="text.secondary">
+                No courses found matching "{debouncedSearch}"
+              </Typography>
+            </Box>
+          ) : (
+            <Grid container spacing={3}>
+              {courses.map((course) => (
+                <Grid sx={{ xs: 12, md: 6, lg: 4 }} key={course.id}>
+                  <Card
+                    sx={{
+                      height: "100%",
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      transition: "0.3s",
+                      "&:hover": {
+                        boxShadow: 6,
+                        transform: "translateY(-4px)",
+                      },
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      navigate({ to: `/courses/${course.id}` });
+                    }}
+                  >
+                    <CardContent>
                       <Box
-                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        mb={1}
                       >
-                        <Typography
-                          variant="h5"
-                          color="primary"
-                          fontWeight="bold"
+                        <Box
+                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
                         >
-                          {course.id}
-                        </Typography>
-                        <Typography
-                          variant="h6"
-                          color="text.secondary"
-                          fontWeight="bold"
-                          noWrap
-                          sx={{ maxWidth: "200px" }}
-                        >
-                          {course.title}
-                        </Typography>
+                          <Typography
+                            variant="h5"
+                            color="primary"
+                            fontWeight="bold"
+                          >
+                            {course.id}
+                          </Typography>
+                          <Typography
+                            variant="h6"
+                            color="text.secondary"
+                            fontWeight="bold"
+                            noWrap
+                          >
+                            {course.title}
+                          </Typography>
+                        </Box>
+                        <Chip
+                          label={`${course.raw_data.units} Units`}
+                          size="small"
+                        />
                       </Box>
-                      <Chip
-                        label={`${course.raw_data.units} Units`}
-                        size="small"
-                      />
-                    </Box>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{
-                        display: "-webkit-box",
-                        overflow: "hidden",
-                        WebkitBoxOrient: "vertical",
-                        WebkitLineClamp: 3,
-                        minHeight: "4.5em",
-                      }}
-                    >
-                      {course.raw_data.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{
+                          display: "-webkit-box",
+                          overflow: "hidden",
+                          WebkitBoxOrient: "vertical",
+                          WebkitLineClamp: 3,
+                          minHeight: "4.5em",
+                        }}
+                      >
+                        {course.raw_data.description}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          )}
 
-          <Box display="flex" justifyContent="center" mt={4}>
-            <Pagination
-              count={totalPages}
-              page={page}
-              onChange={handlePageChange}
-              color="primary"
-              size="large"
-            />
-          </Box>
+          {/* CHỈ HIỆN PHÂN TRANG NẾU CÓ DỮ LIỆU */}
+          {courses.length > 0 && (
+            <Box display="flex" justifyContent="center" mt={4}>
+              <Pagination
+                count={totalPages}
+                page={page}
+                onChange={handlePageChange}
+                color="primary"
+                size="large"
+              />
+            </Box>
+          )}
         </>
       )}
     </Container>
