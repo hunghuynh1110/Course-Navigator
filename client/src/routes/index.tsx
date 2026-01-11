@@ -3,10 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import { supabase } from "../supabaseClient";
 import type { Course } from "../types/course";
 import {
-  Card,
-  CardContent,
   Typography,
-  Chip,
   Grid,
   CircularProgress,
   Box,
@@ -18,6 +15,7 @@ import {
 // Import icon kính lúp
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "@tanstack/react-router";
+import CourseCard from "../components/CourseCard";
 
 export const Route = createFileRoute("/")({
   component: Dashboard,
@@ -181,69 +179,12 @@ function Dashboard() {
             <Grid container spacing={3}>
               {courses.map((course) => (
                 <Grid sx={{ xs: 12, md: 6, lg: 4 }} key={course.id}>
-                  <Card
-                    sx={{
-                      height: "100%",
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      transition: "0.3s",
-                      "&:hover": {
-                        boxShadow: 6,
-                        transform: "translateY(-4px)",
-                      },
-                      cursor: "pointer",
-                    }}
+                  <CourseCard
+                    course={course}
                     onClick={() => {
                       navigate({ to: `/courses/${course.id}` });
                     }}
-                  >
-                    <CardContent>
-                      <Box
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        mb={1}
-                      >
-                        <Box
-                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                        >
-                          <Typography
-                            variant="h5"
-                            color="primary"
-                            fontWeight="bold"
-                          >
-                            {course.id}
-                          </Typography>
-                          <Typography
-                            variant="h6"
-                            color="text.secondary"
-                            fontWeight="bold"
-                            noWrap
-                          >
-                            {course.title}
-                          </Typography>
-                        </Box>
-                        <Chip
-                          label={`${course.raw_data.units} Units`}
-                          size="small"
-                        />
-                      </Box>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{
-                          display: "-webkit-box",
-                          overflow: "hidden",
-                          WebkitBoxOrient: "vertical",
-                          WebkitLineClamp: 3,
-                          minHeight: "4.5em",
-                        }}
-                      >
-                        {course.raw_data.description}
-                      </Typography>
-                    </CardContent>
-                  </Card>
+                  />
                 </Grid>
               ))}
             </Grid>

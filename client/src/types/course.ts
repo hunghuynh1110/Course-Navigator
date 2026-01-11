@@ -16,4 +16,7 @@ export type Course = {
   id: string;
   title: string;
   raw_data: CourseRawData;
+  status: Status;
 };
+
+export type Status = "Passed" | "Failed" | "Not Started";

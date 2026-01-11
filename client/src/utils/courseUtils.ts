@@ -1,5 +1,5 @@
 import { supabase } from "../supabaseClient";
-import type { Course } from "../types/course";
+import type { Course, Status } from "../types/course";
 
 /**
  * Hàm nhận vào danh sách ID môn học gốc.
@@ -57,4 +57,55 @@ export async function fetchFullCourseTree(
 
   // Chuyển Map thành Array để trả về
   return Array.from(allCoursesMap.values());
+}
+
+/**
+ * Hàm tính toán trạng thái thực tế của từng môn trong cây.
+ * Logic:
+ * - Nếu user tự set trạng thái (Passed/Failed), tôn trọng nó.
+ * - Nếu môn X có môn tiên quyết bị Failed hoặc Blocked, môn X sẽ bị Blocked (trừ khi user đã set Passed/Failed).
+ * - Mặc định là Not Started.
+ */
+export function getEffectiveStatusMap(
+  courses: Course[],
+  nodesStatus: Record<string, Status>
+): Record<string, Status | "Blocked"> {
+  const map: Record<string, Status | "Blocked"> = {};
+
+  // Recursive function
+  const getStatus = (cId: string): Status | "Blocked" => {
+    // Cached result
+    if (map[cId]) return map[cId];
+
+    const userStatus = nodesStatus[cId] || "Not Started";
+
+    // Find course object
+    const courseObj = courses.find((c) => c.id === cId);
+    if (!courseObj) return userStatus;
+
+    // Check prerequisites
+    const prerequisites = courseObj.raw_data.prerequisites_list || [];
+    let isBlocked = false;
+
+    for (const pid of prerequisites) {
+      const pStatus = getStatus(pid); // Recursion
+      if (pStatus === "Failed" || pStatus === "Blocked") {
+        isBlocked = true;
+        break;
+      }
+    }
+
+    // Apply Blocked only if User hasn't started it yet
+    if (isBlocked && userStatus === "Not Started") {
+      map[cId] = "Blocked";
+      return "Blocked";
+    }
+
+    map[cId] = userStatus;
+    return userStatus;
+  };
+
+  // Run for all courses
+  courses.forEach((c) => getStatus(c.id));
+  return map;
 }
