@@ -89,7 +89,7 @@ function CourseDetail() {
 
       <Grid container spacing={4}>
         {/* LEFT: GRAPH (PATHWAY) */}
-        <Grid item xs={12} lg={8}>
+        <Grid sx={{ xs: 12, lg: 8 }}>
             <Paper sx={{ p: 3, height: "100%" }}>
                 <Typography variant="h6" gutterBottom fontWeight="bold">
                 🗺️ Course Pathway
@@ -125,7 +125,7 @@ function CourseDetail() {
         </Grid>
 
         {/* RIGHT: INFO */}
-        <Grid item xs={12} lg={4}>
+        <Grid sx={{ xs: 12, lg: 4 }}>
             <Box display="flex" flexDirection="column" gap={3}>
                 {/* DESCRIPTION */}
                 <Paper sx={{ p: 3 }}>

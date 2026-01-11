@@ -19,4 +19,4 @@ export type Course = {
   status: Status;
 };
 
-export type Status = "Passed" | "Failed" | "Not Started";
+export type Status = "Passed" | "Failed" | "Not Started" | "Blocked";
