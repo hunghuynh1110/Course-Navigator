@@ -95,15 +95,17 @@ export function getEffectiveStatusMap(
       }
     }
 
-    // Apply Blocked only if User hasn't started it yet
-    if (isBlocked && userStatus === "Not Started") {
-      map[cId] = "Blocked";
-      return "Blocked";
-    }
+      // If blocked, force Blocked.
+      // Strict Logic: If a prerequisite is failed, you CANNOT take this course.
+      // This overrides "Not Started", "Passed", or "Failed" (assuming the plan tracks validity).
+      if (isBlocked) {
+        map[cId] = "Blocked";
+        return "Blocked";
+      }
 
-    map[cId] = userStatus;
-    return userStatus;
-  };
+      map[cId] = userStatus;
+      return userStatus;
+    };
 
   // Run for all courses
   courses.forEach((c) => getStatus(c.id));

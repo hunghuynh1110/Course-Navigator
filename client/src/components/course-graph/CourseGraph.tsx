@@ -208,7 +208,11 @@ export default function CourseGraph({
       <CourseGraphPopup
         course={selectedCourse}
         open={open}
-        currentStatus={(selectedCourse ? nodesStatus[selectedCourse.id] : "Not Started") as Status}
+        currentStatus={
+          (selectedCourse
+            ? nodesStatus[selectedCourse.id]
+            : "Not Started") as Status
+        }
         onClose={() => setOpen(false)}
         onSave={handleSaveStatus}
       />
