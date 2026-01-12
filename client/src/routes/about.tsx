@@ -1,9 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, useNavigate } from "@tanstack/react-router"
 import { fetchFullCourseTree, getEffectiveStatusMap } from "@/utils/courseUtils";
-import { useState, useMemo, useEffect } from "react";
-import { Button } from "@mui/material";
+import { useState, useMemo, useEffect, Fragment } from "react";
+import { Button, Typography, Box } from "@mui/material";
 import type { Course, Status } from "@/types/course";
 import CourseGraph from "@/components/course-graph/CourseGraph";
+import CourseTagList from "@/components/search-box/CourseTagList";
 
 type AboutSearch = {
   courses?: string[];
@@ -18,10 +19,39 @@ export const Route = createFileRoute("/about")({
   },
 });
 
+// Program presets - predefined course lists for different majors
+const PROGRAM_PRESETS = {
+  "Software Engineering": [
+    "CSSE1001", "CSSE2010", "MATH1051", "MATH1052", "ENGG1100", "ENGG1300",
+    "CSSE2002", "CSSE2310", "INFS1200", "STAT2020", "DECO2800",
+    "COMP3506", "CSSE3002", "CSSE3200", "CYBR3000", "CSSE3100",
+    "ENGG4801", "ENGG4802", "ENGG4900"
+  ],
+  "Computer Science": [
+    "CSSE1001", "CSSE2010", "MATH1051", "MATH1061", "ENGG1100",
+    "CSSE2002", "CSSE2310", "INFS1200", "STAT2020",
+    "COMP3506", "COMP3301", "COMP3400", "CSSE3100"
+  ],
+  "Data Science": [
+    "CSSE1001", "MATH1051", "MATH1052", "STAT1201",
+    "CSSE2310", "INFS1200", "STAT2020", "DATA2001",
+    "COMP3506", "DATA3404", "STAT3001", "STAT3003"
+  ],
+  "Electrical Engineering": [
+    "ENGG1100", "ENGG1300", "MATH1051", "MATH1052", "PHYS1001",
+    "ELEC2004", "ELEC2005", "ELEC2300", "ENGG2200",
+    "ELEC3004", "ELEC3300", "ELEC3400", "ENGG4801", "ENGG4802"
+  ]
+};
+
 function About() {
+  const navigate = useNavigate();
   const { courses: searchCourses } = Route.useSearch();
   const [graphData, setGraphData] = useState<Course[]>([]);
   const [showGraph, setShowGraph] = useState(false);
+  const [selectedProgram, setSelectedProgram] = useState("");
+
+
 
   // State for node status (Passed/Failed etc.)
   const [nodesStatus, setNodesStatus] = useState<Record<string, Status>>({});
@@ -42,6 +72,20 @@ function About() {
     setShowGraph(true);
   };
 
+  // Function to clear all search params
+  const clearSearchParams = () => {
+    navigate({ to: "/about", search: {} });
+  };
+
+  // Function to load a program preset
+  const loadProgramPreset = (programName: keyof typeof PROGRAM_PRESETS) => {
+    setSelectedProgram(programName);
+    const courseList = PROGRAM_PRESETS[programName];
+    navigate({ to: "/about", search: { courses: courseList } });
+  };
+
+  
+
   // Use courses from search params or fallback to default
   const courses = useMemo(() => {
     if (searchCourses && searchCourses.length > 0) {
@@ -60,12 +104,50 @@ function About() {
     if (searchCourses && searchCourses.length > 0) {
       handleShowRoadmap(courses);
     }
-  }, []); // Only run once on mount
+  }, [searchCourses, courses]); // Refresh graph when search params change
+
 
   return (
     <>
-      {/* ... Danh sách Card ... */}
-      <Button onClick={() => handleShowRoadmap(courses)}>Xem lộ trình</Button>
+      {/* Program Selection */}
+      <Box sx={{ p: 3, maxWidth: 1200, mx: "auto" }}>
+        <Typography variant="h4" gutterBottom>
+          Course Roadmap Planner
+        </Typography>
+        
+        <Typography variant="h6" sx={{ mt: 3, mb: 2 }}>
+          Select a Program:
+        </Typography>
+        
+        <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", mb: 3 }}>
+            {(Object.keys(PROGRAM_PRESETS) as Array<keyof typeof PROGRAM_PRESETS>).map((programName) => (
+              <Button
+                key={programName}
+                variant={programName === selectedProgram ? "contained" : "outlined"}
+                color="primary"
+                onClick={() => loadProgramPreset(programName)}
+              >
+                {programName}
+              </Button>
+            ))}
+          <Button variant="outlined" onClick={() => navigate({to: "/"})}>
+            Back
+            </Button>
+        </Box>
+
+        {searchCourses && searchCourses.length > 0 && (
+          <Fragment>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+              Showing {searchCourses.length} courses of {selectedProgram}
+            </Typography>
+
+            <CourseTagList 
+                              courses={searchCourses} 
+                           />
+          </Fragment>
+        )}
+
+      </Box>
 
       {/* ... Modal hoặc khu vực hiển thị Graph ... */}
       {showGraph && (

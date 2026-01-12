@@ -4,7 +4,7 @@ import CourseTag from "./CourseTag";
 
 interface CourseTagListProps {
   courses: string[];
-  onRemove: (code: string) => void;
+  onRemove?: (code: string) => void;
 }
 
 export default function CourseTagList({
@@ -24,7 +24,11 @@ export default function CourseTagList({
       }}
     >
       {courses.map((code) => (
-        <CourseTag key={code} courseCode={code} onDelete={() => onRemove(code)} />
+        <CourseTag 
+          key={code} 
+          courseCode={code} 
+          onDelete={onRemove ? () => onRemove(code) : undefined} 
+        />
       ))}
     </Box>
   );
