@@ -1,10 +1,25 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router"
-import { fetchFullCourseTree, getEffectiveStatusMap } from "@/utils/courseUtils";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import {
+  fetchFullCourseTree,
+  getEffectiveStatusMap,
+} from "@/utils/courseUtils";
 import { useState, useMemo, useEffect, Fragment } from "react";
-import { Button, Typography, Box } from "@mui/material";
+import {
+  Button,
+  Typography,
+  Box,
+  CircularProgress,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Autocomplete,
+  TextField,
+} from "@mui/material";
 import type { Course, Status } from "@/types/course";
 import CourseGraph from "@/components/course-graph/CourseGraph";
 import CourseTagList from "@/components/search-box/CourseTagList";
+import { api } from "@/services/api";
 
 type AboutSearch = {
   courses?: string[];
@@ -14,34 +29,19 @@ export const Route = createFileRoute("/about")({
   component: About,
   validateSearch: (search: Record<string, unknown>): AboutSearch => {
     return {
-      courses: Array.isArray(search.courses) ? search.courses as string[] : undefined,
+      courses: Array.isArray(search.courses)
+        ? (search.courses as string[])
+        : undefined,
     };
   },
 });
 
-// Program presets - predefined course lists for different majors
-const PROGRAM_PRESETS = {
-  "Software Engineering": [
-    "CSSE1001", "CSSE2010", "MATH1051", "MATH1052", "ENGG1100", "ENGG1300",
-    "CSSE2002", "CSSE2310", "INFS1200", "STAT2020", "DECO2800",
-    "COMP3506", "CSSE3002", "CSSE3200", "CYBR3000", "CSSE3100",
-    "ENGG4801", "ENGG4802", "ENGG4900"
-  ],
-  "Computer Science": [
-    "CSSE1001", "CSSE2010", "MATH1051", "MATH1061", "ENGG1100",
-    "CSSE2002", "CSSE2310", "INFS1200", "STAT2020",
-    "COMP3506", "COMP3301", "COMP3400", "CSSE3100"
-  ],
-  "Data Science": [
-    "CSSE1001", "MATH1051", "MATH1052", "STAT1201",
-    "CSSE2310", "INFS1200", "STAT2020", "DATA2001",
-    "COMP3506", "DATA3404", "STAT3001", "STAT3003"
-  ],
-  "Electrical Engineering": [
-    "ENGG1100", "ENGG1300", "MATH1051", "MATH1052", "PHYS1001",
-    "ELEC2004", "ELEC2005", "ELEC2300", "ENGG2200",
-    "ELEC3004", "ELEC3300", "ELEC3400", "ENGG4801", "ENGG4802"
-  ]
+type Program = {
+  id: number;
+  name: string;
+  total_units: number;
+  courses: string[];
+  faculty: string;
 };
 
 function About() {
@@ -49,9 +49,13 @@ function About() {
   const { courses: searchCourses } = Route.useSearch();
   const [graphData, setGraphData] = useState<Course[]>([]);
   const [showGraph, setShowGraph] = useState(false);
-  const [selectedProgram, setSelectedProgram] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-
+  // Program selector state
+  const [programs, setPrograms] = useState<Program[]>([]);
+  const [selectedFaculty, setSelectedFaculty] = useState("EAIT");
+  const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
+  const [loadingPrograms, setLoadingPrograms] = useState(true);
 
   // State for node status (Passed/Failed etc.)
   const [nodesStatus, setNodesStatus] = useState<Record<string, Status>>({});
@@ -61,35 +65,56 @@ function About() {
     return getEffectiveStatusMap(graphData, nodesStatus);
   }, [graphData, nodesStatus]);
 
+  // Load Programs when faculty changes
+  useEffect(() => {
+    const load = async () => {
+      setLoadingPrograms(true);
+      try {
+        // Fetch programs for the selected faculty (or all if "All")
+        const data = await api.fetchPrograms(selectedFaculty);
+        setPrograms(data as Program[]);
+      } catch (e) {
+        console.error("Failed to load programs", e);
+        setPrograms([]);
+      } finally {
+        setLoadingPrograms(false);
+      }
+    };
+    load();
+  }, [selectedFaculty]);
+
   const handleShowRoadmap = async (courses: { id: string }[]) => {
-    // 1. Gọi hàm tiện ích vừa viết
-    const fullTree = await fetchFullCourseTree(
-      courses.map((course) => course.id)
-    );
+    setIsLoading(true);
+    // Reset node status when loading new program
+    setNodesStatus({});
+    try {
+      // 1. Gọi hàm tiện ích vừa viết
+      const fullTree = await fetchFullCourseTree(
+        courses.map((course) => course.id)
+      );
 
-    // 2. Lưu vào state
-    setGraphData(fullTree);
-    setShowGraph(true);
+      // 2. Lưu vào state
+      setGraphData(fullTree);
+      setShowGraph(true);
+    } catch (error) {
+      console.error("Error loading course tree:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  // Function to clear all search params
-  const clearSearchParams = () => {
-    navigate({ to: "/about", search: {} });
+  // Function to load a program
+  const loadProgramEvents = (program: Program | null) => {
+    setSelectedProgram(program);
+    if (program && program.courses) {
+      navigate({ to: "/about", search: { courses: program.courses } });
+    }
   };
-
-  // Function to load a program preset
-  const loadProgramPreset = (programName: keyof typeof PROGRAM_PRESETS) => {
-    setSelectedProgram(programName);
-    const courseList = PROGRAM_PRESETS[programName];
-    navigate({ to: "/about", search: { courses: courseList } });
-  };
-
-  
 
   // Use courses from search params or fallback to default
   const courses = useMemo(() => {
     if (searchCourses && searchCourses.length > 0) {
-      return searchCourses.map(id => ({ id }));
+      return searchCourses.map((id) => ({ id }));
     }
     return [
       { id: "CSSE3200" }, // Advanced Software Engineering (Requires CSSE2310, CSSE2002)
@@ -106,7 +131,6 @@ function About() {
     }
   }, [searchCourses, courses]); // Refresh graph when search params change
 
-
   return (
     <>
       {/* Program Selection */}
@@ -114,43 +138,89 @@ function About() {
         <Typography variant="h4" gutterBottom>
           Course Roadmap Planner
         </Typography>
-        
-        <Typography variant="h6" sx={{ mt: 3, mb: 2 }}>
-          Select a Program:
-        </Typography>
-        
-        <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", mb: 3 }}>
-            {(Object.keys(PROGRAM_PRESETS) as Array<keyof typeof PROGRAM_PRESETS>).map((programName) => (
-              <Button
-                key={programName}
-                variant={programName === selectedProgram ? "contained" : "outlined"}
-                color="primary"
-                onClick={() => loadProgramPreset(programName)}
-              >
-                {programName}
-              </Button>
-            ))}
-          <Button variant="outlined" onClick={() => navigate({to: "/"})}>
+
+        <Box display="flex" gap={2} my={3} flexWrap="wrap">
+          {/* Faculty Filter */}
+          <FormControl sx={{ minWidth: 200 }}>
+            <InputLabel>Department</InputLabel>
+            <Select
+              value={selectedFaculty}
+              label="Department"
+              onChange={(e) => setSelectedFaculty(e.target.value)}
+            >
+              <MenuItem value="EAIT">EAIT</MenuItem>
+              <MenuItem value="Business" disabled>
+                Business (Coming Soon)
+              </MenuItem>
+              <MenuItem value="Medicine" disabled>
+                Medicine (Coming Soon)
+              </MenuItem>
+              <MenuItem value="Science" disabled>
+                Science (Coming Soon)
+              </MenuItem>
+            </Select>
+          </FormControl>
+
+          {/* Program Search */}
+          <Autocomplete
+            sx={{ width: 400 }}
+            options={programs}
+            getOptionLabel={(option) => option.name}
+            loading={loadingPrograms}
+            value={selectedProgram}
+            onChange={(_, newValue) => loadProgramEvents(newValue)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Search Programs"
+                placeholder="Type to search (e.g. Computer Science)"
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: (
+                    <>
+                      {loadingPrograms ? (
+                        <CircularProgress color="inherit" size={20} />
+                      ) : null}
+                      {params.InputProps.endAdornment}
+                    </>
+                  ),
+                }}
+              />
+            )}
+          />
+
+          <Button variant="outlined" onClick={() => navigate({ to: "/" })}>
             Back
-            </Button>
+          </Button>
         </Box>
 
         {searchCourses && searchCourses.length > 0 && (
           <Fragment>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Showing {searchCourses.length} courses of {selectedProgram}
+              Showing {searchCourses.length} courses of {selectedProgram?.name}
             </Typography>
 
-            <CourseTagList 
-                              courses={searchCourses} 
-                           />
+            <CourseTagList courses={searchCourses} />
           </Fragment>
         )}
-
       </Box>
 
-      {/* ... Modal hoặc khu vực hiển thị Graph ... */}
-      {showGraph && (
+      {/* Loading State */}
+      {isLoading && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            p: 8,
+          }}
+        >
+          <CircularProgress size={60} />
+        </Box>
+      )}
+
+      {/* Graph Display */}
+      {!isLoading && showGraph && (
         <CourseGraph
           courses={graphData}
           nodesStatus={effectiveStatusMap}
