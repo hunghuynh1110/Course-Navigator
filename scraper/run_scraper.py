@@ -166,17 +166,23 @@ def get_full_course_data(course_code):
 # --- 2. EXECUTION ---
 
 def main():
-    # Paths (Assuming running from 'scraper' dir)
-    input_path = os.path.join('..', 'data', 'eait_codes_only.json')
-    output_path = os.path.join('..', 'data', 'master_courses.json')
+    # Paths (Assuming running from 'scraper' dir or project root)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    input_path = os.path.join(script_dir, '..', 'data', 'course_codes_only.json')
+    output_path = os.path.join(script_dir, '..', 'data', 'master_courses.json')
 
     try:
         with open(input_path, 'r', encoding='utf-8') as f:
             course_list = json.load(f)
         print(f"✅ Found input file at: {input_path}")
-        print(f"✅ Loaded {len(course_list)} course codes.")
+        print(f"✅ Loaded {len(course_list)} unique course codes.")
+        
     except FileNotFoundError:
         print(f"❌ Error: Input file not found at '{input_path}'")
+        print(f"💡 Please run 'extract_course_codes.py' first to generate course_codes_only.json")
+        return
+    except Exception as e:
+        print(f"❌ Error reading input file: {e}")
         return
 
     MAX_WORKERS = 5
