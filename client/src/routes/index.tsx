@@ -169,7 +169,7 @@ function Dashboard() {
         </Box>
 
         <Box display="flex" justifyContent="center">
-          <Box width={{ xs: "100%", md: "60%" }}>
+          <Box width={{ xs: "100%", md: "90%" }}>
             <CourseTagList
               courses={selectedCourses}
               onRemove={handleRemoveCourse}
