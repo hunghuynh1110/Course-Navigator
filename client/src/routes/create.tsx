@@ -7,7 +7,7 @@ export const Route = createFileRoute("/create")({
 
 function CreatePage() {
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
+    <Container sx={{ py: 4 }}>
       <Box>
         <Typography variant="h4" gutterBottom>
           Create Course

@@ -88,11 +88,18 @@ function Dashboard() {
       console.error(error);
       setCourses([]);
     } else if (data) {
-      setCourses(data as unknown as Course[]);
+      if (selectedCourses.length > 0) {
+        const filteredData = data.filter(
+          (course) => !selectedCourses.includes(course.id)
+        );
+        setCourses(filteredData as unknown as Course[]);
+      } else {
+        setCourses(data as unknown as Course[]);
+      }
       if (count !== null) setTotalPages(Math.ceil(count / PAGE_SIZE));
     }
     setLoading(false);
-  }, [page, searchResults]);
+  }, [page, searchResults, selectedCourses]);
 
   useEffect(() => {
     fetchCourses();
@@ -106,17 +113,43 @@ function Dashboard() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const filters = [
+    {
+      id: "faculty",
+      label: "Department",
+      options: [
+        { value: "EAIT", label: "EAIT" },
+        {
+          value: "Business",
+          label: "Business (Coming Soon)",
+          disabled: true,
+        },
+      ],
+      defaultValue: "EAIT",
+    },
+    {
+      id: "school",
+      label: "School",
+      options: [
+        { value: "civil", label: "Civil Engineering" },
+        { value: "it", label: "Information Technology" },
+      ],
+    },
+  ];
+
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
+    <Container maxWidth={false} sx={{ py: 4 }}>
       {/* SEARCH AREA */}
       <Box mb={2}>
         <Box display="flex" justifyContent="center">
-          <Box width={{ xs: "100%", md: "60%" }}>
+          <Box width={{ xs: "100%", md: "90%" }}>
             <Box display="flex" justifyContent="center" gap={3}>
               <CourseSearchInput
                 onAddCourse={handleAddCourse}
                 existingCourses={selectedCourses}
                 onSearchResults={handleSearchResults}
+                filters={filters}
+                onFiltersChange={(filters) => console.log(filters)}
               />
               <Button
                 variant="contained"
@@ -159,9 +192,13 @@ function Dashboard() {
               </Typography>
             </Box>
           ) : (
-            <Grid container spacing={3}>
+            <Grid container spacing={3} alignItems="stretch">
               {courses.map((course) => (
-                <Grid sx={{ xs: 12, md: 6, lg: 4 }} key={course.id}>
+                <Grid
+                  size={{ xs: 12, md: 6, lg: 6, xl: 4 }}
+                  key={course.id}
+                  display="flex"
+                >
                   <CourseCard
                     course={course}
                     onClick={() => {

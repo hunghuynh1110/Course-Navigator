@@ -70,7 +70,7 @@ function CourseDetail() {
   const { raw_data } = targetCourse;
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
       {/* HERO SECTION */}
       <Box mb={4}>
         <Typography variant="h3" color="primary" fontWeight="bold">

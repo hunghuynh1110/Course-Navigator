@@ -27,8 +27,8 @@ function RootLayout() {
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="lg" sx={{ mt: 2 }}>
-        <Outlet /> {/* Nơi nội dung trang con hiển thị */}
+      <Container maxWidth={false} sx={{ mt: 2 }}>
+        <Outlet />
       </Container>
 
       <TanStackRouterDevtools />
