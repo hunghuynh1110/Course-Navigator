@@ -9,13 +9,12 @@ import {
   Box,
   Pagination,
   Container,
-  TextField,
-  InputAdornment,
+  Button,
 } from "@mui/material";
-// Import icon kính lúp
-import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "@tanstack/react-router";
 import CourseCard from "../components/CourseCard";
+import CourseSearchInput from "../components/search-box/CourseSearchInput";
+import CourseTagList from "../components/search-box/CourseTagList";
 
 export const Route = createFileRoute("/")({
   component: Dashboard,
@@ -32,109 +31,75 @@ function Dashboard() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  // State cho tìm kiếm
-  const [searchTerm, setSearchTerm] = useState(""); // Những gì người dùng đang gõ
-  const [debouncedSearch, setDebouncedSearch] = useState(""); // Những gì dùng để gọi API (sau khi delay)
+  // Selected tags (course codes) - saved list
+  const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
 
-  const [coursesCache, setCoursesCache] = useState<Record<number, Course[]>>(
-    {}
-  );
+  // Live search results (what user is currently typing)
+  const [searchResults, setSearchResults] = useState<string[]>([]);
 
-  // --- LOGIC DEBOUNCE (CHỜ NGƯỜI DÙNG GÕ XONG) ---
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      // Chỉ khi người dùng dừng gõ 500ms thì mới cập nhật từ khóa tìm kiếm chính thức
-      setDebouncedSearch(searchTerm);
+  // --- HANDLERS ---
+  const handleSearchResults = useCallback((results: string[]) => {
+    setSearchResults(results);
+  }, []);
 
-      // Quan trọng: Khi tìm kiếm thay đổi, phải Reset về trang 1 và Xóa Cache cũ
-      setPage(1);
-      setCoursesCache({});
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [searchTerm]);
-
-  // --- HÀM GỌI API ---
-  const fetchPageData = useCallback(
-    async (pageNumber: number, searchStr: string) => {
-      // Nếu có cache VÀ KHÔNG có tìm kiếm (hoặc logic cache phức tạp hơn), dùng cache
-      // Ở đây đơn giản hóa: Nếu đang tìm kiếm thì tạm thời bỏ qua cache để đảm bảo chính xác,
-      // hoặc bạn có thể lưu cache theo key "searchStr_page" (nâng cao).
-      // Logic hiện tại: Chỉ cache khi KHÔNG tìm kiếm để tối ưu trải nghiệm mặc định.
-      if (searchStr === "" && coursesCache[pageNumber]) {
-        return { data: coursesCache[pageNumber], count: null };
-      }
-
-      const from = (pageNumber - 1) * PAGE_SIZE;
-      const to = from + PAGE_SIZE - 1;
-
-      // Bắt đầu chuỗi truy vấn
-      let query = supabase.from("courses").select("*", { count: "exact" });
-
-      // Nếu có từ khóa tìm kiếm thì thêm bộ lọc
-      if (searchStr) {
-        // ilike: tìm kiếm không phân biệt hoa thường (insensitive like)
-        query = query.ilike("id", `%${searchStr}%`);
-      }
-
-      const { data, error, count } = await query
-        .range(from, to)
-        .order("id", { ascending: true });
-
-      if (error || !data) return { data: [], count: 0 };
-
-      return { data: data as unknown as Course[], count };
-    },
-    [coursesCache]
-  );
-
-  // --- EFFECT 1: LOAD DỮ LIỆU CHÍNH ---
-  useEffect(() => {
-    const loadCurrentPage = async () => {
-      // Logic hiển thị Loading:
-      // Nếu có cache và không search -> Hiện ngay (không load)
-      // Nếu không -> Hiện Loading
-      const hasCache = debouncedSearch === "" && coursesCache[page];
-
-      if (hasCache) {
-        setCourses(coursesCache[page]);
-        setLoading(false);
-      } else {
-        setLoading(true);
-        const { data, count } = await fetchPageData(page, debouncedSearch);
-
-        if (data) {
-          // Chỉ lưu cache khi không tìm kiếm (để giữ cache sạch cho danh sách gốc)
-          if (debouncedSearch === "") {
-            setCoursesCache((prev) => ({ ...prev, [page]: data }));
-          }
-          setCourses(data);
-          if (count !== null) setTotalPages(Math.ceil(count / PAGE_SIZE));
-        }
-        setLoading(false);
-      }
-    };
-
-    loadCurrentPage();
-  }, [page, debouncedSearch, fetchPageData]); // Chạy khi trang đổi HOẶC từ khóa tìm kiếm (đã debounce) đổi
-
-  // --- EFFECT 2: PREFETCH (Tải ngầm trang kế tiếp) ---
-  useEffect(() => {
-    // Chỉ prefetch khi không đang tìm kiếm (để tiết kiệm tài nguyên)
-    if (!loading && page < totalPages && debouncedSearch === "") {
-      const nextPage = page + 1;
-      if (!coursesCache[nextPage]) {
-        fetchPageData(nextPage, "").then(({ data }) => {
-          if (data && data.length > 0) {
-            setCoursesCache((prev) => ({ ...prev, [nextPage]: data }));
-          }
-        });
-      }
+  const handleAddCourse = (code: string) => {
+    // Add to saved list
+    if (!selectedCourses.includes(code)) {
+      setSelectedCourses((prev) => [...prev, code]);
     }
-  }, [page, loading, totalPages, coursesCache, fetchPageData, debouncedSearch]);
+    // Clear search results (reset display)
+    setSearchResults([]);
+  };
+
+  const handleRemoveCourse = (code: string) => {
+    setSelectedCourses((prev) => prev.filter((c) => c !== code));
+  };
+
+  // --- DATA FETCHING ---
+  const fetchCourses = useCallback(async () => {
+    setLoading(true);
+
+    // Priority 1: If user is actively searching (typing), show search results
+    if (searchResults.length > 0 && searchResults[0]) {
+      const searchTerm = searchResults[0];
+      const { data } = await supabase
+        .from("courses")
+        .select("*")
+        .ilike("id", `%${searchTerm}%`)
+        .limit(50); // Limit search results
+
+      if (data) setCourses(data as unknown as Course[]);
+      setTotalPages(1); // No pagination for search
+      setLoading(false);
+      return;
+    }
+
+    // Priority 2: Default - show all courses with pagination
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+
+    const { data, count, error } = await supabase
+      .from("courses")
+      .select("*", { count: "exact" })
+      .range(from, to)
+      .order("id", { ascending: true });
+
+    if (error) {
+      console.error(error);
+      setCourses([]);
+    } else if (data) {
+      setCourses(data as unknown as Course[]);
+      if (count !== null) setTotalPages(Math.ceil(count / PAGE_SIZE));
+    }
+    setLoading(false);
+  }, [page, searchResults]);
+
+  useEffect(() => {
+    fetchCourses();
+  }, [fetchCourses]);
 
   const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
+    _event: React.ChangeEvent<unknown>,
     value: number
   ) => {
     setPage(value);
@@ -143,26 +108,44 @@ function Dashboard() {
 
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
-      {/* THANH TÌM KIẾM */}
-      <Box mb={4} display="flex" justifyContent="flex-end">
-        <TextField
-          label="Search Courses"
-          variant="outlined"
-          size="small"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          sx={{ width: { xs: "100%", sm: "50%" }, backgroundColor: "white" }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
+      {/* SEARCH AREA */}
+      <Box mb={2}>
+        <Box display="flex" justifyContent="center">
+          <Box width={{ xs: "100%", md: "60%" }}>
+            <Box display="flex" justifyContent="center" gap={3}>
+              <CourseSearchInput
+                onAddCourse={handleAddCourse}
+                existingCourses={selectedCourses}
+                onSearchResults={handleSearchResults}
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() =>
+                  navigate({
+                    to: "/about",
+                    search: { courses: selectedCourses },
+                  })
+                }
+              >
+                {" "}
+                Create Graph{" "}
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+
+        <Box display="flex" justifyContent="center">
+          <Box width={{ xs: "100%", md: "60%" }}>
+            <CourseTagList
+              courses={selectedCourses}
+              onRemove={handleRemoveCourse}
+            />
+          </Box>
+        </Box>
       </Box>
 
-      {/* DANH SÁCH KHÓA HỌC */}
+      {/* COURSE LIST */}
       {loading ? (
         <Box display="flex" justifyContent="center" my={10}>
           <CircularProgress />
@@ -172,7 +155,7 @@ function Dashboard() {
           {courses.length === 0 ? (
             <Box textAlign="center" py={5}>
               <Typography variant="h6" color="text.secondary">
-                No courses found matching "{debouncedSearch}"
+                No courses found
               </Typography>
             </Box>
           ) : (
@@ -190,8 +173,8 @@ function Dashboard() {
             </Grid>
           )}
 
-          {/* CHỈ HIỆN PHÂN TRANG NẾU CÓ DỮ LIỆU */}
-          {courses.length > 0 && (
+          {/* Pagination only when showing all courses (no search) */}
+          {courses.length > 0 && searchResults.length === 0 && (
             <Box display="flex" justifyContent="center" mt={4}>
               <Pagination
                 count={totalPages}

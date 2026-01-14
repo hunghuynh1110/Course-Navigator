@@ -1,0 +1,1182 @@
+{
+  "Arts / Tourism, Hospitality and Event Management": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "TOUR1000",
+      "TOUR1002",
+      "TOUR1003",
+      "TOUR1004"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Arts": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Commerce": {
+    "courses": [
+      "ACCT7101",
+      "BISM7202",
+      "ECON7002",
+      "FINM7401"
+    ],
+    "total_units": 32
+  },
+  "Tourism, Hospitality and Event Management": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "TOUR1000",
+      "TOUR1002",
+      "TOUR1003",
+      "TOUR1004"
+    ],
+    "total_units": 48
+  },
+  "Business Management": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 48
+  },
+  "Business Management / Commerce": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "ECON1011",
+      "ECON1310",
+      "FINM1415",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Economics": {
+    "courses": [
+      "ECON7000",
+      "ECON7001",
+      "ECON7021",
+      "ECON7030",
+      "ECON7040",
+      "ECON7070",
+      "ECON7110",
+      "ECON7150",
+      "ECON7300",
+      "ECON7310",
+      "ECON7740",
+      "ECON7950"
+    ],
+    "total_units": 32
+  },
+  "Business Management / Diploma in Languages": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Communication": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "COMU1052",
+      "COMU1120",
+      "COMU1130",
+      "COMU1140",
+      "COMU2030",
+      "COMU2160",
+      "COMU3150",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501",
+      "WRIT1200"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Design": {
+    "courses": [
+      "ACCT1101",
+      "ADPS1000",
+      "ADPS1001",
+      "ADPS3001",
+      "BISM1201",
+      "DSGN1002",
+      "DSGN1400",
+      "DSGN1500",
+      "DSGN2001",
+      "DSGN2002",
+      "DSGN2003",
+      "DSGN2100",
+      "DSGN3002",
+      "DSGN3200",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Education (Secondary)": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "EDUC1650",
+      "EDUC1710",
+      "EDUC2090",
+      "EDUC2604",
+      "EDUC2630",
+      "EDUC2770",
+      "EDUC3605",
+      "EDUC3606",
+      "EDUC4607",
+      "EDUC4615",
+      "EDUC4620",
+      "EDUC4625",
+      "EDUC4632",
+      "EDUC4654",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Information Technology": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "COMP2140",
+      "COMP2200",
+      "CSSE1001",
+      "DECO1400",
+      "DECO1800",
+      "DECO2500",
+      "DECO2840",
+      "DECO2850",
+      "DECO3800",
+      "DECO3801",
+      "ECON1011",
+      "FINM1416",
+      "INFS1200",
+      "LAWS1100",
+      "MATH1061",
+      "MATH1081",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Journalism": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "COMU1050",
+      "COMU1130",
+      "COMU2160",
+      "ECON1011",
+      "FINM1416",
+      "JOUR1001",
+      "JOUR1112",
+      "JOUR2001",
+      "JOUR2221",
+      "JOUR2720",
+      "JOUR3000",
+      "JOUR3100",
+      "JOUR3222",
+      "JOUR3401",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Science": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Economics": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1010",
+      "ECON1020",
+      "ECON1050",
+      "ECON1310",
+      "ECON2010",
+      "ECON2020",
+      "ECON2101",
+      "ECON2300",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Tourism, Hospitality and Event Management": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501",
+      "TOUR1000",
+      "TOUR1002",
+      "TOUR1003",
+      "TOUR1004"
+    ],
+    "total_units": 64
+  },
+  "Commerce / Arts": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "ECON1011",
+      "ECON1310",
+      "FINM1415",
+      "LAWS1100",
+      "MGTS1301"
+    ],
+    "total_units": 64
+  },
+  "Commerce / Economics": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "ECON1010",
+      "ECON1020",
+      "ECON1050",
+      "ECON1310",
+      "ECON2010",
+      "ECON2020",
+      "ECON2101",
+      "ECON2300",
+      "FINM1415",
+      "LAWS1100",
+      "MGTS1301"
+    ],
+    "total_units": 64
+  },
+  "Commerce / Information Technology": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "COMP2140",
+      "COMP2200",
+      "CSSE1001",
+      "DECO1400",
+      "DECO1800",
+      "DECO2500",
+      "DECO2840",
+      "DECO2850",
+      "DECO3800",
+      "DECO3801",
+      "ECON1011",
+      "ECON1310",
+      "FINM1415",
+      "INFS1200",
+      "LAWS1100",
+      "MATH1061",
+      "MATH1081",
+      "MGTS1301"
+    ],
+    "total_units": 64
+  },
+  "Commerce / Science": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "ECON1011",
+      "ECON1310",
+      "FINM1415",
+      "LAWS1100",
+      "MGTS1301",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Computer Science / Commerce": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "COMP1100",
+      "COMP2200",
+      "COMP3506",
+      "CSSE1001",
+      "CSSE2002",
+      "CSSE2010",
+      "CSSE2310",
+      "DECO2500",
+      "DECO3801",
+      "ECON1011",
+      "FINM1415",
+      "INFS1200",
+      "LAWS1100",
+      "MATH1061",
+      "MATH1081",
+      "MGTS1301",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Computer Science / Economics": {
+    "courses": [
+      "COMP1100",
+      "COMP2200",
+      "COMP3506",
+      "CSSE1001",
+      "CSSE2002",
+      "CSSE2010",
+      "CSSE2310",
+      "DECO2500",
+      "DECO3801",
+      "ECON1010",
+      "ECON1020",
+      "ECON1050",
+      "ECON2010",
+      "ECON2020",
+      "ECON2101",
+      "ECON2300",
+      "INFS1200",
+      "MATH1061",
+      "MATH1081",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Computer Science / Business Management": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "COMP1100",
+      "COMP2200",
+      "COMP3506",
+      "CSSE1001",
+      "CSSE2002",
+      "CSSE2010",
+      "CSSE2310",
+      "DECO2500",
+      "DECO3801",
+      "ECON1011",
+      "FINM1416",
+      "INFS1200",
+      "LAWS1100",
+      "MATH1061",
+      "MATH1081",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Human Movement & Nutrition Sci/Tourism, Hospitality & Event Mgmt": {
+    "courses": [
+      "ACCT1101",
+      "ANAT1005",
+      "BIOL1900",
+      "BIOM1050",
+      "BIOM2011",
+      "BISM1201",
+      "CHEM1090",
+      "CHEM1100",
+      "FINM1416",
+      "HLTH1000",
+      "HMST1910",
+      "HMST3103",
+      "HMST3191",
+      "HMST3846",
+      "HPRM2000",
+      "LAWS1100",
+      "MGTS1301",
+      "NUTR1023",
+      "NUTR2003",
+      "NUTR2050",
+      "NUTR2101",
+      "NUTR3000",
+      "PHYL1007",
+      "PHYL2730",
+      "PSYC2000",
+      "SPCG1000",
+      "TOUR1000",
+      "TOUR1002",
+      "TOUR1003",
+      "TOUR1004"
+    ],
+    "total_units": 64
+  },
+  "Economics / Arts": {
+    "courses": [
+      "ECON1010",
+      "ECON1020",
+      "ECON1050",
+      "ECON1310",
+      "ECON2010",
+      "ECON2020",
+      "ECON2101",
+      "ECON2300"
+    ],
+    "total_units": 64
+  },
+  "Commerce / Diploma in Languages": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "ECON1011",
+      "ECON1310",
+      "FINM1415",
+      "LAWS1100",
+      "MGTS1301"
+    ],
+    "total_units": 64
+  },
+  "Human Movement and Nutrition Sciences / Business Management": {
+    "courses": [
+      "ACCT1101",
+      "ANAT1005",
+      "BIOL1900",
+      "BIOM1050",
+      "BIOM2011",
+      "BISM1201",
+      "CHEM1090",
+      "CHEM1100",
+      "ECON1011",
+      "FINM1416",
+      "HLTH1000",
+      "HMST1910",
+      "HMST3103",
+      "HMST3191",
+      "HMST3846",
+      "HPRM2000",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501",
+      "NUTR1023",
+      "NUTR2003",
+      "NUTR2050",
+      "NUTR2101",
+      "NUTR3000",
+      "PHYL1007",
+      "PHYL2730",
+      "PSYC2000",
+      "SPCG1000"
+    ],
+    "total_units": 64
+  },
+  "Economics / Science": {
+    "courses": [
+      "ECON1010",
+      "ECON1020",
+      "ECON1050",
+      "ECON1310",
+      "ECON2010",
+      "ECON2020",
+      "ECON2101",
+      "ECON2300",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Business Management": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Commerce": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "ECON1011",
+      "FINM1415",
+      "LAWS1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "MGTS1301",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Economics": {
+    "courses": [
+      "ECON1010",
+      "ECON1020",
+      "ECON2010",
+      "ECON2020",
+      "ECON2101",
+      "ECON2300",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Advanced Business (Honours)": {
+    "courses": [
+      "ACCT1112",
+      "ACCT2113",
+      "BISM1201",
+      "BSAN2201",
+      "ECON2012",
+      "ECON2022",
+      "FINM2412",
+      "IBUS2301",
+      "LAWS1100",
+      "MGTS2604",
+      "MGTS4602",
+      "MKTG1501",
+      "RBUS3900",
+      "RBUS6923",
+      "RBUS6933",
+      "RBUS6996",
+      "TIMS1301"
+    ],
+    "total_units": 64
+  },
+  "Music / Business Management": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501",
+      "MUSC1010",
+      "MUSC1050",
+      "MUSC1250",
+      "MUSC1260",
+      "MUSC1600",
+      "MUSC2060",
+      "MUSC2250",
+      "MUSC2260",
+      "MUSC2501",
+      "MUSC3010",
+      "MUSC3060",
+      "MUSC3450"
+    ],
+    "total_units": 64
+  },
+  "Advanced Finance and Economics (Honours)": {
+    "courses": [
+      "ACCT1111",
+      "ACCT2114",
+      "ECON1050",
+      "ECON1310",
+      "ECON2011",
+      "ECON2021",
+      "ECON2030",
+      "ECON2040",
+      "ECON2050",
+      "ECON2300",
+      "ECON3210",
+      "ECON3350",
+      "FINM2411",
+      "FINM3403",
+      "FINM3411",
+      "FINM3412",
+      "FINM3414",
+      "FINM3422",
+      "FINM4411",
+      "RBUS4411"
+    ],
+    "total_units": 64
+  },
+  "Business Management (Honours)": {
+    "courses": [
+      "RBUS6933",
+      "RBUS6996"
+    ],
+    "total_units": 16
+  },
+  "Commerce (Honours)": {
+    "courses": [
+      "RBUS6923",
+      "RBUS6996"
+    ],
+    "total_units": 16
+  },
+  "Laws (Honours)": {
+    "courses": [
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701"
+    ],
+    "total_units": 64
+  },
+  "Politics, Philosophy and Economics (Honours)": {
+    "courses": [
+      "ECON1010",
+      "ECON1020",
+      "ECON1050",
+      "PHIL1013",
+      "PHIL2330",
+      "PHIL2750",
+      "POLS1101",
+      "POLS2302",
+      "POLS2401",
+      "PPES1101",
+      "PPES2101",
+      "PPES3101",
+      "PPES4100"
+    ],
+    "total_units": 64
+  },
+  "Arts / Laws (Honours)": {
+    "courses": [
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701"
+    ],
+    "total_units": 80
+  },
+  "Business Management / Laws (Honours)": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 80
+  },
+  "Commerce / Laws (Honours)": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "ECON1011",
+      "ECON1310",
+      "FINM1415",
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701",
+      "MGTS1301"
+    ],
+    "total_units": 80
+  },
+  "Computer Science / Laws (Honours)": {
+    "courses": [
+      "COMP1100",
+      "COMP2200",
+      "COMP3506",
+      "CSSE1001",
+      "CSSE2002",
+      "CSSE2010",
+      "CSSE2310",
+      "DECO2500",
+      "DECO3801",
+      "INFS1200",
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701",
+      "MATH1061",
+      "MATH1081",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 80
+  },
+  "Economics / Laws (Honours)": {
+    "courses": [
+      "ECON1010",
+      "ECON1020",
+      "ECON1050",
+      "ECON1310",
+      "ECON2010",
+      "ECON2020",
+      "ECON2101",
+      "ECON2300",
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701"
+    ],
+    "total_units": 80
+  },
+  "Engineering (Honours) / Business Management": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "CSSE1001",
+      "DECO3800",
+      "ECON1011",
+      "ELEC2400",
+      "ELEC3004",
+      "ELEC3310",
+      "ENGG1001",
+      "ENGG1100",
+      "FINM1416",
+      "LAWS1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MECH2700",
+      "MECH3200",
+      "MECH3410",
+      "MECH3780",
+      "METR6203",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 88
+  },
+  "Engineering (Honours) / Commerce": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "CSSE1001",
+      "DECO3800",
+      "ECON1011",
+      "ELEC2400",
+      "ELEC3004",
+      "ELEC3310",
+      "ENGG1001",
+      "ENGG1100",
+      "FINM1415",
+      "LAWS1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MECH2700",
+      "MECH3200",
+      "MECH3410",
+      "MECH3780",
+      "METR6203",
+      "MGTS1301"
+    ],
+    "total_units": 88
+  },
+  "Engineering (Honours) / Economics": {
+    "courses": [
+      "CSSE1001",
+      "DECO3800",
+      "ECON1010",
+      "ECON1020",
+      "ECON2010",
+      "ECON2020",
+      "ECON2101",
+      "ECON2300",
+      "ELEC2400",
+      "ELEC3004",
+      "ELEC3310",
+      "ENGG1001",
+      "ENGG1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MECH2700",
+      "MECH3200",
+      "MECH3410",
+      "MECH3780",
+      "METR6203"
+    ],
+    "total_units": 88
+  },
+  "Business": {
+    "courses": [
+      "FINM7409",
+      "MGTS7301",
+      "MGTS7608",
+      "MGTS7610",
+      "MGTS7621"
+    ],
+    "total_units": 32
+  },
+  "Science / Laws (Honours)": {
+    "courses": [
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 80
+  },
+  "Journalism / Laws (Honours)": {
+    "courses": [
+      "COMU1050",
+      "COMU1130",
+      "COMU2160",
+      "JOUR1001",
+      "JOUR1112",
+      "JOUR2001",
+      "JOUR2221",
+      "JOUR2720",
+      "JOUR3000",
+      "JOUR3100",
+      "JOUR3222",
+      "JOUR3401",
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701"
+    ],
+    "total_units": 80
+  },
+  "Humanities / Laws (Honours)": {
+    "courses": [
+      "HUMN1100",
+      "HUMN1201",
+      "HUMN2200",
+      "HUMN3100",
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701"
+    ],
+    "total_units": 80
+  },
+  "Finance and Investment Management": {
+    "courses": [
+      "FINM7101",
+      "FINM7102",
+      "FINM7103",
+      "FINM7104",
+      "FINM7105",
+      "FINM7106",
+      "FINM7107",
+      "FINM7108"
+    ],
+    "total_units": 16
+  },
+  "Economic Studies": {
+    "courses": [
+      "ECON7000",
+      "ECON7001",
+      "ECON7150",
+      "ECON7300"
+    ],
+    "total_units": 8
+  },
+  "Tourism, Hotel and Event Management": {
+    "courses": [
+      "TOUR7000",
+      "TOUR7020",
+      "TOUR7021",
+      "TOUR7022",
+      "TOUR7023",
+      "TOUR7031",
+      "TOUR7032"
+    ],
+    "total_units": 32
+  },
+  "Business Administration": {
+    "courses": [
+      "ACCT7804",
+      "FINM7805",
+      "MGTS7803",
+      "MGTS7810",
+      "MGTS7812"
+    ],
+    "total_units": 24
+  },
+  "Business Analytics": {
+    "courses": [
+      "BSAN7204",
+      "BSAN7205",
+      "BSAN7206",
+      "BSAN7207",
+      "BSAN7208",
+      "BSAN7209",
+      "BSAN7210",
+      "BSAN7211",
+      "BSAN7212",
+      "BSAN7213",
+      "BSAN7214",
+      "BSAN7215"
+    ],
+    "total_units": 24
+  },
+  "Entrepreneurship and Innovation": {
+    "courses": [
+      "EIBS7300",
+      "EIBS7301",
+      "EIBS7302",
+      "EIBS7303",
+      "EIBS7304",
+      "EIBS7311",
+      "RBUS7981",
+      "RBUS7984",
+      "RBUS7985"
+    ],
+    "total_units": 24
+  },
+  "International Economics and Finance": {
+    "courses": [
+      "ECON7000",
+      "ECON7001",
+      "ECON7021",
+      "ECON7110",
+      "ECON7150",
+      "ECON7200",
+      "ECON7300",
+      "ECON7310",
+      "ECON7520",
+      "ECON7530",
+      "ECON7740",
+      "ECON7950",
+      "FINM7401",
+      "FINM7406"
+    ],
+    "total_units": 32
+  },
+  "Laws": {
+    "courses": [
+      "LAWS7936"
+    ],
+    "total_units": 24
+  },
+  "Global Management": {
+    "courses": [
+      "IBUS7302",
+      "IBUS7306",
+      "MGTS7329"
+    ],
+    "total_units": 32
+  }
+}

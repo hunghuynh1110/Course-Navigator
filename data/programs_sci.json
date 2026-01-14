@@ -1,0 +1,942 @@
+{
+  "Agribusiness": {
+    "courses": [
+      "AGRC6631",
+      "AGRC7043",
+      "AGRC7050",
+      "AGRC7123",
+      "FINM7960",
+      "MGTS3968",
+      "MKTG3960",
+      "MKTG3961",
+      "MKTG7961"
+    ],
+    "total_units": 32
+  },
+  "Wildlife Science": {
+    "courses": [
+      "AGRC1021",
+      "AGRC1032",
+      "AGRC2001",
+      "ANIM1020",
+      "ANIM1026",
+      "ANIM2033",
+      "ANIM2055",
+      "ANIM2057",
+      "ANIM3006",
+      "ANIM3018",
+      "ANIM3019",
+      "ANIM3033",
+      "ANIM3046",
+      "ANIM3049",
+      "CHEM1004",
+      "MATH1040",
+      "STAT1201"
+    ],
+    "total_units": 48
+  },
+  "Veterinary Technology": {
+    "courses": [
+      "AGRC1021",
+      "AGRC2001",
+      "ANIM1014",
+      "ANIM1020",
+      "ANIM1120",
+      "ANIM2057",
+      "CHEM1004",
+      "MATH1040",
+      "STAT1201",
+      "VETS1018",
+      "VETS2001",
+      "VETS2006",
+      "VETS2007",
+      "VETS2009",
+      "VETS2043",
+      "VETS3009",
+      "VETS3017",
+      "VETS3018",
+      "VETS3048"
+    ],
+    "total_units": 48
+  },
+  "Agricultural Science": {
+    "courses": [
+      "AGRC6010",
+      "AGRC6631",
+      "AGRC7046",
+      "AGRC7047",
+      "AGRC7048",
+      "AGRC7053"
+    ],
+    "total_units": 32
+  },
+  "Mathematics": {
+    "courses": [
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "STAT1301"
+    ],
+    "total_units": 48
+  },
+  "Science": {
+    "courses": [
+      "COSC7500",
+      "MATH7000",
+      "PHYS7120",
+      "PHYS7141",
+      "PHYS7155",
+      "STAT7003",
+      "STAT7004"
+    ],
+    "total_units": 32
+  },
+  "Biotechnology": {
+    "courses": [
+      "BIOT7005",
+      "BIOT7018",
+      "BIOT7031",
+      "BIOT7033"
+    ],
+    "total_units": 32
+  },
+  "Agribusiness / Wildlife Science": {
+    "courses": [
+      "ACCT1101",
+      "AGRC1012",
+      "AGRC1021",
+      "AGRC1032",
+      "AGRC2000",
+      "AGRC2001",
+      "AGRC2023",
+      "AGRC2030",
+      "AGRC3000",
+      "AGRC3023",
+      "ANIM1020",
+      "ANIM1026",
+      "ANIM2033",
+      "ANIM2055",
+      "ANIM2057",
+      "ANIM3006",
+      "ANIM3018",
+      "ANIM3019",
+      "ANIM3033",
+      "ANIM3046",
+      "ANIM3049",
+      "CHEM1004",
+      "FINM3960",
+      "IBUS3960",
+      "MATH1040",
+      "MGTS1601",
+      "MGTS2604",
+      "MGTS3968",
+      "MKTG1501",
+      "MKTG3960",
+      "MKTG3961",
+      "STAT1201"
+    ],
+    "total_units": 64
+  },
+  "Agribusiness / Agricultural Science": {
+    "courses": [
+      "ACCT1101",
+      "AGRC1012",
+      "AGRC1021",
+      "AGRC1032",
+      "AGRC2000",
+      "AGRC2001",
+      "AGRC2023",
+      "AGRC2030",
+      "AGRC3000",
+      "AGRC3018",
+      "AGRC3023",
+      "ANIM1020",
+      "CHEM1004",
+      "FINM3960",
+      "IBUS3960",
+      "LAND2003",
+      "MATH1040",
+      "MGTS1601",
+      "MGTS2604",
+      "MGTS3968",
+      "MKTG1501",
+      "MKTG3960",
+      "MKTG3961",
+      "STAT1201"
+    ],
+    "total_units": 64
+  },
+  "Biomedical Science / Science": {
+    "courses": [
+      "BIOC2000",
+      "BIOL1020",
+      "BIOL2200",
+      "BIOL2202",
+      "BIOM1001",
+      "BIOM1002",
+      "BIOM2011",
+      "BIOM2012",
+      "CHEM1100",
+      "CHEM1200"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Science": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Economics / Science": {
+    "courses": [
+      "ECON1010",
+      "ECON1020",
+      "ECON1050",
+      "ECON1310",
+      "ECON2010",
+      "ECON2020",
+      "ECON2101",
+      "ECON2300",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Computer Science / Science": {
+    "courses": [
+      "COMP1100",
+      "COMP2200",
+      "COMP3506",
+      "CSSE1001",
+      "CSSE2002",
+      "CSSE2010",
+      "CSSE2310",
+      "DECO2500",
+      "DECO3801",
+      "INFS1200",
+      "MATH1061",
+      "MATH1081",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Human Movement and Nutrition Sciences / Science": {
+    "courses": [
+      "ANAT1005",
+      "BIOL1900",
+      "BIOM1050",
+      "BIOM2011",
+      "CHEM1090",
+      "CHEM1100",
+      "HLTH1000",
+      "HMST1910",
+      "HMST3103",
+      "HMST3191",
+      "HMST3846",
+      "HPRM2000",
+      "NUTR1023",
+      "NUTR2003",
+      "NUTR2050",
+      "NUTR2101",
+      "NUTR3000",
+      "PHYL1007",
+      "PHYL2730",
+      "PSYC2000",
+      "SCIE1000",
+      "SPCG1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Arts": {
+    "courses": [
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Master of Data Science": {
+    "courses": [
+      "CSSE1001",
+      "CSSE2002",
+      "DATA7001",
+      "INFS1200",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "STAT1301",
+      "STAT2003",
+      "STAT2004",
+      "STAT2904",
+      "STAT3006",
+      "STAT3007"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Business Management": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Commerce": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "ECON1011",
+      "FINM1415",
+      "LAWS1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "MGTS1301",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Economics": {
+    "courses": [
+      "ECON1010",
+      "ECON1020",
+      "ECON2010",
+      "ECON2020",
+      "ECON2101",
+      "ECON2300",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Computer Science": {
+    "courses": [
+      "COMP1100",
+      "COMP2200",
+      "COMP3506",
+      "CSSE1001",
+      "CSSE2002",
+      "CSSE2010",
+      "CSSE2310",
+      "DECO2500",
+      "DECO3801",
+      "INFS1200",
+      "MATH1051",
+      "MATH1052",
+      "MATH1061",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Education (Secondary)": {
+    "courses": [
+      "EDUC1650",
+      "EDUC1710",
+      "EDUC2090",
+      "EDUC2604",
+      "EDUC2630",
+      "EDUC2770",
+      "EDUC3605",
+      "EDUC3606",
+      "EDUC4607",
+      "EDUC4615",
+      "EDUC4620",
+      "EDUC4625",
+      "EDUC4644",
+      "EDUC4652",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Commerce / Science": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "ECON1011",
+      "ECON1310",
+      "FINM1415",
+      "LAWS1100",
+      "MGTS1301",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Music / Mathematics": {
+    "courses": [
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "MUSC1010",
+      "MUSC1050",
+      "MUSC1250",
+      "MUSC1260",
+      "MUSC1600",
+      "MUSC2060",
+      "MUSC2250",
+      "MUSC2260",
+      "MUSC2501",
+      "MUSC3010",
+      "MUSC3060",
+      "MUSC3450",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Science": {
+    "courses": [
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "SCIE1000",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Music / Science": {
+    "courses": [
+      "MUSC1010",
+      "MUSC1050",
+      "MUSC1250",
+      "MUSC1260",
+      "MUSC1600",
+      "MUSC2060",
+      "MUSC2250",
+      "MUSC2260",
+      "MUSC2501",
+      "MUSC3010",
+      "MUSC3060",
+      "MUSC3450",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Science / Arts": {
+    "courses": [
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Science / Education (Secondary)": {
+    "courses": [
+      "EDUC1650",
+      "EDUC1710",
+      "EDUC2090",
+      "EDUC2604",
+      "EDUC2630",
+      "EDUC2770",
+      "EDUC3605",
+      "EDUC3606",
+      "EDUC4607",
+      "EDUC4615",
+      "EDUC4620",
+      "EDUC4625",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Science / Journalism": {
+    "courses": [
+      "COMU1050",
+      "COMU1130",
+      "COMU2160",
+      "JOUR1001",
+      "JOUR1112",
+      "JOUR2001",
+      "JOUR2221",
+      "JOUR2720",
+      "JOUR3000",
+      "JOUR3100",
+      "JOUR3222",
+      "JOUR3401",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Agricultural Science (Honours)": {
+    "courses": [
+      "SCIE4000",
+      "SCIE4010",
+      "SCIE4020",
+      "SCIE4040"
+    ],
+    "total_units": 16
+  },
+  "Environmental Management (Honours)": {
+    "courses": [
+      "BIOL1050",
+      "ENVM1501",
+      "ENVM1522",
+      "ENVM2008",
+      "ENVM2100",
+      "ENVM2203",
+      "ENVM3102",
+      "ENVM3103",
+      "ENVM3107",
+      "ENVM3115",
+      "ENVM3211",
+      "ENVM4400",
+      "ENVM4501",
+      "ENVM4502",
+      "ENVM4512",
+      "ENVM4525",
+      "ERTH1000",
+      "GEOG2205",
+      "GEOM1000",
+      "GEOM2001",
+      "GEOS1100",
+      "GEOS6001",
+      "LAND2003",
+      "MATH1040",
+      "STAT1201"
+    ],
+    "total_units": 64
+  },
+  "Advanced Science (Honours)": {
+    "courses": [
+      "SCIE1100",
+      "SCIE1200",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Equine Science (Honours)": {
+    "courses": [
+      "SCIE4000",
+      "SCIE4040"
+    ],
+    "total_units": 16
+  },
+  "Mathematics (Honours)": {
+    "courses": [
+      "MATH6030",
+      "MATH6100",
+      "MATH6101",
+      "SCIE4000"
+    ],
+    "total_units": 16
+  },
+  "Veterinary Science (Honours)": {
+    "courses": [
+      "AGRC1041",
+      "ANIM2501",
+      "ANIM2503",
+      "BIOC1011",
+      "VETS1003",
+      "VETS1018",
+      "VETS1021",
+      "VETS1025",
+      "VETS1060",
+      "VETS2006",
+      "VETS2007",
+      "VETS2008",
+      "VETS2011",
+      "VETS2012",
+      "VETS3010",
+      "VETS3024",
+      "VETS3050",
+      "VETS3060",
+      "VETS3070",
+      "VETS4010",
+      "VETS4022",
+      "VETS4034",
+      "VETS4035",
+      "VETS4040"
+    ],
+    "total_units": 80
+  },
+  "Veterinary Technology (Honours)": {
+    "courses": [
+      "SCIE4000",
+      "VETS6621",
+      "VETS6622",
+      "VETS6631",
+      "VETS6632"
+    ],
+    "total_units": 16
+  },
+  "Wildlife Science (Honours)": {
+    "courses": [
+      "SCIE4000"
+    ],
+    "total_units": 16
+  },
+  "Engineering (Honours) / Biotechnology": {
+    "courses": [
+      "CSSE1001",
+      "ENGG1001",
+      "ENGG1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072"
+    ],
+    "total_units": 80
+  },
+  "Engineering (Honours) / Mathematics": {
+    "courses": [
+      "CSSE1001",
+      "DECO3800",
+      "ELEC2400",
+      "ELEC3004",
+      "ELEC3310",
+      "ENGG1001",
+      "ENGG1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MECH2700",
+      "MECH3200",
+      "MECH3410",
+      "MECH3780",
+      "METR6203"
+    ],
+    "total_units": 80
+  },
+  "Engineering (Honours) / Science": {
+    "courses": [
+      "CSSE1001",
+      "DECO3800",
+      "ELEC2400",
+      "ELEC3004",
+      "ELEC3310",
+      "ENGG1001",
+      "ENGG1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MECH2700",
+      "MECH3200",
+      "MECH3410",
+      "MECH3780",
+      "METR6203"
+    ],
+    "total_units": 80
+  },
+  "Science / Laws (Honours)": {
+    "courses": [
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 80
+  },
+  "Bioinformatics": {
+    "courses": [
+      "BINF6000",
+      "BINF7000",
+      "BINF7001",
+      "STAT7174"
+    ],
+    "total_units": 32
+  },
+  "Conservation Biology": {
+    "courses": [
+      "CONS6009",
+      "CONS7008",
+      "CONS7022",
+      "CONS7024",
+      "CONS7025",
+      "CONS7029",
+      "CONS7030",
+      "ENVM7505",
+      "ENVM7512",
+      "GEOM7005",
+      "PHIL7221",
+      "TIMS7328"
+    ],
+    "total_units": 24
+  },
+  "Magnetic Resonance Technology": {
+    "courses": [
+      "MRES7002",
+      "MRES7003",
+      "MRES7100",
+      "MRES7400"
+    ],
+    "total_units": 24
+  },
+  "Molecular Biology": {
+    "courses": [
+      "BINF6000",
+      "BIOC6001",
+      "BIOC6040",
+      "BIOC7001",
+      "BIOC7040",
+      "BIOL6202",
+      "CHEM6520",
+      "MICR6000"
+    ],
+    "total_units": 32
+  },
+  "Environmental Management": {
+    "courses": [
+      "ENVM7001",
+      "ENVM7003",
+      "ENVM7512"
+    ],
+    "total_units": 32
+  },
+  "Animal Science": {
+    "courses": [
+      "AGRC6631",
+      "AGRC7046",
+      "AGRC7047",
+      "ANIM3019",
+      "ANIM3046",
+      "ANIM7024",
+      "ANIM7240"
+    ],
+    "total_units": 32
+  },
+  "Bioinformatics Research Extensive": {
+    "courses": [
+      "BINF6000",
+      "BINF7000",
+      "BINF7001",
+      "STAT7174"
+    ],
+    "total_units": 32
+  },
+  "Biotechnology Research Extensive": {
+    "courses": [
+      "BIOT7005",
+      "BIOT7018",
+      "BIOT7031",
+      "BIOT7033"
+    ],
+    "total_units": 32
+  },
+  "Conservation Science": {
+    "courses": [
+      "CONS6009",
+      "CONS7008",
+      "CONS7022",
+      "CONS7024",
+      "CONS7025",
+      "CONS7029",
+      "CONS7030",
+      "ENVM7505",
+      "ENVM7512",
+      "GEOM7005",
+      "PHIL7221",
+      "TIMS7328"
+    ],
+    "total_units": 32
+  },
+  "Financial Mathematics": {
+    "courses": [
+      "CSSE7030",
+      "MATH4090",
+      "MATH4091",
+      "MATH7000",
+      "MATH7039"
+    ],
+    "total_units": 32
+  },
+  "Food Science and Technology": {
+    "courses": [
+      "FOOD3017",
+      "FOOD7011",
+      "FOOD7013",
+      "MICR7003"
+    ],
+    "total_units": 32
+  },
+  "Geographic Information Science": {
+    "courses": [
+      "ENVM7003",
+      "GEOM7200"
+    ],
+    "total_units": 32
+  },
+  "Molecular Biology Research Extensive": {
+    "courses": [
+      "BINF6000",
+      "BIOC6001",
+      "BIOC7001",
+      "BIOC7040"
+    ],
+    "total_units": 32
+  },
+  "Occupational Health and Safety Science": {
+    "courses": [
+      "LAWS7024",
+      "OHSS3001",
+      "OHSS3002",
+      "OHSS7000",
+      "OHSS7001",
+      "OHSS7002",
+      "OHSS7003",
+      "OHSS7004",
+      "OHSS7005"
+    ],
+    "total_units": 24
+  },
+  "Occupational Hygiene": {
+    "courses": [
+      "ENVH7001",
+      "ENVM7003",
+      "MICR6000",
+      "OHSS3001",
+      "OHSS3002",
+      "OHSS7000",
+      "OHSS7002",
+      "OHSS7003",
+      "OHSS7004",
+      "OHSS7200",
+      "PUBH7600"
+    ],
+    "total_units": 24
+  },
+  "Occupational Hygiene / Occupational Health and Safety Science": {
+    "courses": [
+      "ENVH7001",
+      "ENVM7003",
+      "LAWS7024",
+      "MICR6000",
+      "OHSS3001",
+      "OHSS3002",
+      "OHSS7000",
+      "OHSS7001",
+      "OHSS7002",
+      "OHSS7003",
+      "OHSS7004",
+      "OHSS7005",
+      "OHSS7200",
+      "PUBH7600"
+    ],
+    "total_units": 32
+  },
+  "Quantum Technology": {
+    "courses": [
+      "PHYS4030",
+      "PHYS4055",
+      "PHYS7021",
+      "PHYS7042",
+      "PHYS7045",
+      "PHYS7141",
+      "PHYS7712",
+      "PHYS7713",
+      "PHYS7714",
+      "PHYS7900"
+    ],
+    "total_units": 24
+  }
+}
