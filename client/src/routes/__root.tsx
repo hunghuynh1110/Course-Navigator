@@ -1,9 +1,13 @@
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { AppBar, Toolbar, Typography, Button, Container } from "@mui/material";
+import NotFound from "../components/NotFound";
+import ErrorComponent from "../components/ErrorComponent";
 
 export const Route = createRootRoute({
   component: RootLayout,
+  notFoundComponent: NotFound,
+  errorComponent: ErrorComponent,
 });
 
 function RootLayout() {
