@@ -33,7 +33,7 @@ function Dashboard() {
 
   // Selected tags (course codes) - saved list
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
-  
+
   // Live search results (what user is currently typing)
   const [searchResults, setSearchResults] = useState<string[]>([]);
 
@@ -58,7 +58,7 @@ function Dashboard() {
   // --- DATA FETCHING ---
   const fetchCourses = useCallback(async () => {
     setLoading(true);
-    
+
     // Priority 1: If user is actively searching (typing), show search results
     if (searchResults.length > 0 && searchResults[0]) {
       const searchTerm = searchResults[0];
@@ -67,7 +67,7 @@ function Dashboard() {
         .select("*")
         .ilike("id", `%${searchTerm}%`)
         .limit(50); // Limit search results
-      
+
       if (data) setCourses(data as unknown as Course[]);
       setTotalPages(1); // No pagination for search
       setLoading(false);
@@ -99,7 +99,7 @@ function Dashboard() {
   }, [fetchCourses]);
 
   const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
+    _event: React.ChangeEvent<unknown>,
     value: number
   ) => {
     setPage(value);
@@ -109,30 +109,41 @@ function Dashboard() {
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
       {/* SEARCH AREA */}
-<Box mb={2}>
-         <Box display="flex" justifyContent="center" >
+      <Box mb={2}>
+        <Box display="flex" justifyContent="center">
           <Box width={{ xs: "100%", md: "60%" }}>
-            <Box display="flex" justifyContent="center" gap={3}>  
-                <CourseSearchInput 
-                  onAddCourse={handleAddCourse}
-                  existingCourses={selectedCourses}
-                  onSearchResults={handleSearchResults}
+            <Box display="flex" justifyContent="center" gap={3}>
+              <CourseSearchInput
+                onAddCourse={handleAddCourse}
+                existingCourses={selectedCourses}
+                onSearchResults={handleSearchResults}
               />
-              <Button variant="contained" color="primary" onClick={() => navigate({ to: "/about", search: { courses: selectedCourses } })}>  Create Graph </Button>        
-              </Box>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() =>
+                  navigate({
+                    to: "/about",
+                    search: { courses: selectedCourses },
+                  })
+                }
+              >
+                {" "}
+                Create Graph{" "}
+              </Button>
             </Box>
-         </Box>
-         
-         <Box display="flex" justifyContent="center">
-            <Box width={{ xs: "100%", md: "60%" }}>
-              <CourseTagList 
-                  courses={selectedCourses} 
-                  onRemove={handleRemoveCourse} 
-               />
-            </Box>
-         </Box>
+          </Box>
         </Box>
-      
+
+        <Box display="flex" justifyContent="center">
+          <Box width={{ xs: "100%", md: "60%" }}>
+            <CourseTagList
+              courses={selectedCourses}
+              onRemove={handleRemoveCourse}
+            />
+          </Box>
+        </Box>
+      </Box>
 
       {/* COURSE LIST */}
       {loading ? (
@@ -150,7 +161,7 @@ function Dashboard() {
           ) : (
             <Grid container spacing={3}>
               {courses.map((course) => (
-                <Grid sx={{xs: 12, md: 6, lg: 4}} key={course.id}>
+                <Grid sx={{ xs: 12, md: 6, lg: 4 }} key={course.id}>
                   <CourseCard
                     course={course}
                     onClick={() => {

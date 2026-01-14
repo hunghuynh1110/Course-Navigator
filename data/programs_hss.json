@@ -1,0 +1,1043 @@
+{
+  "International Studies": {
+    "courses": [
+      "COMU1002",
+      "COMU3060",
+      "COMU3065",
+      "POLS2224"
+    ],
+    "total_units": 48
+  },
+  "Journalism": {
+    "courses": [
+      "COMU1050",
+      "COMU1130",
+      "COMU2160",
+      "JOUR1001",
+      "JOUR1112",
+      "JOUR2001",
+      "JOUR2221",
+      "JOUR2720",
+      "JOUR3000",
+      "JOUR3100",
+      "JOUR3222",
+      "JOUR3401"
+    ],
+    "total_units": 48
+  },
+  "Communication": {
+    "courses": [
+      "COMU7292",
+      "COMU7311"
+    ],
+    "total_units": 32
+  },
+  "Education (Primary)": {
+    "courses": [
+      "EDUC1706",
+      "EDUC1710",
+      "EDUC1720",
+      "EDUC1730",
+      "EDUC1740",
+      "EDUC1750",
+      "EDUC1760",
+      "EDUC2090",
+      "EDUC2710",
+      "EDUC2720",
+      "EDUC2730",
+      "EDUC2740",
+      "EDUC2750",
+      "EDUC2760",
+      "EDUC2770",
+      "EDUC3707",
+      "EDUC3710",
+      "EDUC3720",
+      "EDUC3730",
+      "EDUC3740",
+      "EDUC3750",
+      "EDUC3760",
+      "EDUC3770",
+      "EDUC4703",
+      "EDUC4720",
+      "EDUC4730",
+      "EDUC4740",
+      "EDUC4750",
+      "EDUC4770"
+    ],
+    "total_units": 64
+  },
+  "Criminology and Criminal Justice": {
+    "courses": [
+      "CRIM1000",
+      "CRIM1019",
+      "CRIM1111",
+      "CRIM2140",
+      "CRIM3039",
+      "CRIM3111",
+      "CRIM3201",
+      "CRIM3202",
+      "LAWS1110",
+      "LAWS2220",
+      "LAWS3330",
+      "SOCY2019",
+      "SOCY2339",
+      "SOCY3329"
+    ],
+    "total_units": 48
+  },
+  "Music": {
+    "courses": [
+      "MUSC7010",
+      "MUSC7060",
+      "MUSC7370",
+      "MUSC7470"
+    ],
+    "total_units": 24
+  },
+  "Social Science": {
+    "courses": [
+      "POLS1102",
+      "SOCY2019",
+      "SOCY2339",
+      "SOCY3329",
+      "SOSC1000",
+      "SOSC3201",
+      "SOSC3202"
+    ],
+    "total_units": 48
+  },
+  "Arts / Education (Secondary)": {
+    "courses": [
+      "EDUC1650",
+      "EDUC1710",
+      "EDUC2090",
+      "EDUC2604",
+      "EDUC2630",
+      "EDUC2770",
+      "EDUC3605",
+      "EDUC3606",
+      "EDUC4607",
+      "EDUC4615",
+      "EDUC4620",
+      "EDUC4625"
+    ],
+    "total_units": 64
+  },
+  "Arts / Social Science": {
+    "courses": [
+      "POLS1102",
+      "SOCY2019",
+      "SOCY2339",
+      "SOCY3329",
+      "SOSC1000",
+      "SOSC3201",
+      "SOSC3202"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Diploma in Languages": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Arts / Tourism, Hospitality and Event Management": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "TOUR1000",
+      "TOUR1002",
+      "TOUR1003",
+      "TOUR1004"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Arts": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Education (Secondary)": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "EDUC1650",
+      "EDUC1710",
+      "EDUC2090",
+      "EDUC2604",
+      "EDUC2630",
+      "EDUC2770",
+      "EDUC3605",
+      "EDUC3606",
+      "EDUC4607",
+      "EDUC4615",
+      "EDUC4620",
+      "EDUC4625",
+      "EDUC4632",
+      "EDUC4654",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Journalism": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "COMU1050",
+      "COMU1130",
+      "COMU2160",
+      "ECON1011",
+      "FINM1416",
+      "JOUR1001",
+      "JOUR1112",
+      "JOUR2001",
+      "JOUR2221",
+      "JOUR2720",
+      "JOUR3000",
+      "JOUR3100",
+      "JOUR3222",
+      "JOUR3401",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501"
+    ],
+    "total_units": 64
+  },
+  "Business Management / Communication": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "COMU1052",
+      "COMU1120",
+      "COMU1130",
+      "COMU1140",
+      "COMU2030",
+      "COMU2160",
+      "COMU3150",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501",
+      "WRIT1200"
+    ],
+    "total_units": 64
+  },
+  "Commerce / Diploma in Languages": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "ECON1011",
+      "ECON1310",
+      "FINM1415",
+      "LAWS1100",
+      "MGTS1301"
+    ],
+    "total_units": 64
+  },
+  "Communication / Arts": {
+    "courses": [
+      "COMU1052",
+      "COMU1120",
+      "COMU1130",
+      "COMU1140",
+      "COMU2030",
+      "COMU2160",
+      "COMU3150",
+      "WRIT1200"
+    ],
+    "total_units": 64
+  },
+  "Commerce / Arts": {
+    "courses": [
+      "ACCT1102",
+      "ACCT1110",
+      "BISM1201",
+      "ECON1011",
+      "ECON1310",
+      "FINM1415",
+      "LAWS1100",
+      "MGTS1301"
+    ],
+    "total_units": 64
+  },
+  "Communication / Journalism": {
+    "courses": [
+      "COMU1050",
+      "COMU1052",
+      "COMU1120",
+      "COMU1130",
+      "COMU1140",
+      "COMU2030",
+      "COMU2160",
+      "COMU3150",
+      "JOUR1001",
+      "JOUR1112",
+      "JOUR2001",
+      "JOUR2221",
+      "JOUR2720",
+      "JOUR3000",
+      "JOUR3100",
+      "JOUR3222",
+      "JOUR3401",
+      "WRIT1200"
+    ],
+    "total_units": 64
+  },
+  "Computer Science / Arts": {
+    "courses": [
+      "COMP1100",
+      "COMP2200",
+      "COMP3506",
+      "CSSE1001",
+      "CSSE2002",
+      "CSSE2010",
+      "CSSE2310",
+      "DECO2500",
+      "DECO3801",
+      "INFS1200",
+      "MATH1061",
+      "MATH1081",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Criminology and Criminal Justice/Arts": {
+    "courses": [
+      "CRIM1000",
+      "CRIM1019",
+      "CRIM1111",
+      "CRIM2140",
+      "CRIM3039",
+      "CRIM3111",
+      "CRIM3201",
+      "CRIM3202",
+      "LAWS1110",
+      "LAWS2220",
+      "LAWS3330",
+      "SOCY2019",
+      "SOCY2339",
+      "SOCY3329"
+    ],
+    "total_units": 64
+  },
+  "Economics / Arts": {
+    "courses": [
+      "ECON1010",
+      "ECON1020",
+      "ECON1050",
+      "ECON1310",
+      "ECON2010",
+      "ECON2020",
+      "ECON2101",
+      "ECON2300"
+    ],
+    "total_units": 64
+  },
+  "Human Movement and Nutrition Sciences / Arts": {
+    "courses": [
+      "ANAT1005",
+      "BIOL1900",
+      "BIOM1050",
+      "BIOM2011",
+      "CHEM1090",
+      "CHEM1100",
+      "HLTH1000",
+      "HMST1910",
+      "HMST3103",
+      "HMST3191",
+      "HMST3846",
+      "HPRM2000",
+      "NUTR1023",
+      "NUTR2003",
+      "NUTR2050",
+      "NUTR2101",
+      "NUTR3000",
+      "PHYL1007",
+      "PHYL2730",
+      "PSYC2000",
+      "SPCG1000"
+    ],
+    "total_units": 64
+  },
+  "Information Technology / Arts": {
+    "courses": [
+      "COMP2140",
+      "COMP2200",
+      "CSSE1001",
+      "DECO1400",
+      "DECO1800",
+      "DECO2500",
+      "DECO2840",
+      "DECO2850",
+      "DECO3800",
+      "DECO3801",
+      "INFS1200",
+      "MATH1061",
+      "MATH1081"
+    ],
+    "total_units": 64
+  },
+  "Human Movement and Nutrition Sciences / Journalism": {
+    "courses": [
+      "ANAT1005",
+      "BIOL1900",
+      "BIOM1050",
+      "BIOM2011",
+      "CHEM1090",
+      "CHEM1100",
+      "COMU1050",
+      "COMU1130",
+      "COMU2160",
+      "HLTH1000",
+      "HMST1910",
+      "HMST3103",
+      "HMST3191",
+      "HMST3846",
+      "HPRM2000",
+      "JOUR1001",
+      "JOUR1112",
+      "JOUR2001",
+      "JOUR2221",
+      "JOUR2720",
+      "JOUR3000",
+      "JOUR3100",
+      "JOUR3222",
+      "JOUR3401",
+      "NUTR1023",
+      "NUTR2003",
+      "NUTR2050",
+      "NUTR2101",
+      "NUTR3000",
+      "PHYL1007",
+      "PHYL2730",
+      "PSYC2000",
+      "SPCG1000"
+    ],
+    "total_units": 64
+  },
+  "Journalism / Arts": {
+    "courses": [
+      "COMU1050",
+      "COMU1130",
+      "COMU2160",
+      "JOUR1001",
+      "JOUR1112",
+      "JOUR2001",
+      "JOUR2221",
+      "JOUR2720",
+      "JOUR3000",
+      "JOUR3100",
+      "JOUR3222",
+      "JOUR3401"
+    ],
+    "total_units": 64
+  },
+  "Music / Diploma in Languages": {
+    "courses": [
+      "MUSC1010",
+      "MUSC1050",
+      "MUSC1250",
+      "MUSC1260",
+      "MUSC1600",
+      "MUSC2060",
+      "MUSC2250",
+      "MUSC2260",
+      "MUSC2501",
+      "MUSC3010",
+      "MUSC3060",
+      "MUSC3450"
+    ],
+    "total_units": 64
+  },
+  "Music / Arts": {
+    "courses": [
+      "MUSC1010",
+      "MUSC1050",
+      "MUSC1250",
+      "MUSC1260",
+      "MUSC1600",
+      "MUSC2060",
+      "MUSC2250",
+      "MUSC2260",
+      "MUSC2501",
+      "MUSC3010",
+      "MUSC3060",
+      "MUSC3450"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Education (Secondary)": {
+    "courses": [
+      "EDUC1650",
+      "EDUC1710",
+      "EDUC2090",
+      "EDUC2604",
+      "EDUC2630",
+      "EDUC2770",
+      "EDUC3605",
+      "EDUC3606",
+      "EDUC4607",
+      "EDUC4615",
+      "EDUC4620",
+      "EDUC4625",
+      "EDUC4644",
+      "EDUC4652",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Music / Business Management": {
+    "courses": [
+      "ACCT1101",
+      "BISM1201",
+      "ECON1011",
+      "FINM1416",
+      "LAWS1100",
+      "MGTS1301",
+      "MGTS1601",
+      "MKTG1501",
+      "MUSC1010",
+      "MUSC1050",
+      "MUSC1250",
+      "MUSC1260",
+      "MUSC1600",
+      "MUSC2060",
+      "MUSC2250",
+      "MUSC2260",
+      "MUSC2501",
+      "MUSC3010",
+      "MUSC3060",
+      "MUSC3450"
+    ],
+    "total_units": 64
+  },
+  "Music / Education (Secondary)": {
+    "courses": [
+      "EDUC1650",
+      "EDUC1710",
+      "EDUC2090",
+      "EDUC2604",
+      "EDUC2630",
+      "EDUC2770",
+      "EDUC3605",
+      "EDUC3606",
+      "EDUC4607",
+      "EDUC4615",
+      "EDUC4620",
+      "EDUC4625",
+      "EDUC4645",
+      "EDUC4658",
+      "MUSC1010",
+      "MUSC1050",
+      "MUSC1250",
+      "MUSC1260",
+      "MUSC1600",
+      "MUSC2060",
+      "MUSC2250",
+      "MUSC2260",
+      "MUSC2501",
+      "MUSC3060",
+      "MUSC3160",
+      "MUSC3170",
+      "MUSC3450",
+      "MUSC3840",
+      "MUSC3850"
+    ],
+    "total_units": 64
+  },
+  "Music / Mathematics": {
+    "courses": [
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "MUSC1010",
+      "MUSC1050",
+      "MUSC1250",
+      "MUSC1260",
+      "MUSC1600",
+      "MUSC2060",
+      "MUSC2250",
+      "MUSC2260",
+      "MUSC2501",
+      "MUSC3010",
+      "MUSC3060",
+      "MUSC3450",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Music / Science": {
+    "courses": [
+      "MUSC1010",
+      "MUSC1050",
+      "MUSC1250",
+      "MUSC1260",
+      "MUSC1600",
+      "MUSC2060",
+      "MUSC2250",
+      "MUSC2260",
+      "MUSC2501",
+      "MUSC3010",
+      "MUSC3060",
+      "MUSC3450",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Science / Arts": {
+    "courses": [
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Mathematics / Arts": {
+    "courses": [
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH2400",
+      "MATH2401",
+      "MATH2504",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Advanced Humanities (Honours)": {
+    "courses": [
+      "HUMN1100",
+      "HUMN1201",
+      "HUMN2200",
+      "HUMN3100",
+      "HUMN3300",
+      "HUMN4200",
+      "HUMN4210"
+    ],
+    "total_units": 64
+  },
+  "Science / Education (Secondary)": {
+    "courses": [
+      "EDUC1650",
+      "EDUC1710",
+      "EDUC2090",
+      "EDUC2604",
+      "EDUC2630",
+      "EDUC2770",
+      "EDUC3605",
+      "EDUC3606",
+      "EDUC4607",
+      "EDUC4615",
+      "EDUC4620",
+      "EDUC4625",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Science / Journalism": {
+    "courses": [
+      "COMU1050",
+      "COMU1130",
+      "COMU2160",
+      "JOUR1001",
+      "JOUR1112",
+      "JOUR2001",
+      "JOUR2221",
+      "JOUR2720",
+      "JOUR3000",
+      "JOUR3100",
+      "JOUR3222",
+      "JOUR3401",
+      "SCIE1000",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64
+  },
+  "Arts / Laws (Honours)": {
+    "courses": [
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701"
+    ],
+    "total_units": 80
+  },
+  "Education (Primary) (Honours)": {
+    "courses": [
+      "EDUC1706",
+      "EDUC1710",
+      "EDUC1720",
+      "EDUC1730",
+      "EDUC1740",
+      "EDUC1750",
+      "EDUC1760",
+      "EDUC2090",
+      "EDUC2710",
+      "EDUC2720",
+      "EDUC2730",
+      "EDUC2740",
+      "EDUC2750",
+      "EDUC2760",
+      "EDUC2770",
+      "EDUC3707",
+      "EDUC3710",
+      "EDUC3720",
+      "EDUC3730",
+      "EDUC3740",
+      "EDUC3750",
+      "EDUC3760",
+      "EDUC3770",
+      "EDUC4705",
+      "EDUC4706",
+      "EDUC4720",
+      "EDUC4730",
+      "EDUC4740",
+      "EDUC4750",
+      "EDUC4770"
+    ],
+    "total_units": 64
+  },
+  "Humanities / Laws (Honours)": {
+    "courses": [
+      "HUMN1100",
+      "HUMN1201",
+      "HUMN2200",
+      "HUMN3100",
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701"
+    ],
+    "total_units": 80
+  },
+  "Engineering (Honours) / Diploma in Languages": {
+    "courses": [
+      "CSSE1001",
+      "DECO3800",
+      "ELEC2400",
+      "ELEC3004",
+      "ELEC3310",
+      "ENGG1001",
+      "ENGG1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MECH2700",
+      "MECH3200",
+      "MECH3410",
+      "MECH3780",
+      "METR6203"
+    ],
+    "total_units": 80
+  },
+  "Engineering (Honours) / Arts": {
+    "courses": [
+      "CSSE1001",
+      "DECO3800",
+      "ELEC2400",
+      "ELEC3004",
+      "ELEC3310",
+      "ENGG1001",
+      "ENGG1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MECH2700",
+      "MECH3200",
+      "MECH3410",
+      "MECH3780",
+      "METR6203"
+    ],
+    "total_units": 88
+  },
+  "Journalism / Laws (Honours)": {
+    "courses": [
+      "COMU1050",
+      "COMU1130",
+      "COMU2160",
+      "JOUR1001",
+      "JOUR1112",
+      "JOUR2001",
+      "JOUR2221",
+      "JOUR2720",
+      "JOUR3000",
+      "JOUR3100",
+      "JOUR3222",
+      "JOUR3401",
+      "LAWS1700",
+      "LAWS1701",
+      "LAWS1702",
+      "LAWS1703",
+      "LAWS2702",
+      "LAWS2703",
+      "LAWS2706",
+      "LAWS2707",
+      "LAWS2708",
+      "LAWS2709",
+      "LAWS3700",
+      "LAWS3701",
+      "LAWS3702",
+      "LAWS3703",
+      "LAWS3704",
+      "LAWS3705",
+      "LAWS4700",
+      "LAWS4701"
+    ],
+    "total_units": 80
+  },
+  "Applied Linguistics": {
+    "courses": [
+      "SLAT7001",
+      "SLAT7705",
+      "SLAT7706",
+      "SLAT7805",
+      "SLAT7806",
+      "SLAT7826",
+      "SLAT7860",
+      "WRIT6001"
+    ],
+    "total_units": 32
+  },
+  "Arts in Interpreting": {
+    "courses": [
+      "TRIN7120",
+      "TRIN7130",
+      "TRIN7220",
+      "TRIN7230"
+    ],
+    "total_units": 8
+  },
+  "Governance and Public Policy": {
+    "courses": [
+      "POLS7000",
+      "POLS7002",
+      "POLS7101",
+      "POLS7111",
+      "POLS7113",
+      "POLS7114",
+      "POLS7116",
+      "POLS7406"
+    ],
+    "total_units": 32
+  },
+  "Arts in Translation": {
+    "courses": [
+      "TRIN7120",
+      "TRIN7140",
+      "TRIN7210",
+      "TRIN7240"
+    ],
+    "total_units": 8
+  },
+  "International Relations": {
+    "courses": [
+      "POLS7000",
+      "POLS7002",
+      "POLS7107",
+      "POLS7211",
+      "POLS7216",
+      "POLS7251"
+    ],
+    "total_units": 32
+  },
+  "Indigenous Language Revitalisation": {
+    "courses": [
+      "AUIL7200",
+      "AUIL7201",
+      "AUIL7202",
+      "AUIL7203"
+    ],
+    "total_units": 8
+  },
+  "Mediation and Conflict Resolution": {
+    "courses": [
+      "CRMD7000"
+    ],
+    "total_units": 8
+  },
+  "University Teaching Practice": {
+    "courses": [
+      "EDHE6001",
+      "EDHE6002",
+      "EDHE6003",
+      "EDHE6004"
+    ],
+    "total_units": 8
+  },
+  "Arts in Translation and Interpreting": {
+    "courses": [
+      "TRIN7110",
+      "TRIN7120",
+      "TRIN7130",
+      "TRIN7140",
+      "TRIN7210",
+      "TRIN7220",
+      "TRIN7230",
+      "TRIN7240",
+      "TRIN7310",
+      "TRIN7320",
+      "TRIN7330",
+      "TRIN7340"
+    ],
+    "total_units": 32
+  },
+  "Peace and Conflict Studies": {
+    "courses": [
+      "POLS7000",
+      "POLS7002",
+      "POLS7325",
+      "POLS7502",
+      "POLS7505",
+      "POLS7514",
+      "POLS7523"
+    ],
+    "total_units": 32
+  },
+  "Educational Studies": {
+    "courses": [
+      "EDUC7047",
+      "EDUC7053",
+      "EDUC7211",
+      "EDUC7212",
+      "EDUC7603",
+      "EDUC7610"
+    ],
+    "total_units": 32
+  },
+  "International Relations / Peace and Conflict Studies": {
+    "courses": [
+      "POLS7107",
+      "POLS7211",
+      "POLS7216",
+      "POLS7251",
+      "POLS7325",
+      "POLS7502",
+      "POLS7505",
+      "POLS7514",
+      "POLS7523"
+    ],
+    "total_units": 32
+  },
+  "Teaching (Primary)": {
+    "courses": [
+      "EDUC7510",
+      "EDUC7516",
+      "EDUC7520",
+      "EDUC7540",
+      "EDUC7550",
+      "EDUC7555",
+      "EDUC7565",
+      "EDUC7570",
+      "EDUC7575",
+      "EDUC7580",
+      "EDUC7585",
+      "EDUC7590",
+      "EDUC7595",
+      "EDUC7603",
+      "EDUC7620",
+      "EDUC7670"
+    ],
+    "total_units": 32
+  },
+  "Teaching (Secondary)": {
+    "courses": [
+      "EDUC7510",
+      "EDUC7520",
+      "EDUC7600",
+      "EDUC7603",
+      "EDUC7604",
+      "EDUC7605",
+      "EDUC7606",
+      "EDUC7607",
+      "EDUC7615",
+      "EDUC7625",
+      "EDUC7630",
+      "EDUC7770"
+    ],
+    "total_units": 32
+  },
+  "Writing, Editing and Publishing": {
+    "courses": [
+      "WRIT7015"
+    ],
+    "total_units": 24
+  }
+}

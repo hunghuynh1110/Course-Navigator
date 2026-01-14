@@ -3,7 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 interface CourseTagProps {
   courseCode: string;
-  onDelete: () => void;
+  onDelete?: () => void;
 }
 
 export default function CourseTag({ courseCode, onDelete }: CourseTagProps) {
@@ -17,7 +17,7 @@ export default function CourseTag({ courseCode, onDelete }: CourseTagProps) {
         border: "1px solid #ffcc80",
         borderRadius: "4px 8px 8px 4px", // Slight tag shape
         pl: 2,
-        pr: 1,
+        pr: onDelete ? 1 : 2, // Adjust padding based on whether delete button is shown
         py: 0.5,
         boxShadow: "2px 2px 5px rgba(0,0,0,0.1)",
         transition: "transform 0.1s ease",
@@ -39,20 +39,22 @@ export default function CourseTag({ courseCode, onDelete }: CourseTagProps) {
         },
       }}
     >
-      <Typography variant="body2" fontWeight="bold" color="text.primary" sx={{ mr: 1 }}>
+      <Typography variant="body2" fontWeight="bold" color="text.primary" sx={{ mr: onDelete ? 1 : 0 }}>
         {courseCode}
       </Typography>
-      <IconButton
-        size="small"
-        onClick={onDelete}
-        sx={{
-          padding: 0.25,
-          color: "text.secondary",
-          "&:hover": { color: "error.main", bgcolor: "transparent" },
-        }}
-      >
-        <CloseIcon sx={{ fontSize: 16 }} />
-      </IconButton>
+      {onDelete && (
+        <IconButton
+          size="small"
+          onClick={onDelete}
+          sx={{
+            padding: 0.25,
+            color: "text.secondary",
+            "&:hover": { color: "error.main", bgcolor: "transparent" },
+          }}
+        >
+          <CloseIcon sx={{ fontSize: 16 }} />
+        </IconButton>
+      )}
     </Box>
   );
 }
