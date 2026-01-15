@@ -15,6 +15,7 @@ import "reactflow/dist/style.css";
 import { Box } from "@mui/material";
 import type { Course, Status } from "@/types/course";
 import CourseGraphPopup from "./CourseGraphPopup";
+import { removeTransitiveEdges } from "@/utils/graphUtils";
 
 // --- CONFIG ---
 const nodeWidth = 172;
@@ -157,26 +158,36 @@ export default function CourseGraph({
       };
     });
 
-    const flowEdges: Edge[] = [];
+    // Build prerequisite map
+    const prerequisiteMap: Record<string, string[]> = {};
     courses.forEach((course) => {
       if (
         course.raw_data.prerequisites_list &&
         course.raw_data.prerequisites_list.length > 0
       ) {
-        course.raw_data.prerequisites_list.forEach((prereqId) => {
-          flowEdges.push({
-            id: `e-${prereqId}-${course.id}`,
-            source: prereqId,
-            target: course.id,
-            type: ConnectionLineType.SmoothStep,
-            style: { stroke: "#1976d2" },
-            markerEnd: {
-              type: MarkerType.ArrowClosed,
-              color: "#1976d2",
-            },
-          });
-        });
+        prerequisiteMap[course.id] = course.raw_data.prerequisites_list;
       }
+    });
+
+    // Apply transitive reduction
+    const reducedPrerequisites = removeTransitiveEdges(prerequisiteMap);
+
+    // Create edges from reduced prerequisites
+    const flowEdges: Edge[] = [];
+    Object.entries(reducedPrerequisites).forEach(([courseId, prereqList]) => {
+      prereqList.forEach((prereqId) => {
+        flowEdges.push({
+          id: `e-${prereqId}-${courseId}`,
+          source: prereqId,
+          target: courseId,
+          type: ConnectionLineType.SmoothStep,
+          style: { stroke: "#1976d2" },
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+            color: "#1976d2",
+          },
+        });
+      });
     });
 
     const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(

@@ -170,20 +170,14 @@ const CourseSearchInput = ({
 
       <TextField
         fullWidth
-        label="Search or Add Course"
+        label="Search Course Code"
         variant="outlined"
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
         error={!!error}
         // helperText={error || "Type to search, press Enter to add"}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          ),
-        }}
+
         sx={{
           flexGrow: 1,
           minWidth: { xs: "100%", md: "200px" },

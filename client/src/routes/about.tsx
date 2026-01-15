@@ -21,7 +21,7 @@ import CourseGraph from "@/components/course-graph/CourseGraph";
 import CourseTagList from "@/components/search-box/CourseTagList";
 import { api } from "@/services/api";
 
-type AboutSearch = {
+export type Search = {
   courses?: string[];
   department?: string;
   program?: string;
@@ -29,7 +29,7 @@ type AboutSearch = {
 
 export const Route = createFileRoute("/about")({
   component: About,
-  validateSearch: (search: Record<string, unknown>): AboutSearch => {
+  validateSearch: (search: Record<string, unknown>): Search => {
     return {
       courses: Array.isArray(search.courses)
         ? (search.courses as string[])
@@ -57,9 +57,9 @@ type Program = {
 function About() {
   const navigate = useNavigate();
   const {
-    courses: searchCourses,
     department: searchDepartment,
     program: searchProgram,
+    courses: searchCourses,
   } = Route.useSearch();
   const [graphData, setGraphData] = useState<Course[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -68,31 +68,24 @@ function About() {
   const [programs, setPrograms] = useState<Program[]>([]);
 
   // Initialize state from search params
-  const [selectedFaculty, setSelectedFaculty] = useState(
-    searchDepartment || "All"
-  );
-  const [selectedProgram, setSelectedProgram] = useState<Program | undefined>(
-    undefined
-  );
   const [loadingPrograms, setLoadingPrograms] = useState(true);
-
-  // Sync state with search params changes
-  useEffect(() => {
-    if (searchDepartment) {
-      setSelectedFaculty(searchDepartment);
-    }
-  }, [searchDepartment]);
 
   useEffect(() => {
     if (programs.length > 0 && searchProgram) {
       const prog = programs.find((p) => p.name === searchProgram);
-      if (prog) {
-        setSelectedProgram(prog);
+      if (!prog) {
+        // Program not found in current department's programs, clear it
+        navigate({
+          to: "/about",
+          search: (prev) => ({
+            ...prev,
+            program: undefined,
+            courses: undefined,
+          }),
+        });
       }
-    } else if (!searchProgram) {
-      setSelectedProgram(undefined);
     }
-  }, [programs, searchProgram]);
+  }, [programs, searchProgram, navigate]);
 
   // State for node status (Passed/Failed etc.)
   const [nodesStatus, setNodesStatus] = useState<Record<string, Status>>({});
@@ -108,7 +101,7 @@ function About() {
       setLoadingPrograms(true);
       try {
         // Fetch programs for the selected faculty (or all if "All")
-        const data = await api.fetchPrograms(selectedFaculty);
+        const data = await api.fetchPrograms(searchDepartment);
         setPrograms(data as Program[]);
       } catch (e) {
         console.error("Failed to load programs", e);
@@ -118,7 +111,7 @@ function About() {
       }
     };
     load();
-  }, [selectedFaculty]);
+  }, [searchDepartment]);
 
   const handleShowRoadmap = async (courses: { id: string }[]) => {
     setIsLoading(true);
@@ -137,8 +130,7 @@ function About() {
   };
 
   // Function to load a program
-  const loadProgramEvents = (program: Program | undefined) => {
-    setSelectedProgram(program);
+  const loadProgramEvents = (program: Program | null | undefined) => {
     if (program) {
       navigate({
         to: "/about",
@@ -169,12 +161,11 @@ function About() {
     return [];
   }, [searchCourses]);
 
-  // Auto-load graph if courses are provided via search params
   useEffect(() => {
     if (searchCourses && searchCourses.length > 0) {
       handleShowRoadmap(courses);
     }
-  }, [selectedFaculty, searchCourses, courses]); // Refresh graph when search params change
+  }, [searchDepartment, searchCourses, courses]);
 
   const searchItems: SearchItem[] = [
     {
@@ -230,19 +221,15 @@ function About() {
           >
             <InputLabel>Department</InputLabel>
             <Select
-              value={selectedFaculty}
+              value={searchDepartment}
               label="Department"
               onChange={(e) => {
-                const newFaculty = e.target.value;
-                setSelectedFaculty(newFaculty);
-                // Update URL + CLEAR program and courses
                 navigate({
                   to: "/about",
-                  search: {
-                    department: newFaculty,
-                    program: undefined,
-                    courses: undefined,
-                  },
+                  search: (prev) => ({
+                    ...prev,
+                    department: e.target.value,
+                  }),
                 });
               }}
             >
@@ -265,7 +252,7 @@ function About() {
             options={programs}
             getOptionLabel={(option) => option.name}
             loading={loadingPrograms}
-            value={selectedProgram}
+            value={programs.find((p) => p.name === searchProgram) || undefined}
             onChange={(_, newValue) => loadProgramEvents(newValue)}
             renderInput={(params) => (
               <TextField
@@ -285,7 +272,7 @@ function About() {
           <Fragment>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
               Showing {searchCourses.length} mandatory courses of{" "}
-              {selectedProgram?.name}
+              {searchProgram}
             </Typography>
 
             <CourseTagList courses={searchCourses} />

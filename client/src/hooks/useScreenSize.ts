@@ -9,7 +9,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
  * 3: lg (1200px - 1536px)
  * 4: xl (>1536px)
  */
-export const useScreenSize = (): number => {
+export function useScreenSize(): number {
   const theme = useTheme();
   const isXl = useMediaQuery(theme.breakpoints.up("xl"));
   const isLg = useMediaQuery(theme.breakpoints.up("lg"));
@@ -21,4 +21,4 @@ export const useScreenSize = (): number => {
   if (isMd) return 2;
   if (isSm) return 1;
   return 0;
-};
+}

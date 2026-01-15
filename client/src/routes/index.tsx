@@ -129,44 +129,6 @@ function Dashboard() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const filters = [
-    {
-      id: "faculty",
-      label: "Department",
-      options: [
-        {
-          value: "All",
-          label: "All Departments",
-        },
-        {
-          value: "eait",
-          label: "Engineering, Architecture & IT (EAIT)",
-        },
-        {
-          value: "bel",
-          label: "Business, Economics & Law (BEL)",
-        },
-        {
-          value: "hlbs",
-          label: "Health & Behavioural Sciences (HLBS)",
-        },
-        {
-          value: "hss",
-          label: "Humanities & Social Sciences (HSS)",
-        },
-        {
-          value: "med",
-          label: "Medicine (MED)",
-        },
-        {
-          value: "sci",
-          label: "Science (SCI)",
-        },
-      ],
-      defaultValue: "All",
-    },
-  ];
-
   return (
     <Container maxWidth={false} sx={{ py: 4 }}>
       {/* SEARCH AREA */}
