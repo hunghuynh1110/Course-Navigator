@@ -22,7 +22,8 @@ except Exception as e:
 # 2. ĐỌC FILE JSON TỪ THƯ MỤC DATA
 # ======================================================
 # Đường dẫn lùi ra 1 cấp (..) rồi vào data
-json_path = '../data/master_courses.json'
+script_dir = os.path.dirname(os.path.abspath(__file__))
+json_path = os.path.join(script_dir, '..', 'data', 'master_courses.json')
 
 try:
     with open(json_path, 'r', encoding='utf-8') as f:

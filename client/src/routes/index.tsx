@@ -15,15 +15,31 @@ import { useNavigate } from "@tanstack/react-router";
 import CourseCard from "../components/CourseCard";
 import CourseSearchInput from "../components/search-box/CourseSearchInput";
 import CourseTagList from "../components/search-box/CourseTagList";
+import { useScreenSize } from "@/hooks/useScreenSize";
 
+interface DashboardSearch {
+  courses?: string[];
+  department?: string;
+  school?: string;
+}
 export const Route = createFileRoute("/")({
   component: Dashboard,
+  validateSearch: (search: Record<string, unknown>): DashboardSearch => {
+    return {
+      courses: Array.isArray(search.courses)
+        ? (search.courses as string[])
+        : undefined,
+      department: search.department as string,
+      school: search.school as string,
+    };
+  },
 });
 
 const PAGE_SIZE = 12;
 
 function Dashboard() {
   const navigate = useNavigate();
+  const screenSize = useScreenSize();
 
   // --- STATE ---
   const [courses, setCourses] = useState<Course[]>([]);
@@ -118,22 +134,36 @@ function Dashboard() {
       id: "faculty",
       label: "Department",
       options: [
-        { value: "EAIT", label: "EAIT" },
         {
-          value: "Business",
-          label: "Business (Coming Soon)",
-          disabled: true,
+          value: "All",
+          label: "All Departments",
+        },
+        {
+          value: "eait",
+          label: "Engineering, Architecture & IT (EAIT)",
+        },
+        {
+          value: "bel",
+          label: "Business, Economics & Law (BEL)",
+        },
+        {
+          value: "hlbs",
+          label: "Health & Behavioural Sciences (HLBS)",
+        },
+        {
+          value: "hss",
+          label: "Humanities & Social Sciences (HSS)",
+        },
+        {
+          value: "med",
+          label: "Medicine (MED)",
+        },
+        {
+          value: "sci",
+          label: "Science (SCI)",
         },
       ],
-      defaultValue: "EAIT",
-    },
-    {
-      id: "school",
-      label: "School",
-      options: [
-        { value: "civil", label: "Civil Engineering" },
-        { value: "it", label: "Information Technology" },
-      ],
+      defaultValue: "All",
     },
   ];
 
@@ -148,8 +178,6 @@ function Dashboard() {
                 onAddCourse={handleAddCourse}
                 existingCourses={selectedCourses}
                 onSearchResults={handleSearchResults}
-                filters={filters}
-                onFiltersChange={(filters) => console.log(filters)}
               />
               <Button
                 variant="contained"
@@ -161,8 +189,7 @@ function Dashboard() {
                   })
                 }
               >
-                {" "}
-                Create Graph{" "}
+                Create Graph
               </Button>
             </Box>
           </Box>
@@ -211,14 +238,16 @@ function Dashboard() {
           )}
 
           {/* Pagination only when showing all courses (no search) */}
+
           {courses.length > 0 && searchResults.length === 0 && (
             <Box display="flex" justifyContent="center" mt={4}>
               <Pagination
                 count={totalPages}
+                siblingCount={2}
                 page={page}
                 onChange={handlePageChange}
                 color="primary"
-                size="large"
+                size={screenSize <= 2 ? "medium" : "large"}
               />
             </Box>
           )}

@@ -35,6 +35,11 @@ export const Route = createFileRoute("/about")({
     };
   },
 });
+type SearchItem = {
+  value: string;
+  label: string;
+  status?: boolean;
+};
 
 type Program = {
   id: number;
@@ -53,8 +58,10 @@ function About() {
 
   // Program selector state
   const [programs, setPrograms] = useState<Program[]>([]);
-  const [selectedFaculty, setSelectedFaculty] = useState("EAIT");
-  const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
+  const [selectedFaculty, setSelectedFaculty] = useState("All");
+  const [selectedProgram, setSelectedProgram] = useState<Program | undefined>(
+    undefined
+  );
   const [loadingPrograms, setLoadingPrograms] = useState(true);
 
   // State for node status (Passed/Failed etc.)
@@ -104,7 +111,7 @@ function About() {
   };
 
   // Function to load a program
-  const loadProgramEvents = (program: Program | null) => {
+  const loadProgramEvents = (program: Program | undefined) => {
     setSelectedProgram(program);
     if (program && program.courses) {
       navigate({ to: "/about", search: { courses: program.courses } });
@@ -131,6 +138,37 @@ function About() {
     }
   }, [searchCourses, courses]); // Refresh graph when search params change
 
+  const searchItems: SearchItem[] = [
+    {
+      value: "All",
+      label: "All Departments",
+    },
+    {
+      value: "eait",
+      label: "Engineering, Architecture & IT (EAIT)",
+    },
+    {
+      value: "bel",
+      label: "Business, Economics & Law (BEL)",
+    },
+    {
+      value: "hlbs",
+      label: "Health & Behavioural Sciences (HLBS)",
+    },
+    {
+      value: "hss",
+      label: "Humanities & Social Sciences (HSS)",
+    },
+    {
+      value: "med",
+      label: "Medicine (MED)",
+    },
+    {
+      value: "sci",
+      label: "Science (SCI)",
+    },
+  ];
+
   return (
     <>
       {/* Program Selection */}
@@ -141,29 +179,36 @@ function About() {
 
         <Box display="flex" gap={2} my={3} flexWrap="wrap">
           {/* Faculty Filter */}
-          <FormControl sx={{ minWidth: 200 }}>
+          <FormControl
+            sx={{
+              flexGrow: 1,
+              minWidth: { xs: "100%", md: "150px" },
+              mt: { xs: 1, md: 0 },
+            }}
+          >
             <InputLabel>Department</InputLabel>
             <Select
               value={selectedFaculty}
               label="Department"
               onChange={(e) => setSelectedFaculty(e.target.value)}
             >
-              <MenuItem value="EAIT">EAIT</MenuItem>
-              <MenuItem value="Business" disabled>
-                Business (Coming Soon)
-              </MenuItem>
-              <MenuItem value="Medicine" disabled>
-                Medicine (Coming Soon)
-              </MenuItem>
-              <MenuItem value="Science" disabled>
-                Science (Coming Soon)
-              </MenuItem>
+              {searchItems.map((item) => (
+                <MenuItem key={item.value} value={item.value}>
+                  {item.label}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
 
           {/* Program Search */}
+
           <Autocomplete
-            sx={{ width: 400 }}
+            sx={{
+              flexGrow: 3,
+              minWidth: { xs: "100%", md: "200px" },
+              mt: { xs: 1, md: 0 },
+            }}
+            disableClearable={true}
             options={programs}
             getOptionLabel={(option) => option.name}
             loading={loadingPrograms}
@@ -174,17 +219,6 @@ function About() {
                 {...params}
                 label="Search Programs"
                 placeholder="Type to search (e.g. Computer Science)"
-                InputProps={{
-                  ...params.InputProps,
-                  endAdornment: (
-                    <>
-                      {loadingPrograms ? (
-                        <CircularProgress color="inherit" size={20} />
-                      ) : null}
-                      {params.InputProps.endAdornment}
-                    </>
-                  ),
-                }}
               />
             )}
           />
@@ -197,7 +231,8 @@ function About() {
         {searchCourses && searchCourses.length > 0 && (
           <Fragment>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Showing {searchCourses.length} courses of {selectedProgram?.name}
+              Showing {searchCourses.length} mandatory courses of{" "}
+              {selectedProgram?.name}
             </Typography>
 
             <CourseTagList courses={searchCourses} />
