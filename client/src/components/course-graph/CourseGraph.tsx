@@ -18,14 +18,18 @@ import CourseGraphPopup from "./CourseGraphPopup";
 import { removeTransitiveEdges } from "@/utils/graphUtils";
 
 // --- CONFIG ---
-const nodeWidth = 172;
+const nodeWidth = 122;
 const nodeHeight = 36;
 
 const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
   const dagreGraph = new dagre.graphlib.Graph();
   dagreGraph.setDefaultEdgeLabel(() => ({}));
 
-  dagreGraph.setGraph({ rankdir: "TB" });
+  dagreGraph.setGraph({
+    rankdir: "TB",
+    nodesep: 80, // Horizontal spacing between nodes in same rank
+    ranksep: 100, // Vertical spacing between ranks
+  });
 
   // 1. Separate nodes into connected and isolated
   const connectedNodeIds = new Set<string>();
@@ -247,7 +251,7 @@ export default function CourseGraph({
     <Box
       sx={{
         width: "100%",
-        height: "500px",
+        height: "700px",
         border: "1px solid #ddd",
         borderRadius: 2,
       }}
@@ -256,7 +260,7 @@ export default function CourseGraph({
         nodes={nodes}
         edges={edges}
         onNodeClick={onNodeClick}
-        nodesDraggable={false}
+        nodesDraggable={true}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         fitView

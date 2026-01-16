@@ -38,7 +38,11 @@ export default function CourseGraphPopup({
 
   useEffect(() => {
     if (open) {
-      setTempStatus(currentStatus === "Blocked" ? "Not Started" : currentStatus || "Not Started");
+      setTempStatus(
+        currentStatus === "Blocked"
+          ? "Not Started"
+          : currentStatus || "Not Started"
+      );
     }
   }, [open, currentStatus]);
 
@@ -62,7 +66,28 @@ export default function CourseGraphPopup({
           {course.title}
         </Typography>
       </DialogTitle>
-      
+
+      <DialogContent dividers>
+        {/* PREREQUISITES */}
+        <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+          Prerequisites
+        </Typography>
+        {course.raw_data.prerequisites_list &&
+        course.raw_data.prerequisites_list.length > 0 ? (
+          <List dense>
+            {course.raw_data.prerequisites_list.map((p, idx) => (
+              <ListItem key={idx} disablePadding>
+                <ListItemText primary={p} />
+              </ListItem>
+            ))}
+          </List>
+        ) : (
+          <Typography variant="body2" color="text.secondary">
+            No prerequisites info.
+          </Typography>
+        )}
+      </DialogContent>
+
       <DialogContent dividers>
         {/* ASSESSMENTS */}
         <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
@@ -125,7 +150,7 @@ export default function CourseGraphPopup({
           />
         </RadioGroup>
       </DialogContent>
-      
+
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
         <Button

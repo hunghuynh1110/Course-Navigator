@@ -15,28 +15,32 @@ import {
   InputLabel,
   Autocomplete,
   TextField,
+  Paper,
 } from "@mui/material";
 import type { Course, Status } from "@/types/course";
 import CourseGraph from "@/components/course-graph/CourseGraph";
 import CourseTagList from "@/components/search-box/CourseTagList";
 import { api } from "@/services/api";
+import { useScreenSize } from "@/hooks/useScreenSize";
+import CourseStatus from "@/components/course-graph/CourseStatus";
 
 export type Search = {
-  courses?: string[];
   department?: string;
   program?: string;
+  courses?: string[];
 };
 
 export const Route = createFileRoute("/about")({
   component: About,
   validateSearch: (search: Record<string, unknown>): Search => {
     return {
-      courses: Array.isArray(search.courses)
-        ? (search.courses as string[])
-        : undefined,
       department:
         typeof search.department === "string" ? search.department : undefined,
       program: typeof search.program === "string" ? search.program : undefined,
+
+      courses: Array.isArray(search.courses)
+        ? (search.courses as string[])
+        : undefined,
     };
   },
 });
@@ -70,11 +74,17 @@ function About() {
   // Initialize state from search params
   const [loadingPrograms, setLoadingPrograms] = useState(true);
 
+  // Displayed courses state (derived from program OR search params)
+  const [displayedCourses, setDisplayedCourses] = useState<string[]>([]);
+
+  // Update displayed courses based on program or search params
   useEffect(() => {
-    if (programs.length > 0 && searchProgram) {
+    if (searchProgram && programs.length > 0) {
       const prog = programs.find((p) => p.name === searchProgram);
-      if (!prog) {
-        // Program not found in current department's programs, clear it
+      if (prog) {
+        setDisplayedCourses(prog.courses);
+        return;
+      } else {
         navigate({
           to: "/about",
           search: (prev) => ({
@@ -84,8 +94,13 @@ function About() {
           }),
         });
       }
+    } else if (searchCourses && searchCourses.length > 0) {
+      // No program selected, fallback to custom courses from URL
+      setDisplayedCourses(searchCourses);
+    } else {
+      setDisplayedCourses([]);
     }
-  }, [programs, searchProgram, navigate]);
+  }, [searchProgram, searchCourses, programs, navigate]);
 
   // State for node status (Passed/Failed etc.)
   const [nodesStatus, setNodesStatus] = useState<Record<string, Status>>({});
@@ -113,13 +128,15 @@ function About() {
     load();
   }, [searchDepartment]);
 
-  const handleShowRoadmap = async (courses: { id: string }[]) => {
+  const handleShowRoadmap = async (courseIds: string[]) => {
+    if (courseIds.length === 0) {
+      setGraphData([]);
+      return;
+    }
     setIsLoading(true);
     setNodesStatus({});
     try {
-      const fullTree = await fetchFullCourseTree(
-        courses.map((course) => course.id)
-      );
+      const fullTree = await fetchFullCourseTree(courseIds);
 
       setGraphData(fullTree);
     } catch (error) {
@@ -137,7 +154,7 @@ function About() {
         search: (prev) => ({
           ...prev,
           program: program.name,
-          courses: program.courses,
+          courses: undefined, // Clear courses from URL
         }),
       });
     } else {
@@ -153,19 +170,14 @@ function About() {
     }
   };
 
-  // Use courses from search params or fallback to default
-  const courses = useMemo(() => {
-    if (searchCourses && searchCourses.length > 0) {
-      return searchCourses.map((id) => ({ id }));
-    }
-    return [];
-  }, [searchCourses]);
-
   useEffect(() => {
-    if (searchCourses && searchCourses.length > 0) {
-      handleShowRoadmap(courses);
+    // Only fetch graph when displayedCourses changes and is not empty
+    if (displayedCourses.length > 0) {
+      handleShowRoadmap(displayedCourses);
+    } else {
+      setGraphData([]);
     }
-  }, [searchDepartment, searchCourses, courses]);
+  }, [displayedCourses]); // Depend on the derived list
 
   const searchItems: SearchItem[] = [
     {
@@ -198,6 +210,8 @@ function About() {
     },
   ];
 
+  const screen = useScreenSize();
+
   return (
     <>
       {/* Program Selection */}
@@ -221,14 +235,16 @@ function About() {
           >
             <InputLabel>Department</InputLabel>
             <Select
-              value={searchDepartment}
+              value={searchDepartment || "All"}
               label="Department"
               onChange={(e) => {
                 navigate({
                   to: "/about",
                   search: (prev) => ({
                     ...prev,
-                    department: e.target.value,
+                    department:
+                      e.target.value === "All" ? undefined : e.target.value,
+                    program: undefined, // Clear program on department change
                   }),
                 });
               }}
@@ -251,8 +267,9 @@ function About() {
             disableClearable={true}
             options={programs}
             getOptionLabel={(option) => option.name}
+            isOptionEqualToValue={(option, value) => option.name === value.name}
             loading={loadingPrograms}
-            value={programs.find((p) => p.name === searchProgram) || undefined}
+            value={programs.find((p) => p.name === searchProgram) || null}
             onChange={(_, newValue) => loadProgramEvents(newValue)}
             renderInput={(params) => (
               <TextField
@@ -268,14 +285,16 @@ function About() {
           </Button>
         </Box>
 
-        {searchCourses && searchCourses.length > 0 && (
+        {displayedCourses.length > 0 && screen != 0 && (
           <Fragment>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Showing {searchCourses.length} mandatory courses of{" "}
-              {searchProgram}
+              Showing {displayedCourses.length}{" "}
+              {searchProgram
+                ? "mandatory courses of " + searchProgram
+                : "selected courses"}
             </Typography>
 
-            <CourseTagList courses={searchCourses} />
+            <CourseTagList courses={displayedCourses} />
           </Fragment>
         )}
       </Box>
@@ -295,14 +314,17 @@ function About() {
       )}
 
       {/* Graph Display */}
-      {!isLoading && searchCourses && (
-        <CourseGraph
-          courses={graphData}
-          nodesStatus={effectiveStatusMap}
-          onStatusChange={(updates) =>
-            setNodesStatus((prev) => ({ ...prev, ...updates }))
-          }
-        />
+      {!isLoading && displayedCourses.length > 0 && (
+        <Paper sx={{ p: 3, maxWidth: 1200, mx: "auto", mb: 3, mt: 1 }}>
+          <CourseGraph
+            courses={graphData}
+            nodesStatus={effectiveStatusMap}
+            onStatusChange={(updates) =>
+              setNodesStatus((prev) => ({ ...prev, ...updates }))
+            }
+          />
+          <CourseStatus />
+        </Paper>
       )}
     </>
   );

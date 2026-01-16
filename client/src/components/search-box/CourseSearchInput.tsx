@@ -101,13 +101,18 @@ const CourseSearchInput = ({
 
     // Mock Validation: Check if course code exists
     const isValid = mockValidateCourse(trimmedInput);
-
+    const isValid2 = mockValidateCourse2(trimmedInput);
+    console.log(isValid);
+    console.log(isValid2);
     if (isValid) {
       onAddCourse(trimmedInput);
       // RESET everything
       setInputValue("");
       setError("");
       onSearchResults([]); // Clear search results to reset the course display
+    } else if (isValid2) {
+      setInputValue("");
+      onSearchResults([]); // Clear search results
     } else {
       setError("Invalid course code");
       setInputValue("");
@@ -119,6 +124,10 @@ const CourseSearchInput = ({
   const mockValidateCourse = (code: string) => {
     // Simulate valid if it starts with letters and has numbers (e.g. COMP123)
     return /^[A-Z]{3,4}\d{3,4}[A-Z]*$/.test(code);
+  };
+  const mockValidateCourse2 = (code: string) => {
+    // Simulate valid if it starts with letters only (e.g. COMP)
+    return /^[A-Z]{3,4}$/.test(code);
   };
 
   const handleFilterChange =
@@ -177,7 +186,13 @@ const CourseSearchInput = ({
         onKeyDown={handleKeyDown}
         error={!!error}
         // helperText={error || "Type to search, press Enter to add"}
-
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
         sx={{
           flexGrow: 1,
           minWidth: { xs: "100%", md: "200px" },
