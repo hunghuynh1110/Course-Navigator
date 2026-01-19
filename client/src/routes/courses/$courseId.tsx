@@ -177,7 +177,7 @@ function CourseDetail() {
                 {raw_data.assessments?.map((a, i) => (
                   <TableRow key={i}>
                     <TableCell>
-                      {a.category}
+                      {a.assesment_task}
                       {a.flags?.is_hurdle && (
                         <Chip
                           label="Hurdle"

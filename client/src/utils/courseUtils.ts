@@ -113,3 +113,21 @@ export function getEffectiveStatusMap(
   courses.forEach((c) => getStatus(c.id));
   return map;
 }
+
+export async function fetchCourseAssessments(
+  courseId: string
+): Promise<any[] | null> {
+  const { data, error } = await supabase
+    .from("courses")
+    .select("raw_data")
+    .eq("id", courseId)
+    .single();
+
+  if (error || !data) {
+    console.error("Error fetching course data:", error);
+    return null;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (data.raw_data as any).assessments;
+}

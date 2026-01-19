@@ -1,6 +1,6 @@
 export type Assessment = {
   category: string;
-  assessment_task: string;
+  assesment_task: string;
   weight: number;
   due_date: string;
   flags: {

@@ -28,7 +28,7 @@ export interface FilterConfig {
 interface CourseSearchInputProps {
   onAddCourse: (code: string) => void; // Triggered on Enter to add to saved list
   existingCourses: string[]; // To check for duplicates
-  onSearchResults: (courses: string[]) => void; // To show live search results
+  onSearchResults?: (courses: string[]) => void; // To show live search results
   filters?: FilterConfig[];
   onFiltersChange?: (filters: Record<string, string>) => void;
 }
@@ -58,14 +58,14 @@ const CourseSearchInput = ({
   useEffect(() => {
     if (!inputValue.trim()) {
       // If empty, clear search results
-      onSearchResults([]);
+      onSearchResults?.([]);
       return;
     }
 
     const timer = setTimeout(() => {
       // Simulate search - in real app, this would call Supabase
       // For now, just pass the search term to parent
-      onSearchResults([inputValue.trim()]);
+      onSearchResults?.([inputValue.trim()]);
     }, 1000);
 
     return () => clearTimeout(timer);
@@ -95,7 +95,7 @@ const CourseSearchInput = ({
     if (existingCourses.includes(trimmedInput)) {
       setError("Course already added");
       setInputValue("");
-      onSearchResults([]); // Clear search results
+      onSearchResults?.([]); // Clear search results
       return;
     }
 
@@ -109,14 +109,14 @@ const CourseSearchInput = ({
       // RESET everything
       setInputValue("");
       setError("");
-      onSearchResults([]); // Clear search results to reset the course display
+      onSearchResults?.([]); // Clear search results to reset the course display
     } else if (isValid2) {
       setInputValue("");
-      onSearchResults([]); // Clear search results
+      onSearchResults?.([]); // Clear search results
     } else {
       setError("Invalid course code");
       setInputValue("");
-      onSearchResults([]); // Clear search results
+      onSearchResults?.([]); // Clear search results
     }
   };
 
