@@ -15,18 +15,42 @@ import "reactflow/dist/style.css";
 import { Box } from "@mui/material";
 import type { Course, Status } from "@/types/course";
 import CourseGraphPopup from "./CourseGraphPopup";
+import { removeTransitiveEdges } from "@/utils/graphUtils";
 
 // --- CONFIG ---
-const nodeWidth = 172;
+const nodeWidth = 122;
 const nodeHeight = 36;
 
 const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
   const dagreGraph = new dagre.graphlib.Graph();
   dagreGraph.setDefaultEdgeLabel(() => ({}));
 
-  dagreGraph.setGraph({ rankdir: "TB" });
+  dagreGraph.setGraph({
+    rankdir: "TB",
+    nodesep: 80, // Horizontal spacing between nodes in same rank
+    ranksep: 100, // Vertical spacing between ranks
+  });
+
+  // 1. Separate nodes into connected and isolated
+  const connectedNodeIds = new Set<string>();
+  edges.forEach((edge) => {
+    connectedNodeIds.add(edge.source);
+    connectedNodeIds.add(edge.target);
+  });
+
+  const connectedNodes: Node[] = [];
+  const isolatedNodes: Node[] = [];
 
   nodes.forEach((node) => {
+    if (connectedNodeIds.has(node.id)) {
+      connectedNodes.push(node);
+    } else {
+      isolatedNodes.push(node);
+    }
+  });
+
+  // 2. Layout connected nodes with Dagre
+  connectedNodes.forEach((node) => {
     dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
   });
 
@@ -36,7 +60,9 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
 
   dagre.layout(dagreGraph);
 
-  const layoutedNodes = nodes.map((node) => {
+  let maxX = 0;
+
+  const layoutedConnectedNodes = connectedNodes.map((node) => {
     const nodeWithPosition = dagreGraph.node(node.id);
     node.targetPosition = Position.Top;
     node.sourcePosition = Position.Bottom;
@@ -46,10 +72,39 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
       y: nodeWithPosition.y - nodeHeight / 2,
     };
 
+    if (node.position.x + nodeWidth > maxX) {
+      maxX = node.position.x + nodeWidth;
+    }
+
     return node;
   });
 
-  return { nodes: layoutedNodes, edges };
+  // 3. Layout isolated nodes in a grid to the right
+  const startX = maxX > 0 ? maxX + 100 : 0; // spacing from main graph
+  const startY = 0;
+  const cols = 4; // Number of columns for isolated nodes
+  const spacingX = 20;
+  const spacingY = 20;
+
+  const layoutedIsolatedNodes = isolatedNodes.map((node, index) => {
+    const col = index % cols;
+    const row = Math.floor(index / cols);
+
+    node.targetPosition = Position.Top;
+    node.sourcePosition = Position.Bottom;
+
+    node.position = {
+      x: startX + col * (nodeWidth + spacingX),
+      y: startY + row * (nodeHeight + spacingY),
+    };
+
+    return node;
+  });
+
+  return {
+    nodes: [...layoutedConnectedNodes, ...layoutedIsolatedNodes],
+    edges,
+  };
 };
 
 const getStatusColor = (status: Status | "Blocked") => {
@@ -107,26 +162,36 @@ export default function CourseGraph({
       };
     });
 
-    const flowEdges: Edge[] = [];
+    // Build prerequisite map
+    const prerequisiteMap: Record<string, string[]> = {};
     courses.forEach((course) => {
       if (
         course.raw_data.prerequisites_list &&
         course.raw_data.prerequisites_list.length > 0
       ) {
-        course.raw_data.prerequisites_list.forEach((prereqId) => {
-          flowEdges.push({
-            id: `e-${prereqId}-${course.id}`,
-            source: prereqId,
-            target: course.id,
-            type: ConnectionLineType.SmoothStep,
-            style: { stroke: "#1976d2" },
-            markerEnd: {
-              type: MarkerType.ArrowClosed,
-              color: "#1976d2",
-            },
-          });
-        });
+        prerequisiteMap[course.id] = course.raw_data.prerequisites_list;
       }
+    });
+
+    // Apply transitive reduction
+    const reducedPrerequisites = removeTransitiveEdges(prerequisiteMap);
+
+    // Create edges from reduced prerequisites
+    const flowEdges: Edge[] = [];
+    Object.entries(reducedPrerequisites).forEach(([courseId, prereqList]) => {
+      prereqList.forEach((prereqId) => {
+        flowEdges.push({
+          id: `e-${prereqId}-${courseId}`,
+          source: prereqId,
+          target: courseId,
+          type: ConnectionLineType.SmoothStep,
+          style: { stroke: "#1976d2" },
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+            color: "#1976d2",
+          },
+        });
+      });
     });
 
     const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
@@ -186,7 +251,7 @@ export default function CourseGraph({
     <Box
       sx={{
         width: "100%",
-        height: "500px",
+        height: "700px",
         border: "1px solid #ddd",
         borderRadius: 2,
       }}
@@ -195,7 +260,7 @@ export default function CourseGraph({
         nodes={nodes}
         edges={edges}
         onNodeClick={onNodeClick}
-        nodesDraggable={false}
+        nodesDraggable={true}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         fitView

@@ -1,5 +1,6 @@
 import { supabase } from "../supabaseClient";
 import type { Course, Status } from "../types/course";
+import { sortCourseIds } from "./graphUtils";
 
 /**
  * Hàm nhận vào danh sách ID môn học gốc.
@@ -55,8 +56,9 @@ export async function fetchFullCourseTree(
     }
   }
 
-  // Chuyển Map thành Array để trả về
-  return Array.from(allCoursesMap.values());
+  // Chuyển Map thành Array và sort theo course ID
+  const sortedIds = sortCourseIds(Array.from(allCoursesMap.keys()));
+  return sortedIds.map((id) => allCoursesMap.get(id)!);
 }
 
 /**
@@ -95,19 +97,37 @@ export function getEffectiveStatusMap(
       }
     }
 
-      // If blocked, force Blocked.
-      // Strict Logic: If a prerequisite is failed, you CANNOT take this course.
-      // This overrides "Not Started", "Passed", or "Failed" (assuming the plan tracks validity).
-      if (isBlocked) {
-        map[cId] = "Blocked";
-        return "Blocked";
-      }
+    // If blocked, force Blocked.
+    // Strict Logic: If a prerequisite is failed, you CANNOT take this course.
+    // This overrides "Not Started", "Passed", or "Failed" (assuming the plan tracks validity).
+    if (isBlocked) {
+      map[cId] = "Blocked";
+      return "Blocked";
+    }
 
-      map[cId] = userStatus;
-      return userStatus;
-    };
+    map[cId] = userStatus;
+    return userStatus;
+  };
 
   // Run for all courses
   courses.forEach((c) => getStatus(c.id));
   return map;
+}
+
+export async function fetchCourseAssessments(
+  courseId: string
+): Promise<any[] | null> {
+  const { data, error } = await supabase
+    .from("courses")
+    .select("raw_data")
+    .eq("id", courseId)
+    .single();
+
+  if (error || !data) {
+    console.error("Error fetching course data:", error);
+    return null;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (data.raw_data as any).assessments;
 }

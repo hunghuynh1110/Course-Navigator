@@ -326,7 +326,7 @@
       "SPCG1000"
     ],
     "total_units": 64,
-    "department": "med"
+    "department": "eait"
   },
   "Human Movement and Nutrition Sciences / Science": {
     "courses": [
@@ -1450,7 +1450,7 @@
       "MKTG1501"
     ],
     "total_units": 64,
-    "department": "bel"
+    "department": "eait"
   },
   "Business Management / Education (Secondary)": {
     "courses": [
@@ -1505,7 +1505,7 @@
       "MKTG1501"
     ],
     "total_units": 64,
-    "department": "bel"
+    "department": "eait"
   },
   "Business Management / Journalism": {
     "courses": [
@@ -1648,7 +1648,7 @@
       "MGTS1301"
     ],
     "total_units": 64,
-    "department": "bel"
+    "department": "eait"
   },
   "Commerce / Science": {
     "courses": [
@@ -1692,7 +1692,7 @@
       "STAT1301"
     ],
     "total_units": 64,
-    "department": "bel"
+    "department": "eait"
   },
   "Computer Science / Economics": {
     "courses": [
@@ -1719,7 +1719,7 @@
       "STAT1301"
     ],
     "total_units": 64,
-    "department": "bel"
+    "department": "eait"
   },
   "Computer Science / Business Management": {
     "courses": [
@@ -1747,7 +1747,7 @@
       "STAT1301"
     ],
     "total_units": 64,
-    "department": "bel"
+    "department": "eait"
   },
   "Economics / Arts": {
     "courses": [
@@ -2116,7 +2116,7 @@
       "STAT1301"
     ],
     "total_units": 80,
-    "department": "bel"
+    "department": "eait"
   },
   "Economics / Laws (Honours)": {
     "courses": [
@@ -2178,7 +2178,7 @@
       "MKTG1501"
     ],
     "total_units": 88,
-    "department": "bel"
+    "department": "eait"
   },
   "Engineering (Honours) / Commerce": {
     "courses": [
@@ -2207,7 +2207,7 @@
       "MGTS1301"
     ],
     "total_units": 88,
-    "department": "bel"
+    "department": "eait"
   },
   "Engineering (Honours) / Economics": {
     "courses": [
@@ -2235,7 +2235,7 @@
       "METR6203"
     ],
     "total_units": 88,
-    "department": "bel"
+    "department": "eait"
   },
   "Business": {
     "courses": [
@@ -2656,7 +2656,7 @@
       "STAT1301"
     ],
     "total_units": 64,
-    "department": "sci"
+    "department": "eait"
   },
   "Mathematics / Arts": {
     "courses": [
@@ -2695,7 +2695,7 @@
       "STAT3007"
     ],
     "total_units": 64,
-    "department": "sci"
+    "department": "eait"
   },
   "Mathematics / Computer Science": {
     "courses": [
@@ -2721,7 +2721,7 @@
       "STAT1301"
     ],
     "total_units": 64,
-    "department": "sci"
+    "department": "eait"
   },
   "Mathematics / Education (Secondary)": {
     "courses": [
@@ -2995,7 +2995,7 @@
       "MATH1072"
     ],
     "total_units": 80,
-    "department": "sci"
+    "department": "eait"
   },
   "Engineering (Honours) / Mathematics": {
     "courses": [
@@ -3020,7 +3020,7 @@
       "METR6203"
     ],
     "total_units": 80,
-    "department": "sci"
+    "department": "eait"
   },
   "Engineering (Honours) / Science": {
     "courses": [
@@ -3042,7 +3042,7 @@
       "METR6203"
     ],
     "total_units": 80,
-    "department": "sci"
+    "department": "eait"
   },
   "Bioinformatics": {
     "courses": [
@@ -3464,7 +3464,7 @@
       "STAT1301"
     ],
     "total_units": 64,
-    "department": "hss"
+    "department": "eait"
   },
   "Criminology and Criminal Justice/Arts": {
     "courses": [
@@ -3503,7 +3503,7 @@
       "MATH1081"
     ],
     "total_units": 64,
-    "department": "hss"
+    "department": "eait"
   },
   "Journalism / Arts": {
     "courses": [
@@ -3663,7 +3663,7 @@
       "METR6203"
     ],
     "total_units": 80,
-    "department": "hss"
+    "department": "eait"
   },
   "Engineering (Honours) / Arts": {
     "courses": [
@@ -3685,7 +3685,7 @@
       "METR6203"
     ],
     "total_units": 88,
-    "department": "hss"
+    "department": "eait"
   },
   "Applied Linguistics": {
     "courses": [
@@ -3878,5 +3878,580 @@
     ],
     "total_units": 24,
     "department": "hss"
+  },
+  "Design": {
+    "courses": [
+      "ADPS1000",
+      "ADPS1001",
+      "ADPS3000",
+      "ADPS3001",
+      "DSGN1002",
+      "DSGN1400",
+      "DSGN1500",
+      "DSGN2001",
+      "DSGN2002",
+      "DSGN2003",
+      "DSGN2100",
+      "DSGN3002",
+      "DSGN3200"
+    ],
+    "total_units": 48,
+    "department": "eait"
+  },
+  "Information Technology": {
+    "courses": [
+      "COMP7110",
+      "CSSE7023",
+      "CSSE7030",
+      "DECO7140",
+      "DECO7180",
+      "DECO7250",
+      "INFS7900",
+      "INFS7903",
+      "MATH7861",
+      "REIT6811"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Computer Science / Master of Cyber Security": {
+    "courses": [
+      "COMP1100",
+      "COMP2200",
+      "COMP3506",
+      "CRIM7080",
+      "CSSE1001",
+      "CSSE2002",
+      "CSSE2010",
+      "CSSE2310",
+      "CYBR7001",
+      "CYBR7002",
+      "CYBR7003",
+      "CYBR7901",
+      "CYBR7902",
+      "DECO2500",
+      "DECO3801",
+      "INFS1200",
+      "MATH1061",
+      "MATH1081",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 64,
+    "department": "eait"
+  },
+  "Computer Science": {
+    "courses": [
+      "COMP1100",
+      "COMP2200",
+      "COMP3506",
+      "CSSE1001",
+      "CSSE2002",
+      "CSSE2010",
+      "CSSE2310",
+      "DECO2500",
+      "DECO3801",
+      "INFS1200",
+      "MATH1061",
+      "MATH1081",
+      "STAT1201",
+      "STAT1301"
+    ],
+    "total_units": 48,
+    "department": "eait"
+  },
+  "Urban Planning": {
+    "courses": [
+      "ENVM7003",
+      "ENVM7100",
+      "ENVM7123",
+      "ENVM7124",
+      "ENVM7205",
+      "ENVM7206",
+      "GEOS7001",
+      "PLAN7116",
+      "PLAN7120",
+      "PLAN7121",
+      "PLAN7122",
+      "PLAN7126",
+      "PLAN7612"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Architectural Design": {
+    "courses": [
+      "ADPS1000",
+      "ADPS3000",
+      "ADPS3001",
+      "ARCH1000",
+      "ARCH1001",
+      "ARCH1002",
+      "ARCH1003",
+      "ARCH1010",
+      "ARCH1020",
+      "ARCH1111",
+      "ARCH2001",
+      "ARCH2111",
+      "ARCH2112",
+      "ARCH3000"
+    ],
+    "total_units": 48,
+    "department": "eait"
+  },
+  "Computer Science / Master of Data Science": {
+    "courses": [
+      "COMP1100",
+      "COMP2200",
+      "COMP3506",
+      "CSSE1001",
+      "CSSE2002",
+      "CSSE2010",
+      "CSSE2310",
+      "DATA7001",
+      "DECO2500",
+      "DECO3801",
+      "INFS1200",
+      "INFS2200",
+      "INFS3200",
+      "MATH1051",
+      "MATH1052",
+      "MATH1061",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MATH7502",
+      "STAT1201",
+      "STAT1301",
+      "STAT2003"
+    ],
+    "total_units": 64,
+    "department": "eait"
+  },
+  "Information Technology / Design": {
+    "courses": [
+      "ADPS1000",
+      "ADPS1001",
+      "ADPS3001",
+      "COMP2140",
+      "COMP2200",
+      "CSSE1001",
+      "DECO1400",
+      "DECO1800",
+      "DECO2500",
+      "DECO2840",
+      "DECO2850",
+      "DECO3800",
+      "DECO3801",
+      "DSGN1002",
+      "DSGN1400",
+      "DSGN1500",
+      "DSGN2001",
+      "DSGN2002",
+      "DSGN2003",
+      "DSGN2100",
+      "DSGN3002",
+      "DSGN3200",
+      "INFS1200",
+      "MATH1061",
+      "MATH1081"
+    ],
+    "total_units": 64,
+    "department": "eait"
+  },
+  "Computer Science (Honours)": {
+    "courses": [
+      "COMP4500",
+      "REIT4881",
+      "REIT4882",
+      "REIT6811"
+    ],
+    "total_units": 16,
+    "department": "eait"
+  },
+  "Engineering (Honours) and Master of Engineering": {
+    "courses": [
+      "CSSE1001",
+      "ENGG1001",
+      "ENGG1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072"
+    ],
+    "total_units": 80,
+    "department": "eait"
+  },
+  "Information Technology (Honours)": {
+    "courses": [
+      "REIT4881",
+      "REIT4882",
+      "REIT6811"
+    ],
+    "total_units": 16,
+    "department": "eait"
+  },
+  "Engineering (Honours)": {
+    "courses": [
+      "CSSE1001",
+      "DECO3800",
+      "ELEC2400",
+      "ELEC3004",
+      "ELEC3310",
+      "ENGG1001",
+      "ENGG1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MECH2700",
+      "MECH3200",
+      "MECH3410",
+      "MECH3780",
+      "METR6203"
+    ],
+    "total_units": 64,
+    "department": "eait"
+  },
+  "Urban Planning (Honours)": {
+    "courses": [
+      "ADPS1000",
+      "ENVM2008",
+      "ENVM3103",
+      "ENVM3115",
+      "GEOG1000",
+      "GEOG2001",
+      "GEOG2104",
+      "GEOG3000",
+      "GEOG3003",
+      "GEOG3205",
+      "GEOM1000",
+      "GEOM2001",
+      "GEOS1100",
+      "GEOS6001",
+      "PLAN1000",
+      "PLAN1001",
+      "PLAN1100",
+      "PLAN1101",
+      "PLAN2003",
+      "PLAN2005",
+      "PLAN2100",
+      "PLAN3000",
+      "PLAN3001",
+      "PLAN3005",
+      "PLAN4001",
+      "PLAN4009",
+      "PLAN4100"
+    ],
+    "total_units": 64,
+    "department": "eait"
+  },
+  "Engineering (Honours) / Computer Science": {
+    "courses": [
+      "COMP1100",
+      "COMP2200",
+      "COMP3506",
+      "CSSE1001",
+      "CSSE2002",
+      "CSSE2010",
+      "CSSE2310",
+      "DECO2500",
+      "DECO3801",
+      "ELEC2400",
+      "ELEC3004",
+      "ELEC3310",
+      "ENGG1001",
+      "ENGG1100",
+      "INFS1200",
+      "MATH1051",
+      "MATH1052",
+      "MATH1061",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MECH2700",
+      "MECH3200",
+      "MECH3410",
+      "MECH3780",
+      "METR6203"
+    ],
+    "total_units": 88,
+    "department": "eait"
+  },
+  "Engineering (Honours) / Design": {
+    "courses": [
+      "ADPS1000",
+      "ADPS1001",
+      "ADPS3001",
+      "CSSE1001",
+      "DECO3800",
+      "DSGN1002",
+      "DSGN1400",
+      "DSGN1500",
+      "DSGN2001",
+      "DSGN2002",
+      "DSGN2003",
+      "DSGN2100",
+      "DSGN3002",
+      "DSGN3200",
+      "ELEC2400",
+      "ELEC3004",
+      "ELEC3310",
+      "ENGG1001",
+      "ENGG1100",
+      "MATH1051",
+      "MATH1052",
+      "MATH1071",
+      "MATH1072",
+      "MECH2700",
+      "MECH3200",
+      "MECH3410",
+      "MECH3780",
+      "METR6203"
+    ],
+    "total_units": 88,
+    "department": "eait"
+  },
+  "Engineering (Honours) / Information Technology": {
+    "courses": [
+      "COMP2140",
+      "COMP2200",
+      "CSSE1001",
+      "DECO1400",
+      "DECO1800",
+      "DECO2500",
+      "DECO2840",
+      "DECO2850",
+      "DECO3800",
+      "DECO3801",
+      "ELEC2400",
+      "ELEC3004",
+      "ELEC3310",
+      "ENGG1001",
+      "ENGG1100",
+      "INFS1200",
+      "MATH1051",
+      "MATH1052",
+      "MATH1061",
+      "MATH1071",
+      "MATH1072",
+      "MATH1081",
+      "MECH2700",
+      "MECH3200",
+      "MECH3410",
+      "MECH3780",
+      "METR6203"
+    ],
+    "total_units": 88,
+    "department": "eait"
+  },
+  "Cyber Security": {
+    "courses": [
+      "CRIM7080",
+      "CSSE7030",
+      "CSSE7231",
+      "CYBR7001",
+      "CYBR7002",
+      "CYBR7003",
+      "CYBR7901",
+      "CYBR7902",
+      "INFS7901",
+      "LAWS7023",
+      "MATH7051",
+      "MATH7307",
+      "MATH7308",
+      "MATH7861",
+      "MGTS7303",
+      "MGTS7601",
+      "MGTS7619",
+      "STAT7203"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Urban Development and Design": {
+    "courses": [
+      "ARCH3130",
+      "ARCH7005",
+      "UDAD7004",
+      "UDAD7006",
+      "UDAD7014",
+      "UDAD7016"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Sustainable Energy": {
+    "courses": [
+      "ENGY7000",
+      "ENGY7001",
+      "ENGY7002",
+      "ENGY7003",
+      "ENGY7004",
+      "ENGY7117",
+      "ENGY7200",
+      "ENGY7301"
+    ],
+    "total_units": 24,
+    "department": "eait"
+  },
+  "Architecture": {
+    "courses": [
+      "ARCH7014",
+      "ARCH7033",
+      "ARCH7034",
+      "ARCH7043",
+      "ARCH7044",
+      "BLDG7021",
+      "UDAD7014"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Bioengineering (Professional)": {
+    "courses": [
+      "BIOE4020",
+      "BIOE4305",
+      "BIOE6028",
+      "BIOE6034",
+      "ENGG7518",
+      "ENGG7901",
+      "ENGG7902"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Chemical Engineering (Professional)": {
+    "courses": [
+      "CHEE4001",
+      "CHEE4002",
+      "ENGG7518",
+      "ENGG7901",
+      "ENGG7902"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Civil Engineering (Professional)": {
+    "courses": [
+      "ENGG7518",
+      "ENGG7901",
+      "ENGG7902"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Data Science": {
+    "courses": [
+      "COMP7703",
+      "CSSE7030",
+      "DATA7001",
+      "DATA7002",
+      "DATA7201",
+      "DATA7202",
+      "DATA7703",
+      "INFS7901",
+      "MATH7502",
+      "STAT7203"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Electrical Engineering (Professional)": {
+    "courses": [
+      "ENGG7302",
+      "ENGG7901",
+      "ENGG7902",
+      "REIT6811"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Interaction Design": {
+    "courses": [
+      "COMP7110",
+      "CSSE7030",
+      "DECO3500",
+      "DECO7140",
+      "DECO7180",
+      "DECO7230",
+      "DECO7250",
+      "DECO7385",
+      "REIT6811"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Materials and Manufacturing Engineering (Professional)": {
+    "courses": [
+      "AERO4300",
+      "ENGG7341",
+      "ENGG7342",
+      "ENGG7901",
+      "ENGG7902",
+      "MATE6301",
+      "MATE7001",
+      "MATE7013",
+      "MATE7014",
+      "MATE7015",
+      "MECH3301",
+      "MECH4304",
+      "REIT6811"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Mechanical Engineering (Professional)": {
+    "courses": [
+      "AERO4300",
+      "ENGG7901",
+      "ENGG7902",
+      "MECH3100",
+      "MECH3780",
+      "METR4201",
+      "REIT6811"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Software Engineering (Professional)": {
+    "courses": [
+      "ENGG7901",
+      "ENGG7902",
+      "REIT6811"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Sustainable Energy (Management)": {
+    "courses": [
+      "ENGY7000",
+      "ENGY7001",
+      "ENGY7002",
+      "ENGY7003",
+      "ENGY7004",
+      "ENGY7117",
+      "ENGY7200",
+      "ENGY7301"
+    ],
+    "total_units": 32,
+    "department": "eait"
+  },
+  "Urban Water Engineering (Professional)": {
+    "courses": [
+      "CHEE4002",
+      "CIVL7131",
+      "ENGG7518",
+      "ENGG7901",
+      "ENGG7902",
+      "WATR6103",
+      "WATR6105",
+      "WATR6106",
+      "WATR6108",
+      "WATR6109",
+      "WATR7107"
+    ],
+    "total_units": 32,
+    "department": "eait"
   }
 }
