@@ -51,7 +51,8 @@ const AssessmentTable = ({
       dataIndex: "yourScore",
       key: "yourScore",
       render: (_value, record) =>
-        assessments?.find((a) => a.category === record.task)?.weight === 0 ? (
+        assessments?.find((a) => a.assesment_task === record.task)?.weight ===
+        0 ? (
           <Chip label="Pass/Fail" />
         ) : (
           <TextField
@@ -67,9 +68,9 @@ const AssessmentTable = ({
   ];
 
   const data = assessments?.map((assessment) => ({
-    task: assessment.category,
+    task: assessment.assesment_task,
     weight: assessment.weight,
-    yourScore: scores[assessment.category]?.score,
+    yourScore: scores[assessment.assesment_task]?.score,
     flags: assessment.flags,
   }));
 

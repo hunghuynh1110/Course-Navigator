@@ -6,10 +6,16 @@ from tqdm import tqdm
 # ======================================================
 # 1. CẤU HÌNH KẾT NỐI
 # ======================================================
-try:
-    from URL_KEYS import SUPABASE_URL, SUPABASE_KEY
-except ImportError:
-    print("❌ Lỗi: Không tìm thấy file URL_KEYS.py hoặc thiếu biến environment.")
+from dotenv import load_dotenv
+
+# Load .env from root directory (parent of database folder)
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env'))
+
+SUPABASE_URL = os.getenv("SUPABASE_URL") or os.getenv("VITE_SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY")
+
+if not SUPABASE_URL or not SUPABASE_KEY:
+    print("❌ Lỗi: Không tìm thấy biến môi trường SUPABASE_URL hoặc SUPABASE_KEY trong file .env")
     exit(1)
 
 try:

@@ -5,8 +5,18 @@ import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 
 # Supabase Credentials
-SUPABASE_URL = "https://smwypwqkbcncgepvrbey.supabase.co"
-SUPABASE_KEY = "sb_publishable_dmDsfGjs4tsmq1safpNaKw_UMRGUbLB"
+from dotenv import load_dotenv
+
+# Load .env from root directory (parent of scraper folder)
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env'))
+
+# Supabase Credentials
+SUPABASE_URL = os.getenv("SUPABASE_URL") or os.getenv("VITE_SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY") or os.getenv("SUPABASE_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY")
+
+if not SUPABASE_URL or not SUPABASE_KEY:
+    print("❌ Error: Missing SUPABASE_URL or SUPABASE_KEY/SUPABASE_SERVICE_ROLE_KEY in .env file")
+    exit(1)
 
 headers = {
     "apikey": SUPABASE_KEY,
