@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { SnackbarProvider } from "notistack";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { Analytics } from "@vercel/analytics/react";
 
 // Import Theme
 import { theme } from "./theme";
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <CssBaseline />
       <SnackbarProvider>
         <RouterProvider router={router} />
+        <Analytics />
       </SnackbarProvider>
     </ThemeProvider>
   </React.StrictMode>

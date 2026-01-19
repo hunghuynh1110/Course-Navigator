@@ -1,0 +1,45 @@
+Implemented Vercel Web Analytics integration as requested.
+
+## Summary
+Added Vercel Web Analytics to the Course Navigator React/Vite project to enable tracking of visitor interactions and page views on the Vercel platform.
+
+## Changes Made
+
+### Modified Files:
+1. **client/package.json**
+   - Added `@vercel/analytics` (v1.6.1) as a new dependency
+
+2. **client/src/main.tsx**
+   - Imported `Analytics` component from `@vercel/analytics/react`
+   - Added `<Analytics />` component within the React render tree (inside SnackbarProvider, after RouterProvider)
+
+## Implementation Details
+
+### Framework: Vite + React
+- Used the React-specific version of Vercel Analytics (`@vercel/analytics/react`)
+- This provides seamless integration with React and automatic route tracking support
+
+### Integration Approach
+- Added the Analytics component as a child of the SnackbarProvider in the main.tsx entry point
+- This ensures the analytics tracking script is loaded and initialized on every page render
+- The placement inside the provider hierarchy ensures proper initialization context
+
+## Deployment & Activation Steps (Next Steps for User)
+
+To fully activate Web Analytics, the user should:
+1. Enable Web Analytics in their Vercel dashboard (Project > Analytics > Enable)
+2. Deploy the application to Vercel using: `vercel deploy` or by connecting their Git repository
+3. After deployment, the analytics script will be active at `/_vercel/insights/script.js`
+4. Visit the Analytics tab in the dashboard to view visitor data
+
+## Verification
+- ✓ Build successful (no errors, runs with `pnpm run build`)
+- ✓ No linting errors in modified file (src/main.tsx)
+- ✓ Dependencies correctly added to package.json
+- ✓ pnpm-lock.yaml updated with new dependencies
+
+## Notes
+- Pre-existing linting errors in the codebase are unrelated to these changes
+- When deployed to Vercel, the app will automatically track page views and custom events
+- No route support limitations for this React implementation when using TanStack Router
+- The Analytics component renders as a no-op in development mode and only activates when deployed to Vercel
