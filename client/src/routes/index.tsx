@@ -63,21 +63,6 @@ function Dashboard() {
     setLiveSearchQuery(query);
   }, []);
 
-  // This is called on Enter key press (updates URL)
-  const handleSearchSubmit = useCallback(
-    (query: string) => {
-      navigate({
-        to: "/",
-        search: (prev) => ({
-          ...prev,
-          q: query || undefined,
-          page: 1, // Reset to page 1 when searching
-        }),
-      });
-    },
-    [navigate]
-  );
-
   const handleAddCourse = useCallback(
     (code: string) => {
       navigate({

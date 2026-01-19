@@ -67,7 +67,6 @@ export const DataTableInner = () => {
     setConfirmPopup,
     columnFilter,
     lag,
-    cellActions,
   } = useDataTableCxt();
 
   const preScrollTop = useRef(0);
