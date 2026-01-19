@@ -70,7 +70,7 @@ function CourseDetail() {
   const { raw_data } = targetCourse;
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
       {/* HERO SECTION */}
       <Box mb={4}>
         <Typography variant="h3" color="primary" fontWeight="bold">
@@ -93,151 +93,145 @@ function CourseDetail() {
         </Box>
       </Box>
 
-      <Grid container spacing={4}>
-        {/* LEFT: GRAPH (PATHWAY) */}
-        <Grid sx={{ xs: 12, lg: 8 }}>
-          <Paper sx={{ p: 3, height: "100%" }}>
-            <Typography variant="h6" gutterBottom fontWeight="bold">
-              🗺️ Course Pathway
-            </Typography>
-            <Divider sx={{ mb: 2 }} />
-            <CourseGraph
-              courses={courses}
-              nodesStatus={effectiveStatusMap}
-              onStatusChange={(updates) => {
-                setNodesStatus((prev) => ({ ...prev, ...updates }));
+      {/* LEFT: GRAPH (PATHWAY) */}
+      <Paper sx={{ p: 3, m: 3, width: "60%" }}>
+        <Typography variant="h6" gutterBottom fontWeight="bold">
+          🗺️ Course Pathway
+        </Typography>
+        <Divider sx={{ mb: 2 }} />
+        <CourseGraph
+          courses={courses}
+          nodesStatus={effectiveStatusMap}
+          onStatusChange={(updates) => {
+            setNodesStatus((prev) => ({ ...prev, ...updates }));
+          }}
+        />
+        <Box mt={2} display="flex" gap={2} alignItems="center">
+          <Typography variant="caption" color="text.secondary">
+            Legend:
+          </Typography>
+          <Box display="flex" alignItems="center" gap={0.5}>
+            <Box
+              sx={{
+                w: 12,
+                h: 12,
+                bgcolor: "#e0e0e0",
+                borderRadius: "50%",
+                width: 12,
+                height: 12,
               }}
             />
-            <Box mt={2} display="flex" gap={2} alignItems="center">
-              <Typography variant="caption" color="text.secondary">
-                Legend:
-              </Typography>
-              <Box display="flex" alignItems="center" gap={0.5}>
-                <Box
-                  sx={{
-                    w: 12,
-                    h: 12,
-                    bgcolor: "#e0e0e0",
-                    borderRadius: "50%",
-                    width: 12,
-                    height: 12,
-                  }}
-                />
-                <Typography variant="caption">Not Started</Typography>
-              </Box>
-              <Box display="flex" alignItems="center" gap={0.5}>
-                <Box
-                  sx={{
-                    w: 12,
-                    h: 12,
-                    bgcolor: "#a5d6a7",
-                    borderRadius: "50%",
-                    width: 12,
-                    height: 12,
-                  }}
-                />
-                <Typography variant="caption">Passed</Typography>
-              </Box>
-              <Box display="flex" alignItems="center" gap={0.5}>
-                <Box
-                  sx={{
-                    w: 12,
-                    h: 12,
-                    bgcolor: "#ef9a9a",
-                    borderRadius: "50%",
-                    width: 12,
-                    height: 12,
-                  }}
-                />
-                <Typography variant="caption">Failed</Typography>
-              </Box>
-              <Box display="flex" alignItems="center" gap={0.5}>
-                <Box
-                  sx={{
-                    w: 12,
-                    h: 12,
-                    bgcolor: "#757575",
-                    borderRadius: "50%",
-                    width: 12,
-                    height: 12,
-                  }}
-                />
-                <Typography variant="caption">Blocked</Typography>
-              </Box>
-            </Box>
-          </Paper>
-        </Grid>
-
-        {/* RIGHT: INFO */}
-        <Grid sx={{ xs: 12, lg: 4 }}>
-          <Box display="flex" flexDirection="column" gap={3}>
-            {/* DESCRIPTION */}
-            <Paper sx={{ p: 3 }}>
-              <Typography variant="h6" gutterBottom fontWeight="bold">
-                📖 Description
-              </Typography>
-              <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-                {raw_data.description || "No description available."}
-              </Typography>
-            </Paper>
-
-            {/* PREREQUISITES LIST (TEXT) */}
-            <Paper sx={{ p: 3 }}>
-              <Typography variant="h6" gutterBottom fontWeight="bold">
-                🔗 Prerequisites
-              </Typography>
-              <Box display="flex" flexWrap="wrap" gap={1}>
-                {raw_data.prerequisites_list?.length ? (
-                  raw_data.prerequisites_list.map((p) => (
-                    <Chip key={p} label={p} size="small" />
-                  ))
-                ) : (
-                  <Typography color="text.secondary">None</Typography>
-                )}
-              </Box>
-            </Paper>
-
-            {/* ASSESSMENTS */}
-            <Paper sx={{ p: 0, overflow: "hidden" }}>
-              <Box p={2} bgcolor="#f5f5f5">
-                <Typography variant="h6" fontWeight="bold">
-                  📊 Assessments
-                </Typography>
-              </Box>
-              <TableContainer>
-                <Table size="small">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Task</TableCell>
-                      <TableCell align="right">Weight</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {raw_data.assessments?.map((a, i) => (
-                      <TableRow key={i}>
-                        <TableCell>
-                          {a.category}
-                          {a.flags?.is_hurdle && (
-                            <Chip
-                              label="Hurdle"
-                              color="error"
-                              size="small"
-                              sx={{ ml: 1, zoom: 0.7 }}
-                            />
-                          )}
-                        </TableCell>
-                        <TableCell align="right">
-                          {(a.weight * 100).toFixed(0)}%
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Paper>
+            <Typography variant="caption">Not Started</Typography>
           </Box>
-        </Grid>
-      </Grid>
+          <Box display="flex" alignItems="center" gap={0.5}>
+            <Box
+              sx={{
+                w: 12,
+                h: 12,
+                bgcolor: "#a5d6a7",
+                borderRadius: "50%",
+                width: 12,
+                height: 12,
+              }}
+            />
+            <Typography variant="caption">Passed</Typography>
+          </Box>
+          <Box display="flex" alignItems="center" gap={0.5}>
+            <Box
+              sx={{
+                w: 12,
+                h: 12,
+                bgcolor: "#ef9a9a",
+                borderRadius: "50%",
+                width: 12,
+                height: 12,
+              }}
+            />
+            <Typography variant="caption">Failed</Typography>
+          </Box>
+          <Box display="flex" alignItems="center" gap={0.5}>
+            <Box
+              sx={{
+                w: 12,
+                h: 12,
+                bgcolor: "#757575",
+                borderRadius: "50%",
+                width: 12,
+                height: 12,
+              }}
+            />
+            <Typography variant="caption">Blocked</Typography>
+          </Box>
+        </Box>
+      </Paper>
+
+      {/* RIGHT: INFO */}
+      <Box display="flex" flexDirection="column" gap={3}>
+        {/* DESCRIPTION */}
+        <Paper sx={{ p: 3 }}>
+          <Typography variant="h6" gutterBottom fontWeight="bold">
+            📖 Description
+          </Typography>
+          <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
+            {raw_data.description || "No description available."}
+          </Typography>
+        </Paper>
+
+        {/* PREREQUISITES LIST (TEXT) */}
+        <Paper sx={{ p: 3 }}>
+          <Typography variant="h6" gutterBottom fontWeight="bold">
+            🔗 Prerequisites
+          </Typography>
+          <Box display="flex" flexWrap="wrap" gap={1}>
+            {raw_data.prerequisites_list?.length ? (
+              raw_data.prerequisites_list.map((p) => (
+                <Chip key={p} label={p} size="small" />
+              ))
+            ) : (
+              <Typography color="text.secondary">None</Typography>
+            )}
+          </Box>
+        </Paper>
+
+        {/* ASSESSMENTS */}
+        <Paper sx={{ p: 0, overflow: "hidden" }}>
+          <Box p={2} bgcolor="#f5f5f5">
+            <Typography variant="h6" fontWeight="bold">
+              📊 Assessments
+            </Typography>
+          </Box>
+          <TableContainer>
+            <Table size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Task</TableCell>
+                  <TableCell align="right">Weight</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {raw_data.assessments?.map((a, i) => (
+                  <TableRow key={i}>
+                    <TableCell>
+                      {a.category}
+                      {a.flags?.is_hurdle && (
+                        <Chip
+                          label="Hurdle"
+                          color="error"
+                          size="small"
+                          sx={{ ml: 1, zoom: 0.7 }}
+                        />
+                      )}
+                    </TableCell>
+                    <TableCell align="right">
+                      {(a.weight * 100).toFixed(0)}%
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      </Box>
     </Container>
   );
 }

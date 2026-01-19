@@ -232,7 +232,7 @@ def main():
                 failed_programs.append(program['name'])
     
     # Save results to JSON
-    output_path = os.path.join('..', 'data', 'programs.json')
+    output_path = os.path.join('..', 'data', 'programs_eait.json')
     
     try:
         with open(output_path, 'w', encoding='utf-8') as f:

@@ -15,15 +15,31 @@ import { useNavigate } from "@tanstack/react-router";
 import CourseCard from "../components/CourseCard";
 import CourseSearchInput from "../components/search-box/CourseSearchInput";
 import CourseTagList from "../components/search-box/CourseTagList";
+import { useScreenSize } from "@/hooks/useScreenSize";
 
+interface DashboardSearch {
+  courses?: string[];
+  department?: string;
+  school?: string;
+}
 export const Route = createFileRoute("/")({
   component: Dashboard,
+  validateSearch: (search: Record<string, unknown>): DashboardSearch => {
+    return {
+      courses: Array.isArray(search.courses)
+        ? (search.courses as string[])
+        : undefined,
+      department: search.department as string,
+      school: search.school as string,
+    };
+  },
 });
 
 const PAGE_SIZE = 12;
 
 function Dashboard() {
   const navigate = useNavigate();
+  const screenSize = useScreenSize();
 
   // --- STATE ---
   const [courses, setCourses] = useState<Course[]>([]);
@@ -88,11 +104,18 @@ function Dashboard() {
       console.error(error);
       setCourses([]);
     } else if (data) {
-      setCourses(data as unknown as Course[]);
+      if (selectedCourses.length > 0) {
+        const filteredData = data.filter(
+          (course) => !selectedCourses.includes(course.id)
+        );
+        setCourses(filteredData as unknown as Course[]);
+      } else {
+        setCourses(data as unknown as Course[]);
+      }
       if (count !== null) setTotalPages(Math.ceil(count / PAGE_SIZE));
     }
     setLoading(false);
-  }, [page, searchResults]);
+  }, [page, searchResults, selectedCourses]);
 
   useEffect(() => {
     fetchCourses();
@@ -107,11 +130,11 @@ function Dashboard() {
   };
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
+    <Container maxWidth={false} sx={{ py: 4 }}>
       {/* SEARCH AREA */}
       <Box mb={2}>
         <Box display="flex" justifyContent="center">
-          <Box width={{ xs: "100%", md: "60%" }}>
+          <Box width={{ xs: "100%", md: "90%" }}>
             <Box display="flex" justifyContent="center" gap={3}>
               <CourseSearchInput
                 onAddCourse={handleAddCourse}
@@ -128,15 +151,14 @@ function Dashboard() {
                   })
                 }
               >
-                {" "}
-                Create Graph{" "}
+                Create Graph
               </Button>
             </Box>
           </Box>
         </Box>
 
         <Box display="flex" justifyContent="center">
-          <Box width={{ xs: "100%", md: "60%" }}>
+          <Box width={{ xs: "100%", md: "90%" }}>
             <CourseTagList
               courses={selectedCourses}
               onRemove={handleRemoveCourse}
@@ -159,9 +181,13 @@ function Dashboard() {
               </Typography>
             </Box>
           ) : (
-            <Grid container spacing={3}>
+            <Grid container spacing={3} alignItems="stretch">
               {courses.map((course) => (
-                <Grid sx={{ xs: 12, md: 6, lg: 4 }} key={course.id}>
+                <Grid
+                  size={{ xs: 12, md: 6, lg: 6, xl: 4 }}
+                  key={course.id}
+                  display="flex"
+                >
                   <CourseCard
                     course={course}
                     onClick={() => {
@@ -174,14 +200,16 @@ function Dashboard() {
           )}
 
           {/* Pagination only when showing all courses (no search) */}
+
           {courses.length > 0 && searchResults.length === 0 && (
             <Box display="flex" justifyContent="center" mt={4}>
               <Pagination
                 count={totalPages}
+                siblingCount={2}
                 page={page}
                 onChange={handlePageChange}
                 color="primary"
-                size="large"
+                size={screenSize <= 2 ? "medium" : "large"}
               />
             </Box>
           )}
