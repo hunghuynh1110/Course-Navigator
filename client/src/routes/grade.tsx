@@ -1,7 +1,13 @@
 import AssessmentTable from "@/components/grade-calc/AssessmentTable";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { TextField, Box, Typography, InputAdornment } from "@mui/material";
+import {
+  TextField,
+  Box,
+  Typography,
+  InputAdornment,
+  Button,
+} from "@mui/material";
 import { fetchCourseAssessments } from "@/utils/courseUtils";
 import { calculateStats, convertScore } from "@/utils/gradeUtils";
 import GradeTable from "@/components/grade-calc/GradeTable";
@@ -44,7 +50,7 @@ function RouteComponent() {
           const initialScores = assessments.reduce(
             (acc, curr) => ({
               ...acc,
-              [curr.category]: { score: null, weight: curr.weight },
+              [curr.assesment_task]: { score: null, weight: curr.weight },
             }),
             {}
           );
@@ -76,31 +82,62 @@ function RouteComponent() {
 
   const { totalScore, completedWeight } = calculateStats(scores);
 
+  console.log(scores);
   return (
-    <>
-      <TextField
-        label="Course ID"
-        value={inputValue.toUpperCase()}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            setCourseId(inputValue);
+    <Box sx={{ px: { xs: 0, md: "10%", lg: "15%" }, mx: "auto" }}>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 2,
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
+        <TextField
+          fullWidth
+          label="Course ID"
+          value={inputValue.toUpperCase()}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setCourseId(inputValue);
+              navigate({
+                to: "/grade",
+                search: {
+                  course: inputValue,
+                },
+              });
+            }
+          }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <Button
+          variant="contained"
+          sx={{
+            height: "56px",
+            width: { xs: "100%", md: "15%" },
+            fontWeight: "",
+            fontSize: "1.2rem",
+          }}
+          onClick={() => {
+            setCourseId(null);
             navigate({
               to: "/grade",
               search: {
                 course: inputValue,
               },
             });
-          }
-        }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <SearchIcon />
-            </InputAdornment>
-          ),
-        }}
-      />
+          }}
+        >
+          GO
+        </Button>
+      </Box>
+
       {courseId && (assessments || isLoading) && (
         <Box mt={5}>
           <AssessmentTable
@@ -120,8 +157,7 @@ function RouteComponent() {
             }}
           >
             <Typography variant="h4" gutterBottom>
-              Current Score: {totalScore.toFixed(2)}% /{" "}
-              {(completedWeight * 100).toFixed(0)}%
+              Current Score: {totalScore.toFixed(2)}%
             </Typography>
           </Box>
           <GradeTable
@@ -130,6 +166,6 @@ function RouteComponent() {
           />
         </Box>
       )}
-    </>
+    </Box>
   );
 }

@@ -32,7 +32,7 @@ export default function GradeTable({
 
   return (
     <TableContainer component={Paper} elevation={0} sx={{ mt: 4 }}>
-      <Table sx={{ minWidth: 650 }}>
+      <Table>
         <TableHead sx={{ bgcolor: "#2E1B4E" }}>
           <TableRow>
             <TableCell sx={{ color: "white", fontWeight: "bold" }}>
