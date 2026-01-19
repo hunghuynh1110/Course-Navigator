@@ -19,6 +19,8 @@
     "@tanstack/react-router": "^1.145.11",
     "@types/dagre": "^0.7.53",
     "dagre": "^0.8.5",
+    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.19",
     "elkjs": "^0.11.0",
     "i18next": "^25.7.4",
     "lucide-react": "^0.562.0",

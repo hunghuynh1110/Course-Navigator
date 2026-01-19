@@ -20,7 +20,7 @@ import {
 import type { Course, Status } from "@/types/course";
 import CourseGraph from "@/components/course-graph/CourseGraph";
 import CourseTagList from "@/components/search-box/CourseTagList";
-import { api } from "@/services/api";
+import { api } from "@/utils/api";
 import { useScreenSize } from "@/hooks/useScreenSize";
 import CourseStatus from "@/components/course-graph/CourseStatus";
 

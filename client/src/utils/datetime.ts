@@ -1,4 +1,9 @@
-import { format as formatFn, differenceInYears, isBefore, parseISO } from "date-fns";
+import {
+  format as formatFn,
+  differenceInYears,
+  isBefore,
+  parseISO,
+} from "date-fns";
 import dayjs from "dayjs";
 
 export const formatDate = (date: string | Date, format?: string) => {
@@ -24,7 +29,11 @@ export function calculateAge(birthdate: string): number {
   let age = differenceInYears(today, birthDate);
 
   // Adjust for birthdays that haven't occurred yet this year
-  const thisYearBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+  const thisYearBirthday = new Date(
+    today.getFullYear(),
+    birthDate.getMonth(),
+    birthDate.getDate()
+  );
   if (isBefore(today, thisYearBirthday)) {
     age--;
   }

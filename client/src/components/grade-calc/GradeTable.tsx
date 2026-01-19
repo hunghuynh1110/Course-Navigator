@@ -1,25 +1,42 @@
-import {
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import React from "react";
+import { DataTable } from "../table";
+import { DataTableColumn } from "../table/type";
 
 const GradeTable = () => {
-  return (
-    <TableContainer>
-      <TableHead>
-        <TableRow sx={{ fontWeight: "bold" }}>
-          <TableCell>Task</TableCell>
-          <TableCell>Weight</TableCell>
-          <TableCell>Your Score</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody></TableBody>
-    </TableContainer>
-  );
+  const columns: DataTableColumn[] = [
+    {
+      title: "Task",
+      dataIndex: "task",
+      key: "task",
+    },
+    {
+      title: "Weight",
+      dataIndex: "weight",
+      key: "weight",
+    },
+    {
+      title: "Your Score",
+      dataIndex: "yourScore",
+      key: "yourScore",
+    },
+  ];
+  const data = [
+    {
+      task: "Task 1",
+      weight: "10%",
+      yourScore: "10",
+    },
+    {
+      task: "Task 2",
+      weight: "20%",
+      yourScore: "20",
+    },
+    {
+      task: "Task 3",
+      weight: "30%",
+      yourScore: "30",
+    },
+  ];
+  return <DataTable columns={columns} data={data} />;
 };
 
 export default GradeTable;
