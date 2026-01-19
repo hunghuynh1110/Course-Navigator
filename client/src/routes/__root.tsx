@@ -1,6 +1,7 @@
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { AppBar, Toolbar, Button, Container, Box } from "@mui/material";
+import { Analytics } from "@vercel/analytics/react";
 import NotFound from "../components/NotFound";
 import ErrorComponent from "../components/ErrorComponent";
 
@@ -50,6 +51,7 @@ function RootLayout() {
       </Container>
 
       <TanStackRouterDevtools />
+      <Analytics />
     </>
   );
 }
