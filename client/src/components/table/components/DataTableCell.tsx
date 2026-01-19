@@ -267,7 +267,7 @@ export const DataTableHeadCell = <T,>(props: DataTableHeadCellProps<T>) => {
             disableResize ? "resizable-handle-disabled" : ""
           )}
           onMouseDown={handleResizeStart}
-          sx={(theme) => ({ display: lastCol ? "none" : undefined })}
+          sx={() => ({ display: lastCol ? "none" : undefined })}
         />
       )}
     </TableCell>

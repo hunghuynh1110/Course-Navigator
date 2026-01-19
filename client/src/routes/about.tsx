@@ -269,7 +269,7 @@ function About() {
             getOptionLabel={(option) => option.name}
             isOptionEqualToValue={(option, value) => option.name === value.name}
             loading={loadingPrograms}
-            value={programs.find((p) => p.name === searchProgram) || null}
+            value={programs.find((p) => p.name === searchProgram) || undefined}
             onChange={(_, newValue) => loadProgramEvents(newValue)}
             renderInput={(params) => (
               <TextField

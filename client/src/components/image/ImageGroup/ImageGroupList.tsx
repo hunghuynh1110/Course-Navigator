@@ -125,7 +125,7 @@ export const ImageGroupList: React.FC<ImageGroupListProps> = ({
                 className={imageClassName}
                 style={imageStyle}
                 imgProps={{
-                  onError: (e) => {
+                  onError: () => {
                     markError(globalIndex);
                   },
                 }}
