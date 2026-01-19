@@ -1,10 +1,10 @@
-# --- Mac OS (Các file rác của Mac) ---
+# --- Mac OS ---
 .DS_Store
 .AppleDouble
 .LSOverride
 ._*
 
-# --- Python & Virtual Environment (QUAN TRỌNG) ---
+# --- Python & Virtual Environment ---
 venv/
 env/
 __pycache__/
@@ -17,7 +17,26 @@ __pycache__/
 .env
 .env.local
 
-# --- VS Code (Cấu hình riêng của editor) ---
+# --- VS Code & Config ---
 .vscode/
-database/URL_KEYS.py
 .agent
+
+# --- BẢO MẬT (Rất tốt) ---
+database/URL_KEYS.py
+
+# ==============================================
+# 👇 PHẦN BỔ SUNG QUAN TRỌNG CHO FRONTEND 👇
+# ==============================================
+
+# --- Node.js Dependencies (NẶNG NHẤT - BẮT BUỘC PHẢI CÓ) ---
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# --- Build Output (File code đã đóng gói, không cần commit) ---
+dist/
+build/
+
+# --- Coverage reports (Nếu sau này có test) ---
+coverage/
