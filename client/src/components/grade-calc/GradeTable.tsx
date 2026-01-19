@@ -1,161 +1,97 @@
-import { useEffect, useState } from "react";
-import { DataTable } from "../table";
-import { DataTableColumn } from "../table/type";
-import { supabase } from "@/supabaseClient";
-import { Assessment } from "@/types/assessment";
-import { Box, Chip, TextField, Typography } from "@mui/material";
-import { z } from "zod";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@mui/material";
 
-const MAX_SCORE = 100;
-
-export async function fetchCourseData(
-  courseId: string
-): Promise<Assessment[] | null> {
-  const { data, error } = await supabase
-    .from("courses")
-    .select("*")
-    .eq("id", courseId)
-    .single();
-
-  if (error || !data) {
-    console.error("Error fetching course data:", error);
-    return null;
-  }
-
-  return data.raw_data.assessments;
-}
-
-const calculateFinalScore = (
-  scores: Record<string, { score: number; weight: number }>
-) => {
-  return Object.values(scores)
-    .reduce((acc, curr) => acc + curr.score * curr.weight, 0)
-    .toFixed(2);
+type GradeTableProps = {
+  currentScore: number;
+  remainingWeight: number; // 0.0 to 1.0 (e.g. 0.7 for 70%)
 };
 
-const scoreSchema = z
-  .string()
-  .regex(/^\d+(\.\d+)?$/)
-  .transform(Number);
+const GRADE_CUTOFFS = [
+  { grade: 1, cutoff: 0 },
+  { grade: 2, cutoff: 30 },
+  { grade: 3, cutoff: 45 },
+  { grade: 4, cutoff: 50 },
+  { grade: 5, cutoff: 65 },
+  { grade: 6, cutoff: 75 },
+  { grade: 7, cutoff: 85 },
+];
 
-const convertScore = (score: string) => {
-  if (score === "") return 0;
-
-  // Handle fraction case like "20/20" or "100/100"
-  if (score.includes("/")) {
-    const parts = score.split("/");
-    if (parts.length === 2) {
-      const numerator = parseFloat(parts[0]);
-      const denominator = parseFloat(parts[1]);
-      if (!isNaN(numerator) && !isNaN(denominator) && denominator !== 0) {
-        return Math.min(
-          Math.max((numerator / denominator) * 100, 0),
-          MAX_SCORE
-        );
-      }
-    }
-  }
-  if (score.includes("%")) {
-    const numericPart = parseFloat(score.replace("%", ""));
-    if (!isNaN(numericPart)) {
-      return Math.min(Math.max(numericPart, 0), MAX_SCORE);
-    }
-  }
-
-  const result = scoreSchema.safeParse(score);
-  if (!result.success) return 0;
-
-  return Math.min(Math.max(result.data, 0), MAX_SCORE);
-};
-
-const GradeTable = ({ courseId }: { courseId: string }) => {
-  const [assessments, setAssessments] = useState<Assessment[] | null>(null);
-
-  const [scores, setScores] = useState<
-    Record<string, { score: number; weight: number }>
-  >({});
-
-  useEffect(() => {
-    async function init() {
-      try {
-        const assessments = await fetchCourseData(courseId);
-        if (assessments) {
-          setAssessments(assessments);
-          const initialScores = assessments.reduce(
-            (acc, curr) => ({
-              ...acc,
-              [curr.category]: { score: 0, weight: curr.weight },
-            }),
-            {}
-          );
-          console.log("initialScores", initialScores);
-          setScores(initialScores);
-        }
-      } catch (error) {
-        console.error("Failed to fetch course data:", error);
-      }
-    }
-
-    init();
-  }, [courseId]);
-
-  console.log("scores", scores);
-
-  const processWeight = (weight: number) => {
-    return weight === 0 ? "Pass/Fail" : `${weight * 100}%`;
-  };
-  const columns: DataTableColumn[] = [
-    {
-      title: "Task",
-      dataIndex: "task",
-      key: "task",
-    },
-    {
-      title: "Weight",
-      dataIndex: "weight",
-      key: "weight",
-      render: (_value, record) => processWeight(record.weight),
-    },
-    {
-      type: "number",
-      title: "Your Score",
-      dataIndex: "yourScore",
-      key: "yourScore",
-      render: (_value, record) =>
-        assessments?.find((a) => a.category === record.task)?.weight === 0 ? (
-          <Chip label="Pass/Fail" />
-        ) : (
-          <TextField
-            placeholder={"90, 9/10, 90%"}
-            onChange={(e) => {
-              setScores((prev) => ({
-                ...prev,
-                [record.task]: {
-                  score: convertScore(e.target.value),
-                  weight: record.weight,
-                },
-              }));
-            }}
-          />
-        ),
-    },
-  ];
-
-  const data = assessments?.map((assessment) => ({
-    task: assessment.category,
-    weight: assessment.weight,
-    yourScore: scores[assessment.category],
-  }));
-  console.log("scores", scores);
-
-  if (!assessments) return <div>Loading...</div>;
+export default function GradeTable({
+  currentScore,
+  remainingWeight,
+}: GradeTableProps) {
+  // Convert remaining weight to points (e.g., 0.7 -> 70 points)
+  const remainingPoints = remainingWeight * 100;
 
   return (
-    <Box mt={5}>
-      <DataTable columns={columns} data={data || []} hideHeader={true} />
-      <Typography>Final Score: {calculateFinalScore(scores)} %</Typography>
-    </Box>
-  );
-};
+    <TableContainer component={Paper} elevation={0} sx={{ mt: 4 }}>
+      <Table sx={{ minWidth: 650 }}>
+        <TableHead sx={{ bgcolor: "#2E1B4E" }}>
+          <TableRow>
+            <TableCell sx={{ color: "white", fontWeight: "bold" }}>
+              Grade
+            </TableCell>
+            <TableCell sx={{ color: "white", fontWeight: "bold" }}>
+              Cutoff (%)
+            </TableCell>
+            <TableCell sx={{ color: "white", fontWeight: "bold" }}>
+              Required (%)
+            </TableCell>
+            <TableCell sx={{ color: "white", fontWeight: "bold" }}>
+              Required Score
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {GRADE_CUTOFFS.map((row, index) => {
+            const neededPoints = row.cutoff - currentScore;
 
-export default GradeTable;
+            const safeNeeded = Math.max(0, neededPoints);
+
+            let requiredPercent = 0;
+            if (remainingPoints > 0) {
+              requiredPercent = (safeNeeded / remainingPoints) * 100;
+            } else {
+              requiredPercent = safeNeeded > 0 ? Infinity : 0;
+            }
+
+            let bgcolor = "inherit";
+            if (neededPoints <= 0) {
+              bgcolor = "#1B5E20"; // Green for achieved
+            } else if (requiredPercent > 100) {
+              bgcolor = "#4E1B1B"; // Red/Brown for impossible
+            } else {
+              bgcolor = "#2E1B4E";
+            }
+
+            // Text display
+            const requiredScoreText =
+              neededPoints <= 0
+                ? "0"
+                : `${safeNeeded.toFixed(1)}/${remainingPoints.toFixed(0)}`;
+
+            return (
+              <TableRow key={row.grade} sx={{ bgcolor }}>
+                <TableCell sx={{ color: "white" }}>{row.grade}</TableCell>
+                <TableCell sx={{ color: "white" }}>{row.cutoff}</TableCell>
+                <TableCell sx={{ color: "white" }}>
+                  {requiredPercent.toFixed(2)}
+                </TableCell>
+                <TableCell sx={{ color: "white" }}>
+                  {requiredScoreText}
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}

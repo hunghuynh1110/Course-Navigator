@@ -1,4 +1,4 @@
-import GradeTable from "@/components/grade-calc/GradeTable";
+import AssessmentTable from "@/components/grade-calc/AssessmentTable";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/grade")({
@@ -6,5 +6,5 @@ export const Route = createFileRoute("/grade")({
 });
 
 function RouteComponent() {
-  return <GradeTable courseId="CSSE3200" />;
+  return <AssessmentTable courseId="CSSE3200" />;
 }
