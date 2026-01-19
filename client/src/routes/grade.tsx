@@ -6,5 +6,5 @@ export const Route = createFileRoute("/grade")({
 });
 
 function RouteComponent() {
-  return <GradeTable />;
+  return <GradeTable courseId="CSSE3200" />;
 }

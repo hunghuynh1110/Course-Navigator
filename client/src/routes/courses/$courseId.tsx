@@ -20,6 +20,7 @@ import {
   CircularProgress,
   Container,
   Divider,
+  Button,
 } from "@mui/material";
 import CourseStatus from "@/components/course-graph/CourseStatus";
 
@@ -38,12 +39,26 @@ function CourseDetail() {
   useEffect(() => {
     async function init() {
       setLoading(true);
-      const treeData = await fetchFullCourseTree([courseId]);
-      setCourses(treeData);
+      try {
+        const treeData = await fetchFullCourseTree([courseId]);
+        if (Array.isArray(treeData)) {
+          setCourses(treeData);
+        } else {
+          console.error(
+            "Unexpected return from fetchFullCourseTree:",
+            treeData
+          );
+          setCourses([]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch course tree:", error);
+        setCourses([]);
+      }
       setLoading(false);
     }
     init();
   }, [courseId]);
+  console.log("courses", courses);
 
   // 2. Identify Target Course (The one in URL)
   const targetCourse = useMemo(
@@ -71,6 +86,12 @@ function CourseDetail() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Button
+        href={`/courses/${courseId}/grade-calculator`}
+        variant="contained"
+      >
+        Grade Calculator
+      </Button>
       {/* HERO SECTION */}
       <Box mb={4}>
         <Typography variant="h3" color="primary" fontWeight="bold">
