@@ -50,7 +50,7 @@ export default function GradeTable({
           </TableRow>
         </TableHead>
         <TableBody>
-          {GRADE_CUTOFFS.map((row, index) => {
+          {GRADE_CUTOFFS.map((row) => {
             const neededPoints = row.cutoff - currentScore;
 
             const safeNeeded = Math.max(0, neededPoints);

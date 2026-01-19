@@ -260,7 +260,7 @@ export default function CourseGraph({
         nodes={nodes}
         edges={edges}
         onNodeClick={onNodeClick}
-        nodesDraggable={true}
+        nodesDraggable={false}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         fitView

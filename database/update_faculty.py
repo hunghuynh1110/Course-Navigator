@@ -5,8 +5,8 @@ import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 
 # Supabase Credentials
-SUPABASE_URL = "https://smwypwqkbcncgepvrbey.supabase.co"
-SUPABASE_KEY = "sb_publishable_dmDsfGjs4tsmq1safpNaKw_UMRGUbLB"
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
 headers = {
     "apikey": SUPABASE_KEY,

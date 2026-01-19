@@ -102,8 +102,6 @@ const CourseSearchInput = ({
     // Mock Validation: Check if course code exists
     const isValid = mockValidateCourse(trimmedInput);
     const isValid2 = mockValidateCourse2(trimmedInput);
-    console.log(isValid);
-    console.log(isValid2);
     if (isValid) {
       onAddCourse(trimmedInput);
       // RESET everything

@@ -91,7 +91,6 @@ export const ImageGroupSingle: React.FC<ImageGroupSingleProps> = ({
           style={imageStyle}
           imgProps={{
             onError: (e) => {
-              console.log("ImageGroupSingle error", e);
               setError(String(e));
             },
           }}

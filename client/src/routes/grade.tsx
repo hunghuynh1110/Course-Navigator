@@ -82,7 +82,6 @@ function RouteComponent() {
 
   const { totalScore, completedWeight } = calculateStats(scores);
 
-  console.log(scores);
   return (
     <Box sx={{ px: { xs: 0, md: "10%", lg: "15%" }, mx: "auto" }}>
       <Box

@@ -58,7 +58,6 @@ function CourseDetail() {
     }
     init();
   }, [courseId]);
-  console.log("courses", courses);
 
   // 2. Identify Target Course (The one in URL)
   const targetCourse = useMemo(
