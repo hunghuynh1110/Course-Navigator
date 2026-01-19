@@ -10,6 +10,7 @@ export default function CourseTag({ courseCode, onDelete }: CourseTagProps) {
   return (
     <Box
       sx={{
+        width: { xs: "25%", sm: "100px" },
         position: "relative",
         display: "inline-flex",
         alignItems: "center",
@@ -17,13 +18,11 @@ export default function CourseTag({ courseCode, onDelete }: CourseTagProps) {
         border: "1px solid #ffcc80",
         borderRadius: "4px 8px 8px 4px", // Slight tag shape
         pl: 2,
-        pr: onDelete ? 1 : 2, // Adjust padding based on whether delete button is shown
+        pr: onDelete ? 1 : 2,
         py: 0.5,
         boxShadow: "2px 2px 5px rgba(0,0,0,0.1)",
         transition: "transform 0.1s ease",
-        "&:hover": {
-          transform: "translateY(-2px)",
-        },
+
         // Hole punch visual
         "&::before": {
           content: '""',
@@ -39,7 +38,12 @@ export default function CourseTag({ courseCode, onDelete }: CourseTagProps) {
         },
       }}
     >
-      <Typography variant="body2" fontWeight="bold" color="text.primary" sx={{ mr: onDelete ? 1 : 0 }}>
+      <Typography
+        variant="body2"
+        fontWeight="bold"
+        color="text.primary"
+        sx={{ mr: onDelete ? 1 : 0 }}
+      >
         {courseCode}
       </Typography>
       {onDelete && (

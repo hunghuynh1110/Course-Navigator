@@ -20,3 +20,4 @@ __pycache__/
 # --- VS Code (Cấu hình riêng của editor) ---
 .vscode/
 database/URL_KEYS.py
+.agent

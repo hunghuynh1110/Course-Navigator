@@ -17,11 +17,12 @@ import {
   TableRow,
   Chip,
   Box,
-  Grid,
   CircularProgress,
   Container,
   Divider,
+  Button,
 } from "@mui/material";
+import CourseStatus from "@/components/course-graph/CourseStatus";
 
 export const Route = createFileRoute("/courses/$courseId")({
   component: CourseDetail,
@@ -38,12 +39,26 @@ function CourseDetail() {
   useEffect(() => {
     async function init() {
       setLoading(true);
-      const treeData = await fetchFullCourseTree([courseId]);
-      setCourses(treeData);
+      try {
+        const treeData = await fetchFullCourseTree([courseId]);
+        if (Array.isArray(treeData)) {
+          setCourses(treeData);
+        } else {
+          console.error(
+            "Unexpected return from fetchFullCourseTree:",
+            treeData
+          );
+          setCourses([]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch course tree:", error);
+        setCourses([]);
+      }
       setLoading(false);
     }
     init();
   }, [courseId]);
+  console.log("courses", courses);
 
   // 2. Identify Target Course (The one in URL)
   const targetCourse = useMemo(
@@ -71,6 +86,12 @@ function CourseDetail() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Button
+        href={`/courses/${courseId}/grade-calculator`}
+        variant="contained"
+      >
+        Grade Calculator
+      </Button>
       {/* HERO SECTION */}
       <Box mb={4}>
         <Typography variant="h3" color="primary" fontWeight="bold">
@@ -106,63 +127,7 @@ function CourseDetail() {
             setNodesStatus((prev) => ({ ...prev, ...updates }));
           }}
         />
-        <Box mt={2} display="flex" gap={2} alignItems="center">
-          <Typography variant="caption" color="text.secondary">
-            Legend:
-          </Typography>
-          <Box display="flex" alignItems="center" gap={0.5}>
-            <Box
-              sx={{
-                w: 12,
-                h: 12,
-                bgcolor: "#e0e0e0",
-                borderRadius: "50%",
-                width: 12,
-                height: 12,
-              }}
-            />
-            <Typography variant="caption">Not Started</Typography>
-          </Box>
-          <Box display="flex" alignItems="center" gap={0.5}>
-            <Box
-              sx={{
-                w: 12,
-                h: 12,
-                bgcolor: "#a5d6a7",
-                borderRadius: "50%",
-                width: 12,
-                height: 12,
-              }}
-            />
-            <Typography variant="caption">Passed</Typography>
-          </Box>
-          <Box display="flex" alignItems="center" gap={0.5}>
-            <Box
-              sx={{
-                w: 12,
-                h: 12,
-                bgcolor: "#ef9a9a",
-                borderRadius: "50%",
-                width: 12,
-                height: 12,
-              }}
-            />
-            <Typography variant="caption">Failed</Typography>
-          </Box>
-          <Box display="flex" alignItems="center" gap={0.5}>
-            <Box
-              sx={{
-                w: 12,
-                h: 12,
-                bgcolor: "#757575",
-                borderRadius: "50%",
-                width: 12,
-                height: 12,
-              }}
-            />
-            <Typography variant="caption">Blocked</Typography>
-          </Box>
-        </Box>
+        <CourseStatus />
       </Paper>
 
       {/* RIGHT: INFO */}
@@ -212,7 +177,7 @@ function CourseDetail() {
                 {raw_data.assessments?.map((a, i) => (
                   <TableRow key={i}>
                     <TableCell>
-                      {a.category}
+                      {a.assesment_task}
                       {a.flags?.is_hurdle && (
                         <Chip
                           label="Hurdle"

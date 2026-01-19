@@ -28,7 +28,7 @@ export interface FilterConfig {
 interface CourseSearchInputProps {
   onAddCourse: (code: string) => void; // Triggered on Enter to add to saved list
   existingCourses: string[]; // To check for duplicates
-  onSearchResults: (courses: string[]) => void; // To show live search results
+  onSearchResults?: (courses: string[]) => void; // To show live search results
   filters?: FilterConfig[];
   onFiltersChange?: (filters: Record<string, string>) => void;
 }
@@ -58,14 +58,14 @@ const CourseSearchInput = ({
   useEffect(() => {
     if (!inputValue.trim()) {
       // If empty, clear search results
-      onSearchResults([]);
+      onSearchResults?.([]);
       return;
     }
 
     const timer = setTimeout(() => {
       // Simulate search - in real app, this would call Supabase
       // For now, just pass the search term to parent
-      onSearchResults([inputValue.trim()]);
+      onSearchResults?.([inputValue.trim()]);
     }, 1000);
 
     return () => clearTimeout(timer);
@@ -95,23 +95,28 @@ const CourseSearchInput = ({
     if (existingCourses.includes(trimmedInput)) {
       setError("Course already added");
       setInputValue("");
-      onSearchResults([]); // Clear search results
+      onSearchResults?.([]); // Clear search results
       return;
     }
 
     // Mock Validation: Check if course code exists
     const isValid = mockValidateCourse(trimmedInput);
-
+    const isValid2 = mockValidateCourse2(trimmedInput);
+    console.log(isValid);
+    console.log(isValid2);
     if (isValid) {
       onAddCourse(trimmedInput);
       // RESET everything
       setInputValue("");
       setError("");
-      onSearchResults([]); // Clear search results to reset the course display
+      onSearchResults?.([]); // Clear search results to reset the course display
+    } else if (isValid2) {
+      setInputValue("");
+      onSearchResults?.([]); // Clear search results
     } else {
       setError("Invalid course code");
       setInputValue("");
-      onSearchResults([]); // Clear search results
+      onSearchResults?.([]); // Clear search results
     }
   };
 
@@ -119,6 +124,10 @@ const CourseSearchInput = ({
   const mockValidateCourse = (code: string) => {
     // Simulate valid if it starts with letters and has numbers (e.g. COMP123)
     return /^[A-Z]{3,4}\d{3,4}[A-Z]*$/.test(code);
+  };
+  const mockValidateCourse2 = (code: string) => {
+    // Simulate valid if it starts with letters only (e.g. COMP)
+    return /^[A-Z]{3,4}$/.test(code);
   };
 
   const handleFilterChange =
@@ -177,7 +186,13 @@ const CourseSearchInput = ({
         onKeyDown={handleKeyDown}
         error={!!error}
         // helperText={error || "Type to search, press Enter to add"}
-
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
         sx={{
           flexGrow: 1,
           minWidth: { xs: "100%", md: "200px" },

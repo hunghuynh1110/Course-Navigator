@@ -1,4 +1,3 @@
-
 import { Box } from "@mui/material";
 import CourseTag from "./CourseTag";
 
@@ -20,14 +19,14 @@ export default function CourseTagList({
         flexWrap: "wrap",
         gap: 2,
         mt: 2,
-        justifyContent: "flex-start",
+        justifyContent: { xs: "center", sm: "flex-start" },
       }}
     >
       {courses.map((code) => (
-        <CourseTag 
-          key={code} 
-          courseCode={code} 
-          onDelete={onRemove ? () => onRemove(code) : undefined} 
+        <CourseTag
+          key={code}
+          courseCode={code}
+          onDelete={onRemove ? () => onRemove(code) : undefined}
         />
       ))}
     </Box>
