@@ -28,10 +28,9 @@ export async function fetchCourseData(
 const calculateFinalScore = (
   scores: Record<string, { score: number; weight: number }>
 ) => {
-  return Object.values(scores).reduce(
-    (acc, curr) => acc + curr.score * curr.weight,
-    0
-  );
+  return Object.values(scores)
+    .reduce((acc, curr) => acc + curr.score * curr.weight, 0)
+    .toFixed(2);
 };
 
 const scoreSchema = z
@@ -41,6 +40,27 @@ const scoreSchema = z
 
 const convertScore = (score: string) => {
   if (score === "") return 0;
+
+  // Handle fraction case like "20/20" or "100/100"
+  if (score.includes("/")) {
+    const parts = score.split("/");
+    if (parts.length === 2) {
+      const numerator = parseFloat(parts[0]);
+      const denominator = parseFloat(parts[1]);
+      if (!isNaN(numerator) && !isNaN(denominator) && denominator !== 0) {
+        return Math.min(
+          Math.max((numerator / denominator) * 100, 0),
+          MAX_SCORE
+        );
+      }
+    }
+  }
+  if (score.includes("%")) {
+    const numericPart = parseFloat(score.replace("%", ""));
+    if (!isNaN(numericPart)) {
+      return Math.min(Math.max(numericPart, 0), MAX_SCORE);
+    }
+  }
 
   const result = scoreSchema.safeParse(score);
   if (!result.success) return 0;
@@ -106,7 +126,7 @@ const GradeTable = ({ courseId }: { courseId: string }) => {
           <Chip label="Pass/Fail" />
         ) : (
           <TextField
-            placeholder={"0, 100"}
+            placeholder={"90, 9/10, 90%"}
             onChange={(e) => {
               setScores((prev) => ({
                 ...prev,
@@ -133,7 +153,7 @@ const GradeTable = ({ courseId }: { courseId: string }) => {
   return (
     <Box mt={5}>
       <DataTable columns={columns} data={data || []} hideHeader={true} />
-      <Typography>Final Score: {calculateFinalScore(scores)}</Typography>
+      <Typography>Final Score: {calculateFinalScore(scores)} %</Typography>
     </Box>
   );
 };

@@ -17,7 +17,10 @@ import { DataTableProvider, useDataTableCxt } from "./context";
 import type { DataTableWrapperProps, DataTableWrapperRef } from "./type";
 import { DataTableWrapperInnerStyled } from "./style";
 import { DataTableHeadMenu } from "./components/DataTableHeadMenu";
-import { DataTableFilter, DataTableFilterBtn } from "./components/DataTableFilter";
+import {
+  DataTableFilter,
+  DataTableFilterBtn,
+} from "./components/DataTableFilter";
 import { DataTablePagination } from "./components/DataTablePagination";
 import { DataTableContainer } from "./components/DataTableContainer";
 import { DataTableMenu } from "./components/DataTableMenu";
@@ -29,16 +32,15 @@ export * from "./components/DataTablePagination";
 export * from "./type";
 export * from "./util";
 
-export const DataTable = forwardRef<DataTableWrapperRef, DataTableWrapperProps>(function DataTable(
-  props,
-  ref
-): ReactElement {
-  return (
-    <DataTableProvider {...props} ref={ref as any}>
-      <DataTableInner />
-    </DataTableProvider>
-  );
-});
+export const DataTable = forwardRef<DataTableWrapperRef, DataTableWrapperProps>(
+  function DataTable(props, ref): ReactElement {
+    return (
+      <DataTableProvider {...props} ref={ref as any}>
+        <DataTableInner />
+      </DataTableProvider>
+    );
+  }
+);
 
 export const DataTableInner = () => {
   const {
@@ -46,7 +48,7 @@ export const DataTableInner = () => {
     filters,
     actions,
     loading,
-    height = "80vh",
+    height = "auto",
     className,
     pagination,
     onChangePage,
@@ -93,7 +95,9 @@ export const DataTableInner = () => {
     });
   }, [data, containerRef]);
 
-  const wrapperClassName = [className, resizable ? "resizable" : ""].filter(Boolean).join(" ");
+  const wrapperClassName = [className, resizable ? "resizable" : ""]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <DataTableWrapperInnerStyled
@@ -194,7 +198,11 @@ export const DataTableInner = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button color="inherit" variant="text" onClick={() => setConfirmPopup(null)}>
+          <Button
+            color="inherit"
+            variant="text"
+            onClick={() => setConfirmPopup(null)}
+          >
             {lag("cpn:confirmDialog:cancelText")}
           </Button>
           <Button
