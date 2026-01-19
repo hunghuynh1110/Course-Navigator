@@ -112,7 +112,9 @@ export const ImageGroupList: React.FC<ImageGroupListProps> = ({
               style={itemStyle}
               onClick={() => handleOpenPreview(globalIndex)}
               onMouseEnter={() => setHoverIndex(globalIndex)}
-              onMouseLeave={() => setHoverIndex((prev) => (prev === globalIndex ? null : prev))}
+              onMouseLeave={() =>
+                setHoverIndex((prev) => (prev === globalIndex ? null : prev))
+              }
             >
               <Image
                 src={src}
@@ -124,7 +126,6 @@ export const ImageGroupList: React.FC<ImageGroupListProps> = ({
                 style={imageStyle}
                 imgProps={{
                   onError: (e) => {
-                    console.log("ImageGroupList item error", e);
                     markError(globalIndex);
                   },
                 }}
@@ -143,7 +144,9 @@ export const ImageGroupList: React.FC<ImageGroupListProps> = ({
                     zIndex: 3,
                   }}
                 >
-                  <Typography sx={{ color: "#fff", fontSize: 18, fontWeight: 600 }}>
+                  <Typography
+                    sx={{ color: "#fff", fontSize: 18, fontWeight: 600 }}
+                  >
                     +{hiddenCount}
                   </Typography>
                 </Box>

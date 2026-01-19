@@ -32,7 +32,7 @@ export default function GradeTable({
 
   return (
     <TableContainer component={Paper} elevation={0} sx={{ mt: 4 }}>
-      <Table sx={{ minWidth: 650 }}>
+      <Table>
         <TableHead sx={{ bgcolor: "#2E1B4E" }}>
           <TableRow>
             <TableCell sx={{ color: "white", fontWeight: "bold" }}>
@@ -50,7 +50,7 @@ export default function GradeTable({
           </TableRow>
         </TableHead>
         <TableBody>
-          {GRADE_CUTOFFS.map((row, index) => {
+          {GRADE_CUTOFFS.map((row) => {
             const neededPoints = row.cutoff - currentScore;
 
             const safeNeeded = Math.max(0, neededPoints);

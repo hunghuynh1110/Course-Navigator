@@ -58,7 +58,6 @@ function CourseDetail() {
     }
     init();
   }, [courseId]);
-  console.log("courses", courses);
 
   // 2. Identify Target Course (The one in URL)
   const targetCourse = useMemo(
@@ -86,12 +85,6 @@ function CourseDetail() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Button
-        href={`/courses/${courseId}/grade-calculator`}
-        variant="contained"
-      >
-        Grade Calculator
-      </Button>
       {/* HERO SECTION */}
       <Box mb={4}>
         <Typography variant="h3" color="primary" fontWeight="bold">
@@ -160,10 +153,18 @@ function CourseDetail() {
 
         {/* ASSESSMENTS */}
         <Paper sx={{ p: 0, overflow: "hidden" }}>
-          <Box p={2} bgcolor="#f5f5f5">
+          <Box
+            p={2}
+            bgcolor="#f5f5f5"
+            display="flex"
+            justifyContent="space-between"
+          >
             <Typography variant="h6" fontWeight="bold">
               📊 Assessments
             </Typography>
+            <Button href={`/grade?course=${courseId}`} variant="outlined">
+              Grade Calculator
+            </Button>
           </Box>
           <TableContainer>
             <Table size="small">
