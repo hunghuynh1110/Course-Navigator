@@ -1,13 +1,6 @@
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Container,
-  Box,
-} from "@mui/material";
+import { AppBar, Toolbar, Button, Container, Box } from "@mui/material";
 import NotFound from "../components/NotFound";
 import ErrorComponent from "../components/ErrorComponent";
 
