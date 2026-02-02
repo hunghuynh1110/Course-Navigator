@@ -1,27 +1,4 @@
 import {
-  require_react_dom
-} from "./chunk-QTVVL2JF.js";
-import {
-  CssVarsProvider,
-  Experimental_CssVarsProvider,
-  InitColorSchemeScript_default,
-  ThemeProvider,
-  adaptV4Theme,
-  createMuiStrictModeTheme,
-  createStyles,
-  deprecatedExtendTheme,
-  experimental_sx,
-  getInitColorSchemeScript,
-  getUnit,
-  makeStyles,
-  responsiveFontSizes,
-  toUnitless,
-  useColorScheme,
-  useThemeProps,
-  withStyles,
-  withTheme
-} from "./chunk-NPMRAGQ3.js";
-import {
   GlobalStyles_default,
   SvgIcon_default,
   capitalize_default,
@@ -57,6 +34,26 @@ import {
   useForkRef_default,
   useId_default
 } from "./chunk-XJ3UIXOT.js";
+import {
+  CssVarsProvider,
+  Experimental_CssVarsProvider,
+  InitColorSchemeScript_default,
+  ThemeProvider,
+  adaptV4Theme,
+  createMuiStrictModeTheme,
+  createStyles,
+  deprecatedExtendTheme,
+  experimental_sx,
+  getInitColorSchemeScript,
+  getUnit,
+  makeStyles,
+  responsiveFontSizes,
+  toUnitless,
+  useColorScheme,
+  useThemeProps,
+  withStyles,
+  withTheme
+} from "./chunk-NPMRAGQ3.js";
 import {
   ClassNameGenerator_default,
   StyledEngineProvider,
@@ -124,6 +121,9 @@ import {
 import {
   clsx_default
 } from "./chunk-P4LXPE4N.js";
+import {
+  require_react_dom
+} from "./chunk-QTVVL2JF.js";
 import {
   require_jsx_runtime
 } from "./chunk-7TOKK2FT.js";

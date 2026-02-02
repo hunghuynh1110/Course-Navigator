@@ -116,12 +116,7 @@ const CourseSearchInput = ({
 
     setLoading(true);
     try {
-      // Delegate validation to parent
       const success = await onAddCourse(trimmedInput);
-
-      // If parent returns explicit true (or undefined/void treated as generic success if we strictly assume void is success? No, let's treat boolean as indicator)
-      // Actually typical pattern: if promise resolves, it's success?
-      // Let's assume onAddCourse returns boolean: true = success/clear, false = fail/keep.
       if (success !== false) {
         if (clearOnSearch) {
           setInputValue("");

@@ -71,9 +71,7 @@ function Dashboard() {
       if (!code) return false;
       const normalizedCode = code.toUpperCase();
 
-      // Check validation locally first (simple format) or go straight to DB?
-      // User requested "incorrect course code" notification.
-      // Let's verify against DB.
+      // Verify course code against database
 
       try {
         const assessments = await fetchCourseAssessments(normalizedCode);
@@ -85,7 +83,7 @@ function Dashboard() {
           return false;
         }
 
-        // Found! Navigate.
+        // Valid course, add to selection
         navigate({
           to: "/",
           search: (prev) => ({
@@ -126,13 +124,13 @@ function Dashboard() {
     // Use liveSearchQuery if available (while typing), otherwise use URL searchQuery
     const activeQuery = liveSearchQuery || searchQuery;
 
-    // Priority 1: If user is actively searching (typing), show search results
+    // Show live search results if active
     if (activeQuery) {
       const { data } = await supabase
         .from("courses")
         .select("*")
         .ilike("id", `%${activeQuery}%`)
-        .limit(50); // Limit search results
+        .limit(50);
 
       if (data) setCourses(data as unknown as Course[]);
       setTotalPages(1); // No pagination for search
@@ -140,7 +138,7 @@ function Dashboard() {
       return;
     }
 
-    // Priority 2: Default - show all courses with pagination
+    // Default: Show all courses with pagination
     const from = (page - 1) * PAGE_SIZE;
     const to = from + PAGE_SIZE - 1;
 
