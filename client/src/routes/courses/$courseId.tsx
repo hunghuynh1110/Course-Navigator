@@ -46,7 +46,7 @@ function CourseDetail() {
         } else {
           console.error(
             "Unexpected return from fetchFullCourseTree:",
-            treeData
+            treeData,
           );
           setCourses([]);
         }
@@ -62,7 +62,7 @@ function CourseDetail() {
   // 2. Identify Target Course (The one in URL)
   const targetCourse = useMemo(
     () => courses.find((c) => c.id === courseId),
-    [courses, courseId]
+    [courses, courseId],
   );
 
   // 3. Calculate Effective Status (Recursive Blocked Logic)
@@ -107,23 +107,6 @@ function CourseDetail() {
         </Box>
       </Box>
 
-      {/* LEFT: GRAPH (PATHWAY) */}
-      <Paper sx={{ p: 3, m: 3, width: "60%" }}>
-        <Typography variant="h6" gutterBottom fontWeight="bold">
-          🗺️ Course Pathway
-        </Typography>
-        <Divider sx={{ mb: 2 }} />
-        <CourseGraph
-          courses={courses}
-          nodesStatus={effectiveStatusMap}
-          onStatusChange={(updates) => {
-            setNodesStatus((prev) => ({ ...prev, ...updates }));
-          }}
-        />
-        <CourseStatus />
-      </Paper>
-
-      {/* RIGHT: INFO */}
       <Box display="flex" flexDirection="column" gap={3}>
         {/* DESCRIPTION */}
         <Paper sx={{ p: 3 }}>
@@ -196,6 +179,20 @@ function CourseDetail() {
               </TableBody>
             </Table>
           </TableContainer>
+        </Paper>
+        <Paper sx={{ p: 3, my: 3 }}>
+          <Typography variant="h6" gutterBottom fontWeight="bold">
+            🗺️ Course Pathway
+          </Typography>
+          <Divider sx={{ mb: 2 }} />
+          <CourseGraph
+            courses={courses}
+            nodesStatus={effectiveStatusMap}
+            onStatusChange={(updates) => {
+              setNodesStatus((prev) => ({ ...prev, ...updates }));
+            }}
+          />
+          <CourseStatus />
         </Paper>
       </Box>
     </Container>

@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  Typography,
-  Chip,
-  Box,
-} from "@mui/material";
+import { Card, CardContent, Typography, Chip, Box } from "@mui/material";
 import type { Course } from "../types/course";
 
 interface CourseCardProps {
@@ -29,7 +23,12 @@ export default function CourseCard({ course, onClick }: CourseCardProps) {
       }}
       onClick={onClick}
     >
-      <CardContent>
+      <CardContent
+        sx={{
+          p: { xs: 1.5, sm: 2 },
+          "&:last-child": { pb: { xs: 1.5, sm: 2 } },
+        }}
+      >
         <Box
           display="flex"
           justifyContent="space-between"
@@ -49,7 +48,10 @@ export default function CourseCard({ course, onClick }: CourseCardProps) {
               variant="h5"
               color="primary"
               fontWeight="bold"
-              sx={{ whiteSpace: "nowrap" }}
+              sx={{
+                whiteSpace: "nowrap",
+                fontSize: { xs: "1.1rem", sm: "1.5rem" },
+              }}
             >
               {course.id}
             </Typography>
@@ -61,6 +63,7 @@ export default function CourseCard({ course, onClick }: CourseCardProps) {
               noWrap
               sx={{
                 minWidth: 0,
+                fontSize: { xs: "1rem", sm: "1.25rem" },
               }}
             >
               {course.title}
@@ -74,6 +77,10 @@ export default function CourseCard({ course, onClick }: CourseCardProps) {
             <Chip
               label={`${course.raw_data.units} Units`}
               size="small"
+              sx={{
+                height: { xs: 20, sm: 24 },
+                fontSize: { xs: "0.75rem", sm: "0.8125rem" },
+              }}
             />
           </Box>
         </Box>
@@ -86,7 +93,7 @@ export default function CourseCard({ course, onClick }: CourseCardProps) {
             overflow: "hidden",
             WebkitBoxOrient: "vertical",
             WebkitLineClamp: 3,
-            minHeight: "4.5em",
+            minHeight: { xs: "4em", sm: "4.5em" },
           }}
         >
           {course.raw_data.description}
