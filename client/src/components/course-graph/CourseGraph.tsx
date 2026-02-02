@@ -196,7 +196,7 @@ export default function CourseGraph({
 
     const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
       flowNodes,
-      flowEdges
+      flowEdges,
     );
 
     setNodes(layoutedNodes);
@@ -244,7 +244,7 @@ export default function CourseGraph({
       onStatusChange(updates);
       setOpen(false);
     },
-    [courses, onStatusChange]
+    [courses, onStatusChange],
   );
 
   return (
@@ -260,7 +260,7 @@ export default function CourseGraph({
         nodes={nodes}
         edges={edges}
         onNodeClick={onNodeClick}
-        nodesDraggable={false}
+        nodesDraggable={true}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         fitView
