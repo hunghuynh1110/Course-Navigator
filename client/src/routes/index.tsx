@@ -15,6 +15,8 @@ import CourseCard from "../components/CourseCard";
 import CourseSearchInput from "../components/search-box/CourseSearchInput";
 import CourseTagList from "../components/search-box/CourseTagList";
 import { useScreenSize } from "@/hooks/useScreenSize";
+import { enqueueSnackbar } from "notistack";
+import { fetchCourseAssessments } from "@/utils/courseUtils";
 
 interface DashboardSearch {
   courses?: string[];
@@ -55,6 +57,7 @@ function Dashboard() {
   const [liveSearchQuery, setLiveSearchQuery] = useState<string | undefined>(
     undefined,
   );
+  const [inputValue, setInputValue] = useState("");
 
   // --- HANDLERS ---
   // This is called while typing (for live results)
@@ -64,17 +67,41 @@ function Dashboard() {
   }, []);
 
   const handleAddCourse = useCallback(
-    (code: string) => {
-      navigate({
-        to: "/",
-        search: (prev) => ({
-          ...prev,
-          courses: prev.courses?.includes(code)
-            ? prev.courses
-            : [...(prev.courses || []), code],
-          q: undefined, // Clear search when adding a course
-        }),
-      });
+    async (code: string) => {
+      if (!code) return false;
+      const normalizedCode = code.toUpperCase();
+
+      // Check validation locally first (simple format) or go straight to DB?
+      // User requested "incorrect course code" notification.
+      // Let's verify against DB.
+
+      try {
+        const assessments = await fetchCourseAssessments(normalizedCode);
+        if (!assessments) {
+          enqueueSnackbar(`Course ${normalizedCode} not found in database.`, {
+            variant: "error",
+            autoHideDuration: 3000,
+          });
+          return false;
+        }
+
+        // Found! Navigate.
+        navigate({
+          to: "/",
+          search: (prev) => ({
+            ...prev,
+            courses: prev.courses?.includes(code)
+              ? prev.courses
+              : [...(prev.courses || []), code],
+            q: undefined, // Clear search when adding a course
+          }),
+        });
+        return true;
+      } catch (error) {
+        console.error("Validation error:", error);
+        enqueueSnackbar("Error verifying course code.", { variant: "error" });
+        return false;
+      }
     },
     [navigate],
   );
@@ -141,6 +168,7 @@ function Dashboard() {
   }, [page, liveSearchQuery, searchQuery, selectedCourses]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchCourses();
   }, [fetchCourses]);
 
@@ -164,24 +192,59 @@ function Dashboard() {
       <Box mb={2}>
         <Box display="flex" justifyContent="center">
           <Box width={{ xs: "100%", md: "90%" }}>
-            <Box display="flex" justifyContent="center" gap={3}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              gap={{ xs: 2, md: 3 }}
+              flexDirection={{ xs: "column", md: "row" }}
+              alignItems={{ xs: "stretch", md: "flex-start" }}
+            >
               <CourseSearchInput
                 onAddCourse={handleAddCourse}
                 existingCourses={selectedCourses}
                 onSearchResults={handleSearchResults}
+                value={inputValue}
+                onInputChange={setInputValue}
               />
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() =>
-                  navigate({
-                    to: "/about",
-                    search: { courses: selectedCourses },
-                  })
-                }
-              >
-                Create Graph
-              </Button>
+              <Box display="flex" gap={2} flexDirection={"row"} flexShrink={0}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  sx={{
+                    height: "56px",
+                    whiteSpace: "nowrap",
+                    width: { xs: "100%", sm: "100%" },
+                  }}
+                  onClick={async () => {
+                    const success = await handleAddCourse(inputValue);
+                    if (success) {
+                      setInputValue("");
+                      setLiveSearchQuery(undefined);
+                    }
+                  }}
+                >
+                  Add course
+                </Button>
+                {selectedCourses.length > 0 && (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    sx={{
+                      height: "56px",
+                      whiteSpace: "nowrap",
+                      width: { xs: "100%", sm: "100%" },
+                    }}
+                    onClick={() =>
+                      navigate({
+                        to: "/about",
+                        search: { courses: selectedCourses },
+                      })
+                    }
+                  >
+                    Create Graph
+                  </Button>
+                )}
+              </Box>
             </Box>
           </Box>
         </Box>
