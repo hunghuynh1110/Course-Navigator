@@ -1,4 +1,9 @@
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import {
+  createRootRoute,
+  Link,
+  Outlet,
+  useLocation,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import {
   AppBar,
@@ -28,6 +33,7 @@ export const Route = createRootRoute({
 });
 
 function RootLayout() {
+  const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -41,7 +47,7 @@ function RootLayout() {
   ];
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box sx={{ textAlign: "center" }}>
       <Typography
         variant="h6"
         sx={{
@@ -57,13 +63,33 @@ function RootLayout() {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item.label} disablePadding>
-            <ListItemButton component={Link} to={item.path}>
-              <ListItemText primary={item.label} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {navItems.map((item) => {
+          const isActive = location.pathname === item.path;
+          return (
+            <ListItem key={item.label} disablePadding>
+              <ListItemButton
+                component={Link}
+                to={item.path}
+                selected={isActive}
+                sx={{
+                  "&.Mui-selected": {
+                    bgcolor: "rgba(150, 42, 139, 0.08)",
+                    borderLeft: "4px solid #962a8b",
+                    "& .MuiListItemText-primary": {
+                      fontWeight: "bold",
+                      color: "#51247a",
+                    },
+                    "&:hover": {
+                      bgcolor: "rgba(150, 42, 139, 0.12)",
+                    },
+                  },
+                }}
+              >
+                <ListItemText primary={item.label} />
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
       </List>
     </Box>
   );
@@ -85,6 +111,7 @@ function RootLayout() {
             color="inherit"
             component={Link}
             to="/"
+            disableRipple={true}
             sx={{
               fontSize: { xs: 24, md: 30 },
               fontWeight: "bold",

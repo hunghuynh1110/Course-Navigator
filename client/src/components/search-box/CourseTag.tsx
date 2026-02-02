@@ -10,7 +10,8 @@ export default function CourseTag({ courseCode, onDelete }: CourseTagProps) {
   return (
     <Box
       sx={{
-        width: { xs: "25%", sm: "100px" },
+        width: "auto", // Let content dictate width
+        maxWidth: "100%",
         position: "relative",
         display: "inline-flex",
         alignItems: "center",

@@ -52,7 +52,7 @@ function RouteComponent() {
               ...acc,
               [curr.assesment_task]: { score: null, weight: curr.weight },
             }),
-            {}
+            {},
           );
           setScores(initialScores);
         } else {
@@ -124,7 +124,7 @@ function RouteComponent() {
             fontSize: "1.2rem",
           }}
           onClick={() => {
-            setCourseId(null);
+            setCourseId(inputValue);
             navigate({
               to: "/grade",
               search: {
