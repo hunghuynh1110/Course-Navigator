@@ -30,7 +30,7 @@ export type Search = {
   courses?: string[];
 };
 
-export const Route = createFileRoute("/about")({
+export const Route = createFileRoute("/map")({
   component: About,
   validateSearch: (search: Record<string, unknown>): Search => {
     return {
