@@ -21,23 +21,24 @@ __pycache__/
 .vscode/
 .agent
 
-# --- BẢO MẬT (Rất tốt) ---
+# --- SECURITY ---
 database/URL_KEYS.py
 
 # ==============================================
-# 👇 PHẦN BỔ SUNG QUAN TRỌNG CHO FRONTEND 👇
+# ==============================================
+# FRONTEND
 # ==============================================
 
-# --- Node.js Dependencies (NẶNG NHẤT - BẮT BUỘC PHẢI CÓ) ---
+# --- Node.js Dependencies ---
 node_modules/
 npm-debug.log
 yarn-error.log
 pnpm-debug.log
 
-# --- Build Output (File code đã đóng gói, không cần commit) ---
+# --- Build Output ---
 dist/
 build/
 .vite/
 
-# --- Coverage reports (Nếu sau này có test) ---
+# --- Coverage reports ---
 coverage/

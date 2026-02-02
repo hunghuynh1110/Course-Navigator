@@ -1,8 +1,148 @@
 {
-  "hash": "004eb926",
+  "hash": "14dfe96e",
   "configHash": "be599a37",
-  "lockfileHash": "2ee6677c",
-  "browserHash": "f2588c1c",
-  "optimized": {},
-  "chunks": {}
+  "lockfileHash": "103dd696",
+  "browserHash": "044d47b3",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/.pnpm/react@19.2.3/node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "a41dfbcd",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/.pnpm/react@19.2.3/node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "5668bc47",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/.pnpm/react-dom@19.2.3_react@19.2.3/node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "abd523d4",
+      "needsInterop": true
+    },
+    "@mui/material": {
+      "src": "../../node_modules/.pnpm/@mui+material@7.3.6_@emotion+react@11.14.0_@types+react@19.2.7_react@19.2.3__@emotion+s_0907c348f8d000677a2fa3c03f8c0f86/node_modules/@mui/material/esm/index.js",
+      "file": "@mui_material.js",
+      "fileHash": "7474f04f",
+      "needsInterop": false
+    },
+    "notistack": {
+      "src": "../../node_modules/.pnpm/notistack@3.0.2_csstype@3.2.3_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/notistack/notistack.esm.js",
+      "file": "notistack.js",
+      "fileHash": "77ce0f93",
+      "needsInterop": false
+    },
+    "@tanstack/react-router": {
+      "src": "../../node_modules/.pnpm/@tanstack+react-router@1.145.11_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/@tanstack/react-router/dist/esm/index.js",
+      "file": "@tanstack_react-router.js",
+      "fileHash": "a4ee8be9",
+      "needsInterop": false
+    },
+    "@mui/material/styles": {
+      "src": "../../node_modules/.pnpm/@mui+material@7.3.6_@emotion+react@11.14.0_@types+react@19.2.7_react@19.2.3__@emotion+s_0907c348f8d000677a2fa3c03f8c0f86/node_modules/@mui/material/esm/styles/index.js",
+      "file": "@mui_material_styles.js",
+      "fileHash": "63f68252",
+      "needsInterop": false
+    },
+    "@tanstack/react-router-devtools": {
+      "src": "../../node_modules/.pnpm/@tanstack+react-router-devtools@1.145.11_@tanstack+react-router@1.145.11_react-dom@19.2_818c94eec023c3ec8f081f7c283ab81c/node_modules/@tanstack/react-router-devtools/dist/esm/index.js",
+      "file": "@tanstack_react-router-devtools.js",
+      "fileHash": "a4a3603f",
+      "needsInterop": false
+    },
+    "@vercel/analytics/react": {
+      "src": "../../node_modules/.pnpm/@vercel+analytics@1.6.1_react@19.2.3/node_modules/@vercel/analytics/dist/react/index.mjs",
+      "file": "@vercel_analytics_react.js",
+      "fileHash": "2e95773e",
+      "needsInterop": false
+    },
+    "@supabase/supabase-js": {
+      "src": "../../node_modules/.pnpm/@supabase+supabase-js@2.90.0/node_modules/@supabase/supabase-js/dist/index.mjs",
+      "file": "@supabase_supabase-js.js",
+      "fileHash": "717fc238",
+      "needsInterop": false
+    },
+    "@mui/icons-material/GitHub": {
+      "src": "../../node_modules/.pnpm/@mui+icons-material@7.3.6_@mui+material@7.3.6_@emotion+react@11.14.0_@types+react@19.2._7d06b97576ff709423ae23500123c180/node_modules/@mui/icons-material/esm/GitHub.js",
+      "file": "@mui_icons-material_GitHub.js",
+      "fileHash": "10f174ea",
+      "needsInterop": false
+    },
+    "@mui/icons-material/LinkedIn": {
+      "src": "../../node_modules/.pnpm/@mui+icons-material@7.3.6_@mui+material@7.3.6_@emotion+react@11.14.0_@types+react@19.2._7d06b97576ff709423ae23500123c180/node_modules/@mui/icons-material/esm/LinkedIn.js",
+      "file": "@mui_icons-material_LinkedIn.js",
+      "fileHash": "e7174ec7",
+      "needsInterop": false
+    },
+    "@mui/icons-material/Menu": {
+      "src": "../../node_modules/.pnpm/@mui+icons-material@7.3.6_@mui+material@7.3.6_@emotion+react@11.14.0_@types+react@19.2._7d06b97576ff709423ae23500123c180/node_modules/@mui/icons-material/esm/Menu.js",
+      "file": "@mui_icons-material_Menu.js",
+      "fileHash": "086c039b",
+      "needsInterop": false
+    },
+    "@mui/icons-material/Search": {
+      "src": "../../node_modules/.pnpm/@mui+icons-material@7.3.6_@mui+material@7.3.6_@emotion+react@11.14.0_@types+react@19.2._7d06b97576ff709423ae23500123c180/node_modules/@mui/icons-material/esm/Search.js",
+      "file": "@mui_icons-material_Search.js",
+      "fileHash": "5a4299cd",
+      "needsInterop": false
+    },
+    "@mui/icons-material/Close": {
+      "src": "../../node_modules/.pnpm/@mui+icons-material@7.3.6_@mui+material@7.3.6_@emotion+react@11.14.0_@types+react@19.2._7d06b97576ff709423ae23500123c180/node_modules/@mui/icons-material/esm/Close.js",
+      "file": "@mui_icons-material_Close.js",
+      "fileHash": "b6562452",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "FloatingTanStackRouterDevtools-DymJEvfG-D6CE25WA": {
+      "file": "FloatingTanStackRouterDevtools-DymJEvfG-D6CE25WA.js"
+    },
+    "chunk-S42ITL4S": {
+      "file": "chunk-S42ITL4S.js"
+    },
+    "BaseTanStackRouterDevtoolsPanel-BBz1qLry-C542ZUPT": {
+      "file": "BaseTanStackRouterDevtoolsPanel-BBz1qLry-C542ZUPT.js"
+    },
+    "chunk-ZZGS7TPY": {
+      "file": "chunk-ZZGS7TPY.js"
+    },
+    "chunk-XJ3UIXOT": {
+      "file": "chunk-XJ3UIXOT.js"
+    },
+    "chunk-SG6JPFNC": {
+      "file": "chunk-SG6JPFNC.js"
+    },
+    "chunk-NPMRAGQ3": {
+      "file": "chunk-NPMRAGQ3.js"
+    },
+    "chunk-AYPYDD2M": {
+      "file": "chunk-AYPYDD2M.js"
+    },
+    "chunk-P4LXPE4N": {
+      "file": "chunk-P4LXPE4N.js"
+    },
+    "chunk-54NDKEML": {
+      "file": "chunk-54NDKEML.js"
+    },
+    "chunk-L2SVDKTE": {
+      "file": "chunk-L2SVDKTE.js"
+    },
+    "chunk-XAMZZWAS": {
+      "file": "chunk-XAMZZWAS.js"
+    },
+    "chunk-QTVVL2JF": {
+      "file": "chunk-QTVVL2JF.js"
+    },
+    "chunk-7TOKK2FT": {
+      "file": "chunk-7TOKK2FT.js"
+    },
+    "chunk-I4BD4AGR": {
+      "file": "chunk-I4BD4AGR.js"
+    },
+    "chunk-G3PMV62Z": {
+      "file": "chunk-G3PMV62Z.js"
+    }
+  }
 }

@@ -158,7 +158,7 @@ function Map() {
         }),
       });
     } else {
-      // Clear program and courses if no program selected (though Autocomplete is disableClearable currently)
+      // Clear program and courses if no program selected
       navigate({
         to: "/map",
         search: (prev) => ({

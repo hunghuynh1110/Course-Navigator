@@ -1,7 +1,7 @@
 import {
   TanStackRouterDevtoolsCore,
   TanStackRouterDevtoolsPanelCore
-} from "./chunk-OFETC3JP.js";
+} from "./chunk-54NDKEML.js";
 import {
   useRouter,
   useRouterState
