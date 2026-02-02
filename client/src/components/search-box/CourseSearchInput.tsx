@@ -51,7 +51,7 @@ const CourseSearchInput = ({
         initial[f.id] = f.defaultValue || "";
       });
       return initial;
-    }
+    },
   );
 
   // Debounce logic for live search
@@ -142,7 +142,7 @@ const CourseSearchInput = ({
   return (
     <Box
       display="flex"
-      gap={2}
+      gap={{ xs: 1, md: 2 }}
       alignItems="center"
       width="100%"
       flexWrap={{ xs: "wrap", md: "nowrap" }}
