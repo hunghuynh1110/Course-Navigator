@@ -24,7 +24,7 @@ function RootLayout() {
 
   const navItems = [
     { label: "Dashboard", path: "/" },
-    { label: "About", path: "/about" },
+    { label: "Map", path: "/map" },
     { label: "Grade", path: "/grade" },
   ];
 

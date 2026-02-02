@@ -236,7 +236,7 @@ function Dashboard() {
                     }}
                     onClick={() =>
                       navigate({
-                        to: "/about",
+                        to: "/map",
                         search: { courses: selectedCourses },
                       })
                     }
