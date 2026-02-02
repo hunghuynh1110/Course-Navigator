@@ -9,12 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MapRouteImport } from './routes/map'
 import { Route as GradeRouteImport } from './routes/grade'
 import { Route as CreateRouteImport } from './routes/create'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoursesCourseIdRouteImport } from './routes/courses/$courseId'
 
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GradeRoute = GradeRouteImport.update({
   id: '/grade',
   path: '/grade',
@@ -23,11 +28,6 @@ const GradeRoute = GradeRouteImport.update({
 const CreateRoute = CreateRouteImport.update({
   id: '/create',
   path: '/create',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -43,44 +43,51 @@ const CoursesCourseIdRoute = CoursesCourseIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/create': typeof CreateRoute
   '/grade': typeof GradeRoute
+  '/map': typeof MapRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/create': typeof CreateRoute
   '/grade': typeof GradeRoute
+  '/map': typeof MapRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/create': typeof CreateRoute
   '/grade': typeof GradeRoute
+  '/map': typeof MapRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/create' | '/grade' | '/courses/$courseId'
+  fullPaths: '/' | '/create' | '/grade' | '/map' | '/courses/$courseId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/create' | '/grade' | '/courses/$courseId'
-  id: '__root__' | '/' | '/about' | '/create' | '/grade' | '/courses/$courseId'
+  to: '/' | '/create' | '/grade' | '/map' | '/courses/$courseId'
+  id: '__root__' | '/' | '/create' | '/grade' | '/map' | '/courses/$courseId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
   CreateRoute: typeof CreateRoute
   GradeRoute: typeof GradeRoute
+  MapRoute: typeof MapRoute
   CoursesCourseIdRoute: typeof CoursesCourseIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/grade': {
       id: '/grade'
       path: '/grade'
@@ -93,13 +100,6 @@ declare module '@tanstack/react-router' {
       path: '/create'
       fullPath: '/create'
       preLoaderRoute: typeof CreateRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -121,9 +121,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
   CreateRoute: CreateRoute,
   GradeRoute: GradeRoute,
+  MapRoute: MapRoute,
   CoursesCourseIdRoute: CoursesCourseIdRoute,
 }
 export const routeTree = rootRouteImport
