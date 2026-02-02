@@ -53,7 +53,7 @@ function Dashboard() {
 
   // Local state for live search (not in URL until Enter is pressed)
   const [liveSearchQuery, setLiveSearchQuery] = useState<string | undefined>(
-    undefined
+    undefined,
   );
 
   // --- HANDLERS ---
@@ -76,7 +76,7 @@ function Dashboard() {
         }),
       });
     },
-    [navigate]
+    [navigate],
   );
 
   const handleRemoveCourse = useCallback(
@@ -89,7 +89,7 @@ function Dashboard() {
         }),
       });
     },
-    [navigate]
+    [navigate],
   );
 
   // --- DATA FETCHING ---
@@ -129,7 +129,7 @@ function Dashboard() {
     } else if (data) {
       if (selectedCourses.length > 0) {
         const filteredData = data.filter(
-          (course) => !selectedCourses.includes(course.id)
+          (course) => !selectedCourses.includes(course.id),
         );
         setCourses(filteredData as unknown as Course[]);
       } else {
@@ -146,7 +146,7 @@ function Dashboard() {
 
   const handlePageChange = (
     _event: React.ChangeEvent<unknown>,
-    value: number
+    value: number,
   ) => {
     navigate({
       to: "/",
@@ -159,7 +159,7 @@ function Dashboard() {
   };
 
   return (
-    <Container maxWidth={false} sx={{ py: 4 }}>
+    <Container maxWidth={false} sx={{ py: { xs: 2, md: 4 } }}>
       {/* SEARCH AREA */}
       <Box mb={2}>
         <Box display="flex" justifyContent="center">
