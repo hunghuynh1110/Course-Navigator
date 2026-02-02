@@ -37,6 +37,7 @@ pnpm-debug.log
 # --- Build Output (File code đã đóng gói, không cần commit) ---
 dist/
 build/
+.vite/
 
 # --- Coverage reports (Nếu sau này có test) ---
 coverage/

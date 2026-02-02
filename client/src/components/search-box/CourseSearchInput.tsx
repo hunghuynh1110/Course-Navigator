@@ -26,11 +26,15 @@ export interface FilterConfig {
 }
 
 interface CourseSearchInputProps {
-  onAddCourse: (code: string) => void; // Triggered on Enter to add to saved list
-  existingCourses: string[]; // To check for duplicates
-  onSearchResults?: (courses: string[]) => void; // To show live search results
+  onAddCourse: (code: string) => Promise<boolean> | void; // Return true if success (to clear input)
+  existingCourses?: string[];
+  onSearchResults?: (courses: string[]) => void;
   filters?: FilterConfig[];
   onFiltersChange?: (filters: Record<string, string>) => void;
+  disableLiveSearch?: boolean;
+  value?: string;
+  onInputChange?: (value: string) => void;
+  clearOnSearch?: boolean;
 }
 
 const CourseSearchInput = ({
@@ -39,9 +43,24 @@ const CourseSearchInput = ({
   onSearchResults,
   filters = [],
   onFiltersChange,
+  disableLiveSearch = false,
+  value: propValue,
+  onInputChange: propOnInputChange,
+  clearOnSearch = true,
 }: CourseSearchInputProps) => {
-  const [inputValue, setInputValue] = useState("");
+  const [internalValue, setInternalValue] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const isControlled = propValue !== undefined;
+  const inputValue = isControlled ? propValue : internalValue;
+
+  const setInputValue = (val: string) => {
+    if (!isControlled) {
+      setInternalValue(val);
+    }
+    propOnInputChange?.(val);
+  };
 
   // Initialize filters with default values or empty string
   const [activeFilters, setActiveFilters] = useState<Record<string, string>>(
@@ -56,27 +75,23 @@ const CourseSearchInput = ({
 
   // Debounce logic for live search
   useEffect(() => {
+    if (disableLiveSearch) return;
+
     if (!inputValue.trim()) {
-      // If empty, clear search results
       onSearchResults?.([]);
       return;
     }
 
     const timer = setTimeout(() => {
-      // Simulate search - in real app, this would call Supabase
-      // For now, just pass the search term to parent
       onSearchResults?.([inputValue.trim()]);
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [inputValue, onSearchResults]);
+  }, [inputValue, onSearchResults, disableLiveSearch]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Force uppercase
     const value = e.target.value.toUpperCase();
     setInputValue(value);
-
-    // Clear error when user types
     if (error) setError("");
   };
 
@@ -92,40 +107,34 @@ const CourseSearchInput = ({
     if (!trimmedInput) return;
 
     // Check duplicate
-    if (existingCourses.includes(trimmedInput)) {
+    if (existingCourses?.includes(trimmedInput)) {
       setError("Course already added");
       setInputValue("");
-      onSearchResults?.([]); // Clear search results
+      if (!disableLiveSearch) onSearchResults?.([]);
       return;
     }
 
-    // Mock Validation: Check if course code exists
-    const isValid = mockValidateCourse(trimmedInput);
-    const isValid2 = mockValidateCourse2(trimmedInput);
-    if (isValid) {
-      onAddCourse(trimmedInput);
-      // RESET everything
-      setInputValue("");
-      setError("");
-      onSearchResults?.([]); // Clear search results to reset the course display
-    } else if (isValid2) {
-      setInputValue("");
-      onSearchResults?.([]); // Clear search results
-    } else {
-      setError("Invalid course code");
-      setInputValue("");
-      onSearchResults?.([]); // Clear search results
-    }
-  };
+    setLoading(true);
+    try {
+      // Delegate validation to parent
+      const success = await onAddCourse(trimmedInput);
 
-  // Mock validation function
-  const mockValidateCourse = (code: string) => {
-    // Simulate valid if it starts with letters and has numbers (e.g. COMP123)
-    return /^[A-Z]{3,4}\d{3,4}[A-Z]*$/.test(code);
-  };
-  const mockValidateCourse2 = (code: string) => {
-    // Simulate valid if it starts with letters only (e.g. COMP)
-    return /^[A-Z]{3,4}$/.test(code);
+      // If parent returns explicit true (or undefined/void treated as generic success if we strictly assume void is success? No, let's treat boolean as indicator)
+      // Actually typical pattern: if promise resolves, it's success?
+      // Let's assume onAddCourse returns boolean: true = success/clear, false = fail/keep.
+      if (success !== false) {
+        if (clearOnSearch) {
+          setInputValue("");
+        }
+        setError("");
+        if (!disableLiveSearch) onSearchResults?.([]);
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Failed to add course");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleFilterChange =
@@ -183,6 +192,7 @@ const CourseSearchInput = ({
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
         error={!!error}
+        disabled={loading}
         // helperText={error || "Type to search, press Enter to add"}
         InputProps={{
           endAdornment: (
