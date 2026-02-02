@@ -16,15 +16,15 @@
 
 ---
 
-- **🕸️ Interactive Dependency Graphs:** Visualizes course hierarchies (Prerequisites, Incompatible, Companion) using a force-directed graph (React Flow + ELK). Handles circular dependencies gracefully.
-- **🔎 Real-time Search:** Instant search across thousands of courses and programs using Supabase text search.
-- **📊 Grade Calculator:** Built-in tool to calculate required scores for final exams based on continuous assessment weightings.
-- **📱 Responsive Grid Layout:** Optimized interface that switches between Data Grid (Desktop) and Card View (Mobile).
-- **⚡ Optimized Performance:** Implements server-side pagination and caching to render large datasets with zero lag.
+- ** Interactive Dependency Graphs:** Visualizes course hierarchies (Prerequisites, Incompatible, Companion) using a force-directed graph (React Flow + ELK). Handles circular dependencies gracefully.
+- ** Real-time Search:** Instant search across thousands of courses and programs using Supabase text search.
+- ** Grade Calculator:** Built-in tool to calculate required scores for final exams based on continuous assessment weightings.
+- ** Responsive Grid Layout:** Optimized interface that switches between Data Grid (Desktop) and Card View (Mobile).
+- ** Optimized Performance:** Implements server-side pagination and caching to render large datasets with zero lag.
 
 ---
 
-## 🏗️ Architecture & Tech Stack
+##  Architecture & Tech Stack
 
 ### Frontend (Client)
 
@@ -55,7 +55,7 @@ Before you begin, ensure you have the following installed:
 
 ---
 
-## 🚀 Local Development Guide
+##  Local Development Guide
 
 ### 1. Database Setup (Supabase)
 
@@ -88,8 +88,7 @@ Run the development server:
 pnpm run dev
 ```
 
-## 🤝 Contributing
-
+## Contributing
 1. Fork the repository.
 
 2. Create your feature branch (git checkout -b feature/NewFeature).
@@ -100,8 +99,8 @@ pnpm run dev
 
 5. Open a Pull Request.
 
-### 📄 License
 
+### 📄 License
 Distributed under the MIT License.
 
 ---
