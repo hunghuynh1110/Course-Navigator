@@ -1,18 +1,13 @@
 import AssessmentTable from "@/components/grade-calc/AssessmentTable";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import {
-  TextField,
-  Box,
-  Typography,
-  InputAdornment,
-  Button,
-} from "@mui/material";
+import { useCallback, useEffect, useState } from "react";
+import { Box, Typography, Button } from "@mui/material";
 import { fetchCourseAssessments } from "@/utils/courseUtils";
 import { calculateStats, convertScore } from "@/utils/gradeUtils";
 import GradeTable from "@/components/grade-calc/GradeTable";
 import { Assessment } from "@/types/assessment";
-import SearchIcon from "@mui/icons-material/Search";
+import CourseSearchInput from "@/components/search-box/CourseSearchInput";
+import { useSnackbar } from "notistack";
 
 type Search = {
   course: string;
@@ -30,8 +25,9 @@ export const Route = createFileRoute("/grade")({
 function RouteComponent() {
   const { course: searchCourse } = Route.useSearch();
   const navigate = Route.useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
-  const [inputValue, setInputValue] = useState(searchCourse);
+  const [inputValue, setInputValue] = useState(searchCourse || "");
   const [courseId, setCourseId] = useState<string | null>(searchCourse);
   const [assessments, setAssessments] = useState<Assessment[] | null>(null);
   const [scores, setScores] = useState<
@@ -52,7 +48,7 @@ function RouteComponent() {
               ...acc,
               [curr.assesment_task]: { score: null, weight: curr.weight },
             }),
-            {}
+            {},
           );
           setScores(initialScores);
         } else {
@@ -82,6 +78,43 @@ function RouteComponent() {
 
   const { totalScore, completedWeight } = calculateStats(scores);
 
+  const handleValidateAndSearch = useCallback(
+    async (code: string) => {
+      if (!code) return false;
+      const normalizedCode = code.toUpperCase();
+
+      // Check validation locally first (simple format) or go straight to DB?
+      // User requested "incorrect course code" notification.
+      // Let's verify against DB.
+
+      try {
+        const assessments = await fetchCourseAssessments(normalizedCode);
+        if (!assessments) {
+          enqueueSnackbar(`Course ${normalizedCode} not found in database.`, {
+            variant: "error",
+            autoHideDuration: 3000,
+          });
+          return false;
+        }
+
+        // Found! Navigate.
+        setCourseId(normalizedCode);
+        navigate({
+          to: "/grade",
+          search: {
+            course: normalizedCode,
+          },
+        });
+        return true;
+      } catch (error) {
+        console.error("Validation error:", error);
+        enqueueSnackbar("Error verifying course code.", { variant: "error" });
+        return false;
+      }
+    },
+    [navigate, enqueueSnackbar],
+  );
+
   return (
     <Box sx={{ px: { xs: 0, md: "10%", lg: "15%" }, mx: "auto" }}>
       <Box
@@ -91,29 +124,12 @@ function RouteComponent() {
           flexDirection: { xs: "column", md: "row" },
         }}
       >
-        <TextField
-          fullWidth
-          label="Course ID"
-          value={inputValue.toUpperCase()}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              setCourseId(inputValue);
-              navigate({
-                to: "/grade",
-                search: {
-                  course: inputValue,
-                },
-              });
-            }
-          }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
+        <CourseSearchInput
+          onAddCourse={handleValidateAndSearch}
+          disableLiveSearch={true}
+          value={inputValue}
+          onInputChange={setInputValue}
+          clearOnSearch={false}
         />
         <Button
           variant="contained"
@@ -123,15 +139,7 @@ function RouteComponent() {
             fontWeight: "",
             fontSize: "1.2rem",
           }}
-          onClick={() => {
-            setCourseId(null);
-            navigate({
-              to: "/grade",
-              search: {
-                course: inputValue,
-              },
-            });
-          }}
+          onClick={() => handleValidateAndSearch(inputValue)}
         >
           GO
         </Button>
