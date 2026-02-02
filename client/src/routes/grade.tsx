@@ -83,9 +83,7 @@ function RouteComponent() {
       if (!code) return false;
       const normalizedCode = code.toUpperCase();
 
-      // Check validation locally first (simple format) or go straight to DB?
-      // User requested "incorrect course code" notification.
-      // Let's verify against DB.
+      // Verify course code against database
 
       try {
         const assessments = await fetchCourseAssessments(normalizedCode);
@@ -97,7 +95,7 @@ function RouteComponent() {
           return false;
         }
 
-        // Found! Navigate.
+        // Navigate to grade page
         setCourseId(normalizedCode);
         navigate({
           to: "/grade",
